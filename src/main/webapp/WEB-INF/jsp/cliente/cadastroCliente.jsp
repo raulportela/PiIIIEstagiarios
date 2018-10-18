@@ -59,21 +59,21 @@
 
 					<form class="form-group">
 
-						<label>Nome:</label><input type="text" class="form-control" id="nome">
+						<label>Nome:</label><input type="text" name="nome" class="form-control" id="nome">
 						
-						<label>Sobrenome:</label><input type="text" class="form-control" id="sobrenome">
+						<label>Sobrenome:</label><input type="text" name="sobrenome" class="form-control" id="sobrenome">
 						
-						<label>CPF:</label><input type="text" pattern="[0-9]+$"  class="form-control" id="cpf"  placeholder="000.000.000-00">
+						<label>CPF:</label><input type="text" name="cpf" pattern="[0-9]+$"  class="form-control" id="cpf"  placeholder="000.000.000-00">
 						
-						<label>Nasc:</label><input type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc">
+						<label>Nasc:</label><input type="date" name="nasc" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc">
 
-						<label>E-mail:</label><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com">
+						<label>E-mail:</label><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com">
 						
-						<label>Telefone:</label><input type="tel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="tel" placeholder="(xx) 9999-9999">
+						<label>Telefone:</label><input type="tel" name="tel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="tel" placeholder="(xx) 9999-9999">
 						
-						<label>Celular:</label><input type="tel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="cel"  placeholder="(xx) 9 9999-9999">
+						<label>Celular:</label><input type="tel" name="cel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="cel"  placeholder="(xx) 9 9999-9999">
 
-						<label>Endereço:</label><input type="text" class="form-control" id="end">	
+						<label>Endereço:</label><input type="text" name="end" class="form-control" id="end">	
 
 					</form>
 				</div>

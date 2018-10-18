@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cliente;
+package br.senac.tads.pi3a.livrariatades.model.pessoa.cliente;
 
+import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
 import java.math.BigDecimal;
 import java.util.Date;
 
