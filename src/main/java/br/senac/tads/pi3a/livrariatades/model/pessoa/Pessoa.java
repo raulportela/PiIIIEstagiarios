@@ -15,20 +15,17 @@ public abstract class Pessoa {
 
     private final String nome;
     private final String sobrenome;
-    private final String rg;
     private final String cpf;
     private final Date dataNascimento;
-    private final String sexo;
 
-    public Pessoa(String nome, String sobrenome, String rg, String cpf,
-            Date dataNascimento, String sexo) {
+    public Pessoa(String nome, String sobrenome, String cpf,
+            Date dataNascimento) {
 
         this.nome = nome;
         this.sobrenome = sobrenome;
-        this.rg = rg;
+
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
-        this.sexo = sexo;
 
     }
 
@@ -40,10 +37,6 @@ public abstract class Pessoa {
         return sobrenome;
     }
 
-    public String getRg() {
-        return rg;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -52,15 +45,11 @@ public abstract class Pessoa {
         return dataNascimento;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-    
     @Override
-    public String toString(){
-        return String.format("%s,%s,%s,%s,%s,%s,", getNome(),getSobrenome(),getRg(),
-                getCpf(),getDataNascimento(), getSexo());
-        
+    public String toString() {
+        return String.format("%s,%s,%s,%s,%s,%s,", getNome(), getSobrenome(),
+                getCpf(), getDataNascimento());
+
     }
 
 }

@@ -18,12 +18,13 @@ public class Cliente extends Pessoa {
     private String email;
     private Integer telefone;
     private Integer celular;
+    private String endereco;
     private BigDecimal totalCompras;
 
-    public Cliente(String nome, String sobrenome, String rg, String cpf,
-            Date dataNascimento, String sexo, String email, Integer telefone,
-            Integer celular, BigDecimal totalCompra) {
-        super(nome, sobrenome, rg, cpf, dataNascimento, sexo);
+    public Cliente(String nome, String sobrenome, String cpf,
+            Date dataNascimento,String email, Integer telefone,
+            Integer celular, String endereco ) {
+        super(nome, sobrenome, cpf, dataNascimento);
     }
 
     public String getEmail() {
@@ -56,6 +57,14 @@ public class Cliente extends Pessoa {
 
     public void setTotalCompras(BigDecimal totalCompras) {
         this.totalCompras = totalCompras;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
     
 

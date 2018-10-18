@@ -13,6 +13,9 @@ import java.util.Date;
  * @author Jeferson Nolasco
  */
 public class Funcionario extends Pessoa {
+    
+    private String rg;
+    private String sexo;
     private String ufNascimento;
     private String estadoNascimento;
     private String estadoCivil;
@@ -29,8 +32,10 @@ public class Funcionario extends Pessoa {
     String ufNascimento, String estadoNascimento, String estadoCivil,
             String rua, String numero, String bairro, Integer cep, String complemento,
             String uf, String estado, Integer numeroCtps) {
-        super(nome, sobrenome, rg, cpf, dataNascimento, sexo);
+        super(nome, sobrenome, cpf, dataNascimento);
         
+        this.rg = rg;
+        this.sexo = sexo;
         this.ufNascimento = ufNascimento;
         this.estadoNascimento = estadoNascimento;
         this.estadoCivil = estadoCivil;
