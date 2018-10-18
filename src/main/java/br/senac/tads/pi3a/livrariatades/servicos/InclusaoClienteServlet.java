@@ -7,6 +7,7 @@ package br.senac.tads.pi3a.livrariatades.servicos;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +18,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/InclusaoClienteServlet"})
+@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/inclusao"})
 public class InclusaoClienteServlet extends HttpServlet {
 
  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher dispatcher 
+                = request.getRequestDispatcher(
+        "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
+        dispatcher.forward(request, response);
        
     }
 
