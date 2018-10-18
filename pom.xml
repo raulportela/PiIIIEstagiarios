@@ -14,12 +14,40 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
+    <developers>
+        <developer>
+            <id>erikapalms</id>
+            <name>Erika Palmeira de Souza</name>
+        </developer>
+        <developer>
+            <id>jeh.nls</id>
+            <name>Jeferson Nolasco Sousa</name>
+        </developer>
+        <developer>
+            <id>lmaia12</id>
+            <name>Leonardo Maia Silva</name>
+        </developer>
+        <developer>
+            <id>raulportela</id>
+            <name>Raul de Paula Portela</name>
+        </developer>
+        <developer>
+            <id>239860</id>
+            <name>Rodrigo Mariano Danieli Merlucci</name>
+        </developer>
+    </developers>
+    
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
     </dependencies>
 

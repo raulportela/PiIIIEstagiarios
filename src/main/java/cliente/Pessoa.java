@@ -5,7 +5,6 @@
  */
 package cliente;
 
-import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil;
 import java.util.Date;
 
 /**
