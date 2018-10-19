@@ -47,7 +47,7 @@ public abstract class Pessoa {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s,%s,%s,", getNome(), getSobrenome(),
+        return String.format("%s,%s,%s,%s", getNome(), getSobrenome(),
                 getCpf(), getDataNascimento());
 
     }

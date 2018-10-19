@@ -80,7 +80,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
-					<button type="button" class="btn btn-primary" onclick="">Cadastrar</button>
+					<button type="button" class="btn btn-primary" onclick="${pageContext.request.contextPath}/cliente/inclusao" method="post"">Cadastrar</button>
 
 				</div>
 
@@ -160,7 +160,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form class="form-group">
+					<form  class="form-group" >
 
 						<label>Nome:</label><input type="text" class="form-control" id="nome" placeholder="">
 						
