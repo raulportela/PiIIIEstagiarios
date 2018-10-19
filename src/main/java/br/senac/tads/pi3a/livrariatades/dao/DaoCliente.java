@@ -7,6 +7,7 @@ package br.senac.tads.pi3a.livrariatades.dao;
 
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.utils.ConnectionUtils;
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -50,4 +51,67 @@ public class DaoCliente {
             }
         }
     }
+    
+        public static void atualizar(Cliente cliente)
+            
+        throws SQLException, Exception {
+        
+        String sql = "UPDATE cliente SET NomeCliente=?, CPF=?, DataNasc=?, Email=?, Telefone1=?, Telefone2=?, Endereço=? WHERE (cliente_id=?)";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(2, cliente.getNome());
+            preparedStatement.setString(3, cliente.getCpf());
+//            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
+//            preparedStatement.setTimestamp(4, t);
+            preparedStatement.setString(5, cliente.getEmail());
+            preparedStatement.setInt(6, cliente.getTelefone());
+            preparedStatement.setInt(7, cliente.getCelular());
+            preparedStatement.setString(8, cliente.getEndereco());
+            
+            preparedStatement.execute();
+            
+        } finally {
+
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
+
+
+    public static void excluir(Integer id) throws SQLException, Exception {
+
+        String sql = "UPDATE cliente SET enabled=? WHERE (cliente_id=?)";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
+
+            preparedStatement.execute();
+            
+        } finally {
+            
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
+
+
 }
