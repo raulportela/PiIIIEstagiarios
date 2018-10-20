@@ -17,7 +17,9 @@ import java.sql.SQLException;
  */
 public class DaoCliente {
     public static void inserir(Cliente cliente) throws SQLException, Exception {
-        String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?, ?, ?, ?, ? )";
+               Cliente c1 = cliente;
+
+        String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -29,16 +31,16 @@ public class DaoCliente {
 
             preparedStatement.setString(2, cliente.getSobrenome());
             preparedStatement.setString(3, cliente.getCpf());
-            preparedStatement.setString(4, cliente.getEndereco());
-            String cpf = "";
+           
+//            String cpf = "";
 //            cpf += cliente.getCpf().substring(0, 3)
 //                    + cliente.getCpf().substring(4, 7)
 //                    + cliente.getCpf().substring(8, 11)
 //                    + cliente.getCpf().substring(12, 14);
-
-            preparedStatement.setString(5,""+ cliente.getTelefone());
-            preparedStatement.setString(6,""+ cliente.getCelular());
-            preparedStatement.setString(7, cliente.getEmail());
+//
+//            preparedStatement.setString(5,""+ cliente.getTelefone());
+//            preparedStatement.setString(6,""+ cliente.getCelular());
+//            preparedStatement.setString(7, cliente.getEmail());
             
             preparedStatement.execute();
         } finally {

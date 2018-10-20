@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public abstract class Pessoa {
 
-    private final String nome;
-    private final String sobrenome;
-    private final String cpf;
-    private final Date dataNascimento;
+    protected String nome;
+    protected String sobrenome;
+    protected String cpf;
+    protected Date dataNascimento;
 
     public Pessoa(String nome, String sobrenome, String cpf,
             Date dataNascimento) {

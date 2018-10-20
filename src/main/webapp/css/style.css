@@ -1,0 +1,45 @@
+body{
+	background: rgba(250, 250, 250, 1);
+}
+.top-menu{
+	height: 80px;
+	border-bottom:solid 1px #f1f1f1;
+	margin-bottom: 50px;
+	background: #f1f1f1;
+	padding: 0px;
+	-webkit-box-shadow: 0px 0px 10px -4px rgba(153,153,153,1);
+	-moz-box-shadow: 0px 0px 10px -4px rgba(153,153,153,1);
+	box-shadow: 0px 0px 10px -4px rgba(153,153,153,1);
+}
+.top-menu div{
+	margin-left:80%;
+	margin-top: -20px;
+	
+}
+.top-menu img{
+	width: 150px;
+	height: auto;
+	
+}
+.pesquisa{
+	width: 150px;
+	margin-left:150px;
+}
+.card-item{
+	min-height: 250px;
+	height: auto;
+	margin-bottom: 10px;
+	padding: 0px;
+	border:solid 1px #f1f1f1;
+	border-radius: 8px;
+	-webkit-box-shadow: 0px 0px 10px -4px rgba(153,153,153,1);
+	-moz-box-shadow: 0px 0px 10px -4px rgba(153,153,153,1);
+	box-shadow: 0px 0px 10px -4px rgba(153,153,153,1);
+	background: #fff;
+
+}
+.card-item h1{
+	font-size: 32px;
+	margin-top: 5px;
+	margin-left: 10px;
+}

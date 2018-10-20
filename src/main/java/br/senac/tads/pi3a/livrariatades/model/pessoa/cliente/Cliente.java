@@ -22,9 +22,52 @@ public class Cliente extends Pessoa {
     private BigDecimal totalCompras;
 
     public Cliente(String nome, String sobrenome, String cpf,
-            Date dataNascimento,String email, Integer telefone,
-            Integer celular, String endereco ) {
+            Date dataNascimento, String email, Integer telefone,
+            Integer celular, String endereco) {
         super(nome, sobrenome, cpf, dataNascimento);
+        {
+            this.nome = nome;
+            this.sobrenome = sobrenome;
+            this.cpf = cpf;
+            this.dataNascimento = dataNascimento;
+            this.email = email;
+            this.telefone = telefone;
+            this.celular = celular;
+            this.endereco = endereco;
+        }
+
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getEmail() {
@@ -66,9 +109,12 @@ public class Cliente extends Pessoa {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
 
+    @Override
+    public String toString() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", getNome(), getSobrenome(),
+                getCpf(), getDataNascimento(), getEmail(), getTelefone(), getCelular(), getEndereco());
 
-    
-    
+    }
+
 }
