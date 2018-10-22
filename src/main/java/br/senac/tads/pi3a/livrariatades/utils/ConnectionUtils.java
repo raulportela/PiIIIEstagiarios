@@ -29,18 +29,4 @@ public class ConnectionUtils {
                 "");
         return connection;
     }
-    
-//   public static Connection getConnection() throws SQLException {
-//        Connection connection = null;
-//
-//        String dbURL = "jdbc:mysql://localhost:3306/bdProj";
-//        Properties properties = new Properties();
-//        properties.put("user", "root");
-//        properties.put("password", "");
-//        properties.put("serverTimezone", "UTC");
-//        connection = DriverManager.getConnection(dbURL, properties);
-//
-//        return connection;
-//    }   
-        
 }

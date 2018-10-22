@@ -15,17 +15,22 @@ import java.util.Date;
  */
 public class Cliente extends Pessoa {
 
+    private long id;
     private String email;
     private Integer telefone;
     private Integer celular;
     private String endereco;
     private BigDecimal totalCompras;
-
+    
+    
+    
+    
     public Cliente(String nome, String sobrenome, String cpf,
             Date dataNascimento, String email, Integer telefone,
             Integer celular, String endereco) {
         super(nome, sobrenome, cpf, dataNascimento);
         {
+               
             this.nome = nome;
             this.sobrenome = sobrenome;
             this.cpf = cpf;
@@ -116,5 +121,15 @@ public class Cliente extends Pessoa {
                 getCpf(), getDataNascimento(), getEmail(), getTelefone(), getCelular(), getEndereco());
 
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
 
 }

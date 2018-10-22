@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -123,13 +124,17 @@
 
                             </thead>
                             <tbody>
+                                <c:forEach items="${listaCliente}" var="cli">
+                                    
+                                
 
                                 <tr data-toggle="modal" data-target="#modelClient">
                                     <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td><c:out value="${cli.nome}" /></td>
+                                    <td><c:out value="${cli.sobrenome}" /></td>
+                                    <td><c:out value="${cli.cpf}" /></td>
                                 </tr>
+                                </c:forEach>
 
                             </tbody>
                         </table>
