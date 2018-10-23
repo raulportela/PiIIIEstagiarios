@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.servico;
+package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
-import br.senac.tads.pi3a.livrariatades.dao.DaoCliente;
+import br.senac.tads.pi3a.livrariatades.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
 import java.util.Date;
@@ -24,14 +24,15 @@ import javax.servlet.http.HttpServletResponse;
  * @author Jeferson Nolasco
  */
 @WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/inclusao"})
-public class InclusaoClienteServlet extends HttpServlet {
+public class IncluirAleterarCliente extends HttpServlet {
+    private boolean modoEdicao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Cliente> listaClientes = AtulizarLista();
-        request.setAttribute("listaCliente", listaClientes);
+//        List<Cliente> listaClientes = AtulizarLista();
+//        request.setAttribute("listaCliente", listaClientes);
         
        
         RequestDispatcher dispatcher
@@ -57,14 +58,13 @@ public class InclusaoClienteServlet extends HttpServlet {
         Cliente cliente = new Cliente(nome, sobrenome, cpf, dateNasc, email, tel, cel, end);
 
         try {
-            DaoCliente daoCli = new DaoCliente();
-            daoCli.inserir(cliente);
+            DaoCliente.inserir(cliente);
         } catch (Exception ex) {
-            Logger.getLogger(InclusaoClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(IncluirAleterarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        List<Cliente> listaClientes = AtulizarLista();
-        request.setAttribute("listaCliente", listaClientes);
+//        List<Cliente> listaClientes = AtulizarLista();
+//        request.setAttribute("listaCliente", listaClientes);
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
@@ -73,17 +73,17 @@ public class InclusaoClienteServlet extends HttpServlet {
 
     }
 
-    public List AtulizarLista() {
-
-        List<Cliente> listaClientes = null;
-        try {
-            DaoCliente daoCli = new DaoCliente();
-            listaClientes = daoCli.listar();
-
-        } catch (Exception ex) {
-            Logger.getLogger(InclusaoClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return listaClientes;
-    }
+//    public List AtulizarLista() {
+//
+//        List<Cliente> listaClientes = null;
+//        try {
+//            DaoCliente daoCli = new DaoCliente();
+//            listaClientes = daoCli.listar();
+//
+//        } catch (Exception ex) {
+//            Logger.getLogger(IncluirAleterarCliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return listaClientes;
+//    }
 
 }

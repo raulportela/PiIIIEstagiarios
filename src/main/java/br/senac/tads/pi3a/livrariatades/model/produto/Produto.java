@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.model.validador;
+package br.senac.tads.pi3a.livrariatades.model.produto;
 
 /**
  *
  * @author Raul de Paula
  */
-public class ValidadeCliente {
+public class Produto {
     
 }
