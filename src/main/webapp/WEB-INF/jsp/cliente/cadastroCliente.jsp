@@ -27,7 +27,8 @@
             <div class="col-2 offset-md-2 card-item list-group list-group-flush">
                 <h1>Cliente</h1>			
                 <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modalCadastrar"> Cadastrar</button>
-                <button class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modelLista"> Lista</button>	
+                <button class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modelLista"> Lista</button>
+                
 
 
 
@@ -125,15 +126,15 @@
                             </thead>
                             <tbody>
                                 <c:forEach items="${listaCliente}" var="cli">
-                                    
-                                
 
-                                <tr data-toggle="modal" data-target="#modelClient">
-                                    <th scope="row">1</th>
-                                    <td><c:out value="${cli.nome}" /></td>
-                                    <td><c:out value="${cli.sobrenome}" /></td>
-                                    <td><c:out value="${cli.cpf}" /></td>
-                                </tr>
+
+
+                                    <tr data-toggle="modal" data-target="#modelClient">
+                                        <th scope="row">1</th>
+                                        <td><c:out value="${cli.nome}" /></td>
+                                        <td><c:out value="${cli.sobrenome}" /></td>
+                                        <td><c:out value="${cli.cpf}" /></td>
+                                    </tr>
                                 </c:forEach>
 
                             </tbody>
@@ -189,6 +190,8 @@
 
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" Style="margin-right:550px;">Alterar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                     </div>
                 </div>

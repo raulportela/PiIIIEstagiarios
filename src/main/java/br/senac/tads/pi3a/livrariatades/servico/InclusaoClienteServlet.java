@@ -30,19 +30,10 @@ public class InclusaoClienteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Esse comando abrir os clientes ques ja estão cadastrado no banco de dados.{
-        List<Cliente> listaClientes = null;
-        try {
-            DaoCliente daoCli = new DaoCliente();
-            listaClientes = daoCli.listar();
-
-        } catch (Exception ex) {
-            Logger.getLogger(InclusaoClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        List<Cliente> listaClientes = AtulizarLista();
         request.setAttribute("listaCliente", listaClientes);
         
-        //}
-
+       
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
                         "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
@@ -56,7 +47,7 @@ public class InclusaoClienteServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String cpf = request.getParameter("cpf");
-     
+
         Date dateNasc = new Date();
         String email = request.getParameter("email");
         Integer tel = Integer.parseInt(request.getParameter("tel"));
@@ -72,7 +63,18 @@ public class InclusaoClienteServlet extends HttpServlet {
             Logger.getLogger(InclusaoClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //Esse comando abrir os clientes ques ja estão cadastrado no banco de dados{
+        List<Cliente> listaClientes = AtulizarLista();
+        request.setAttribute("listaCliente", listaClientes);
+
+        RequestDispatcher dispatcher
+                = request.getRequestDispatcher(
+                        "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
+        dispatcher.forward(request, response);
+
+    }
+
+    public List AtulizarLista() {
+
         List<Cliente> listaClientes = null;
         try {
             DaoCliente daoCli = new DaoCliente();
@@ -81,15 +83,7 @@ public class InclusaoClienteServlet extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(InclusaoClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        request.setAttribute("listaCliente", listaClientes);
-
-        //}
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
-        dispatcher.forward(request, response);
-
+        return listaClientes;
     }
 
 }
