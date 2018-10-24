@@ -43,6 +43,7 @@ public class Cliente extends Pessoa {
 
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
@@ -51,6 +52,7 @@ public class Cliente extends Pessoa {
         this.nome = nome;
     }
 
+    @Override
     public String getSobrenome() {
         return sobrenome;
     }
@@ -59,6 +61,7 @@ public class Cliente extends Pessoa {
         this.sobrenome = sobrenome;
     }
 
+    @Override
     public String getCpf() {
         return cpf;
     }
@@ -67,6 +70,7 @@ public class Cliente extends Pessoa {
         this.cpf = cpf;
     }
 
+    @Override
     public Date getDataNascimento() {
         return dataNascimento;
     }

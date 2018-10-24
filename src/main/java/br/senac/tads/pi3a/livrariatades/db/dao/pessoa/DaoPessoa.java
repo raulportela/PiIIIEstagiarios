@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.dao.pessoa.cliente;
+package br.senac.tads.pi3a.livrariatades.db.dao.pessoa;
 
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
-import br.senac.tads.pi3a.livrariatades.utils.ConnectionUtils;
-import com.mysql.fabric.xmlrpc.base.Data;
-import java.security.Timestamp;
+import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +19,12 @@ import java.util.List;
  *
  * @author Raul de Paula
  */
-public class DaoClienteProv1 {
-
-    public static void inserir(Cliente cliente)
+public class DaoPessoa {
+    public static void inserirPessoa(Cliente cliente)
             throws SQLException, Exception {
         Cliente c1 = cliente;
 
-        String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?)";
+        String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?,?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -35,20 +33,16 @@ public class DaoClienteProv1 {
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, cliente.getNome());
-
             preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setString(3, cliente.getCpf());
-
-//            String cpf = "";
-//            cpf += cliente.getCpf().substring(0, 3)
-//                    + cliente.getCpf().substring(4, 7)
-//                    + cliente.getCpf().substring(8, 11)
-//                    + cliente.getCpf().substring(12, 14);
-//
-//            preparedStatement.setString(5,""+ cliente.getTelefone());
-//            preparedStatement.setString(6,""+ cliente.getCelular());
-//            preparedStatement.setString(7, cliente.getEmail());
+            preparedStatement.setInt(3, cliente.getCpf());
+            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
+            preparedStatement.setTimestamp(4, t);
+            
             preparedStatement.execute();
+            int ultimaChave;
+            ResultSet chaveGeradaVenda = preparedStatement.getGeneratedKeys();
+            
+            
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -179,5 +173,4 @@ public class DaoClienteProv1 {
         }
         return listaClientes;
     }
-
 }

@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
-import br.senac.tads.pi3a.livrariatades.dao.pessoa.cliente.DaoCliente;
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
 import java.util.Date;

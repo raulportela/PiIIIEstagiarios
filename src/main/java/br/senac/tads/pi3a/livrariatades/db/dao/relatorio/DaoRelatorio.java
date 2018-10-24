@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.dao.relatorio;
-
-import br.senac.tads.pi3a.livrariatades.dao.pessoa.funcionario.*;
+package br.senac.tads.pi3a.livrariatades.db.dao.relatorio;
 
 /**
  *

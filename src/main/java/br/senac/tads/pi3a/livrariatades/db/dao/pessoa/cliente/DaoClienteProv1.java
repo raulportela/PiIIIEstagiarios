@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.dao.pessoa.cliente;
+package br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
-import br.senac.tads.pi3a.livrariatades.utils.ConnectionUtils;
+import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
 import com.mysql.fabric.xmlrpc.base.Data;
 import java.security.Timestamp;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Raul de Paula
  */
-public class DaoCliente {
+public class DaoClienteProv1 {
 
     public static void inserir(Cliente cliente)
             throws SQLException, Exception {
