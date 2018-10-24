@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Jeferson Nolasco
  */
-public abstract class Endereco {
+public class Endereco {
 
     protected String rua;//60 
     protected int numero;//independente

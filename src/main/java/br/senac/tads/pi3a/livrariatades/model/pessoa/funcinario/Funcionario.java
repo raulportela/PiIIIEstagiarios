@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Jeferson Nolasco
  */
 public class Funcionario extends Pessoa {
-    
+
     private String rg;
     private String sexo;
     private String ufNascimento;
@@ -27,28 +27,6 @@ public class Funcionario extends Pessoa {
     private String uf;
     private String estado;
     private Integer numeroCtps;
-
-    public Funcionario(String nome, String sobrenome, String rg, String cpf, Date dataNascimento, String sexo,
-    String ufNascimento, String estadoNascimento, String estadoCivil,
-            String rua, String numero, String bairro, Integer cep, String complemento,
-            String uf, String estado, Integer numeroCtps) {
-        super(nome, sobrenome, cpf, dataNascimento);
-        
-        this.rg = rg;
-        this.sexo = sexo;
-        this.ufNascimento = ufNascimento;
-        this.estadoNascimento = estadoNascimento;
-        this.estadoCivil = estadoCivil;
-        this.rua = rua;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.complemento = complemento;
-        this.uf = uf;
-        this.estado = estado;
-        this.numeroCtps = numeroCtps;
-       
-    }
 
     public String getUfNascimento() {
         return ufNascimento;
@@ -137,5 +115,5 @@ public class Funcionario extends Pessoa {
     public void setNumeroCtps(Integer numeroCtps) {
         this.numeroCtps = numeroCtps;
     }
-    
+
 }

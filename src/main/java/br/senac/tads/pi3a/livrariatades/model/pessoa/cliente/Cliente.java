@@ -25,23 +25,7 @@ public class Cliente extends Pessoa {
     
     
     
-    public Cliente(String nome, String sobrenome, String cpf,
-            Date dataNascimento, String email, Integer telefone,
-            Integer celular, String endereco) {
-        super(nome, sobrenome, cpf, dataNascimento);
-        {
-               
-            this.nome = nome;
-            this.sobrenome = sobrenome;
-            this.cpf = cpf;
-            this.dataNascimento = dataNascimento;
-            this.email = email;
-            this.telefone = telefone;
-            this.celular = celular;
-            this.endereco = endereco;
-        }
-
-    }
+    
 
     @Override
     public String getNome() {

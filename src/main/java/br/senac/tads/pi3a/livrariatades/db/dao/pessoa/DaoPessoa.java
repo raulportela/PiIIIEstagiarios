@@ -20,6 +20,7 @@ import java.util.List;
  * @author Raul de Paula
  */
 public class DaoPessoa {
+
     public static void inserirPessoa(Cliente cliente)
             throws SQLException, Exception {
         Cliente c1 = cliente;
@@ -34,15 +35,14 @@ public class DaoPessoa {
 
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setInt(3, cliente.getCpf());
+            preparedStatement.setInt(3, Integer.parseInt(cliente.getCpf()));
             Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
-            
+
             preparedStatement.execute();
             int ultimaChave;
             ResultSet chaveGeradaVenda = preparedStatement.getGeneratedKeys();
-            
-            
+
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -123,8 +123,6 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            
-            
 
             result = preparedStatement.executeQuery();
 
@@ -132,11 +130,13 @@ public class DaoPessoa {
                 if (listaClientes == null) {
                     listaClientes = new ArrayList<Cliente>();
                 }
-                
-                long codCliente = result.getLong("CodCliente");
-                String nome = result.getString("NomeCliente");
-                String sobrenome = result.getString("Sobrenome");
-                String cpf = result.getString("Cpf");
+
+                Cliente cliente = new Cliente();
+
+                cliente.setId(result.getLong("CodCliente"));
+                cliente.setNome(sql = result.getString("NomeCliente"));
+                cliente.setSobrenome(result.getString("Sobrenome"));
+                cliente.setCpf(result.getString("Cpf"));
 //                Data datanasc = result.getString("DataNascimento");
 //                cliente.setSexo(result.getString("Sexo"));
 //                cliente.setUfNascimento(result.getString("UfNascimento"));
@@ -153,10 +153,6 @@ public class DaoPessoa {
 //                cliente.setCelular(result.getString("Celular"));
 //                cliente.setOutroContato(result.getString("OutroContato"));
 //                cliente.setEmail(result.getString("Email"));
-                
-               
-                Cliente cliente = new Cliente(nome, sobrenome, cpf, null, null, 0, 0, null);
-                cliente.setId(codCliente);
 
                 listaClientes.add(cliente);
             }

@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Jeferson Nolasco
  */
-public abstract class Contato {
+public class Contato {
 
     protected String email;
     protected long telefone;

@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/inclusao"})
 public class IncluirAleterarCliente extends HttpServlet {
+
     private boolean modoEdicao;
 
     @Override
@@ -33,8 +34,6 @@ public class IncluirAleterarCliente extends HttpServlet {
 
 //        List<Cliente> listaClientes = AtulizarLista();
 //        request.setAttribute("listaCliente", listaClientes);
-        
-       
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
                         "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
@@ -45,26 +44,21 @@ public class IncluirAleterarCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nome = request.getParameter("nome");
-        String sobrenome = request.getParameter("sobrenome");
-        String cpf = request.getParameter("cpf");
+        Cliente cliente = new Cliente();
 
-        Date dateNasc = new Date();
-        String email = request.getParameter("email");
-        Integer tel = Integer.parseInt(request.getParameter("tel"));
-        Integer cel = Integer.parseInt(request.getParameter("cel"));
-        String end = request.getParameter("end");
-
-        Cliente cliente = new Cliente(nome, sobrenome, cpf, dateNasc, email, tel, cel, end);
+        cliente.setNome(request.getParameter("nome"));
+        cliente.setSobrenome(request.getParameter("sobrenome"));
+        cliente.setCpf(request.getParameter("cpf"));
+        cliente.setEmail(request.getParameter("email"));
+        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
+        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
+        cliente.setEndereco(request.getParameter("end"));
 
         try {
             DaoCliente.inserir(cliente);
         } catch (Exception ex) {
             Logger.getLogger(IncluirAleterarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-//        List<Cliente> listaClientes = AtulizarLista();
-//        request.setAttribute("listaCliente", listaClientes);
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
@@ -85,5 +79,4 @@ public class IncluirAleterarCliente extends HttpServlet {
 //        }
 //        return listaClientes;
 //    }
-
 }

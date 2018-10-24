@@ -129,8 +129,6 @@ public class DaoCliente {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            
-            
 
             result = preparedStatement.executeQuery();
 
@@ -138,11 +136,12 @@ public class DaoCliente {
                 if (listaClientes == null) {
                     listaClientes = new ArrayList<Cliente>();
                 }
-                
-                long codCliente = result.getLong("CodCliente");
-                String nome = result.getString("NomeCliente");
-                String sobrenome = result.getString("Sobrenome");
-                String cpf = result.getString("Cpf");
+                Cliente cliente = new Cliente();
+
+                cliente.setId(result.getLong("CodCliente"));
+                cliente.setNome(sql = result.getString("NomeCliente"));
+                cliente.setSobrenome(result.getString("Sobrenome"));
+                cliente.setCpf(result.getString("Cpf"));
 //                Data datanasc = result.getString("DataNascimento");
 //                cliente.setSexo(result.getString("Sexo"));
 //                cliente.setUfNascimento(result.getString("UfNascimento"));
@@ -159,10 +158,6 @@ public class DaoCliente {
 //                cliente.setCelular(result.getString("Celular"));
 //                cliente.setOutroContato(result.getString("OutroContato"));
 //                cliente.setEmail(result.getString("Email"));
-                
-               
-                Cliente cliente = new Cliente(nome, sobrenome, cpf, null, null, 0, 0, null);
-                cliente.setId(codCliente);
 
                 listaClientes.add(cliente);
             }
