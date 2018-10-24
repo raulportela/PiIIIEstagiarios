@@ -18,17 +18,6 @@ public abstract class Pessoa {
     protected String cpf;
     protected Date dataNascimento;
 
-    public Pessoa(String nome, String sobrenome, String cpf,
-            Date dataNascimento) {
-
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-
-    }
-
     public String getNome() {
         return nome;
     }
