@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.model.pessoa;
+package br.senac.tads.pi3a.livrariatades.model.endereco;
 
 import java.util.Date;
 

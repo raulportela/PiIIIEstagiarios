@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi3a.livrariatades.db.dao.pessoa;
 
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
 import java.sql.Connection;
@@ -21,6 +22,9 @@ import java.util.List;
  */
 public class DaoPessoa {
 
+    
+    private static boolean isClient;
+        
     public static void inserirPessoa(Cliente cliente)
             throws SQLException, Exception {
         Cliente c1 = cliente;
@@ -35,14 +39,22 @@ public class DaoPessoa {
 
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setInt(3, Integer.parseInt(cliente.getCpf()));
+            preparedStatement.setLong(3, cliente.getCpf());
             Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
 
             preparedStatement.execute();
-            int ultimaChave;
+            int ultimaChave = 0;
             ResultSet chaveGeradaVenda = preparedStatement.getGeneratedKeys();
-
+            if (chaveGeradaVenda.next()) {
+                ultimaChave = chaveGeradaVenda.getInt(1);
+            }
+            if (isClient){
+                DaoCliente.inserir(cliente, ultimaChave);
+            }else{
+                //insere um funcinario;
+            }
+            
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -56,22 +68,21 @@ public class DaoPessoa {
     public static void atualizar(Cliente cliente)
             throws SQLException, Exception {
 
-        String sql = "UPDATE cliente SET NomeCliente=?, CPF=?, DataNasc=?, Email=?, Telefone1=?, Telefone2=?, Endereço=? WHERE (cliente_id=?)";
+        String sql = "UPDATE cliente SET nome=?, sobrenome=?, cpf=?, dataNascimento=?"
+                + "WHERE (id=?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-
+        
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(2, cliente.getNome());
-            preparedStatement.setString(3, cliente.getCpf());
-//            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
-//            preparedStatement.setTimestamp(4, t);
-            preparedStatement.setString(5, cliente.getEmail());
-            preparedStatement.setInt(6, cliente.getTelefone());
-            preparedStatement.setInt(7, cliente.getCelular());
-            preparedStatement.setString(8, cliente.getEndereco());
+            preparedStatement.setString(1, cliente.getNome());
+            preparedStatement.setString(2, cliente.getSobrenome());
+            preparedStatement.setLong(3, cliente.getCpf());
+            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
+            preparedStatement.setTimestamp(4, t);
 
+            
             preparedStatement.execute();
 
         } finally {
@@ -169,4 +180,13 @@ public class DaoPessoa {
         }
         return listaClientes;
     }
+    
+    public boolean isIsClient() {
+        return isClient;
+    }
+
+    public void setIsClient(boolean isClient) {
+        this.isClient = isClient;
+    }
+
 }

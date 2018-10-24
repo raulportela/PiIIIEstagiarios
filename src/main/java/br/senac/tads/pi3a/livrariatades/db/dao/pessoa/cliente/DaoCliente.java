@@ -5,10 +5,10 @@
  */
 package br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente;
 
+import br.senac.tads.pi3a.livrariatades.db.dao.contato.DaoContato;
+import br.senac.tads.pi3a.livrariatades.db.dao.endereco.DaoEndereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
-import com.mysql.fabric.xmlrpc.base.Data;
-import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,32 +22,23 @@ import java.util.List;
  */
 public class DaoCliente {
 
-    public static void inserir(Cliente cliente)
+    public static void inserir(Cliente cliente, int ultimaChavePessoa)
             throws SQLException, Exception {
-        Cliente c1 = cliente;
-
         String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, cliente.getNome());
-
-            preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setString(3, cliente.getCpf());
-
-//            String cpf = "";
-//            cpf += cliente.getCpf().substring(0, 3)
-//                    + cliente.getCpf().substring(4, 7)
-//                    + cliente.getCpf().substring(8, 11)
-//                    + cliente.getCpf().substring(12, 14);
-//
-//            preparedStatement.setString(5,""+ cliente.getTelefone());
-//            preparedStatement.setString(6,""+ cliente.getCelular());
-//            preparedStatement.setString(7, cliente.getEmail());
+            preparedStatement.setInt(1, ultimaChavePessoa);
+            preparedStatement.setInt(2, cliente.getCodCliente());
+            preparedStatement.setBoolean(3, cliente.isDisponivel());
+            preparedStatement.setInt(4, cliente.getTotalCompras());
+            
+            DaoContato.inserirContato(cliente, ultimaChavePessoa);
+            DaoEndereco.inserirEndereco(cliente, ultimaChavePessoa);
+            
             preparedStatement.execute();
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
@@ -58,26 +49,25 @@ public class DaoCliente {
             }
         }
     }
-
+    
     public static void atualizar(Cliente cliente)
             throws SQLException, Exception {
 
-        String sql = "UPDATE cliente SET NomeCliente=?, CPF=?, DataNasc=?, Email=?, Telefone1=?, Telefone2=?, Endereço=? WHERE (cliente_id=?)";
+        String sql = "UPDATE Cliente SET disponivel=?, totalCompras=? "
+                + "WHERE (idPessoa=?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(2, cliente.getNome());
-            preparedStatement.setString(3, cliente.getCpf());
-//            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
-//            preparedStatement.setTimestamp(4, t);
-            preparedStatement.setString(5, cliente.getEmail());
-            preparedStatement.setInt(6, cliente.getTelefone());
-            preparedStatement.setInt(7, cliente.getCelular());
-            preparedStatement.setString(8, cliente.getEndereco());
-
+            
+            preparedStatement.setBoolean(1, cliente.isDisponivel());
+            preparedStatement.setInt(2, cliente.getTotalCompras());
+            preparedStatement.setInt(3, cliente.getIdPessoa());
+            
+            DaoContato.atualizar(cliente);
+            DaoEndereco.atualizar(cliente);
             preparedStatement.execute();
 
         } finally {
@@ -138,7 +128,7 @@ public class DaoCliente {
                 }
                 Cliente cliente = new Cliente();
 
-                cliente.setId(result.getLong("CodCliente"));
+//                cliente.setId(result.getLong("CodCliente"));
                 cliente.setNome(sql = result.getString("NomeCliente"));
                 cliente.setSobrenome(result.getString("Sobrenome"));
                 cliente.setCpf(result.getString("Cpf"));
