@@ -20,19 +20,6 @@ public class Produto {
     private boolean disponivel;
     private Float valor;
     
-    public Produto (String titulo, String autor, String editora, String descricao,
-            Integer quantidade, boolean disponivel, Float valor){
-        
-        this.titulo = titulo;
-        this.autor = autor;
-        this.editora = editora;
-        this.descricao = descricao;
-        this.quantidade = quantidade;
-        this.disponivel = disponivel;
-        this.valor = valor;
-        
-    }
-
     public long getId() {
         return id;
     }
