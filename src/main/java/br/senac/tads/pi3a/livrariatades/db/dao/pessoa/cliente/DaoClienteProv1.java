@@ -7,8 +7,6 @@ package br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
-import com.mysql.fabric.xmlrpc.base.Data;
-import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

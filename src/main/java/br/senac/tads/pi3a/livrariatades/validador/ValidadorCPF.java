@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.model.validador;
+package br.senac.tads.pi3a.livrariatades.validador;
 
 /**
  *
@@ -13,10 +13,28 @@ public class ValidadorCPF {
 
     public static boolean validadorCPF(String CPF) {
         boolean valido = true;
+        boolean digitosIguais = false;
         int somaMultiplicacoes = 0;
         int charNumero;
         int multiplicador = 10;
         int resto;
+        
+        do{
+            int nx;
+            int ny;
+            if(somaMultiplicacoes <=9){
+                nx = Character.getNumericValue(CPF.charAt(somaMultiplicacoes));
+                ny = Character.getNumericValue(CPF.charAt(somaMultiplicacoes+1));
+                if (nx != ny){
+                    digitosIguais = false;
+                    somaMultiplicacoes = 0;
+                }
+            }else if(somaMultiplicacoes >= 10){
+                return false;
+            }
+            somaMultiplicacoes++;
+        }while(digitosIguais == true);
+        
         for (int i = 0; i < 9; i++) {
             charNumero = Character.getNumericValue(CPF.charAt(i));
             somaMultiplicacoes += (charNumero * multiplicador);

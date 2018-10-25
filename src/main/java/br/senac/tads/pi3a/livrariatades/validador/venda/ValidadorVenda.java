@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.model.validador.venda;
+package br.senac.tads.pi3a.livrariatades.validador.venda;
 
 import java.io.IOException;
 import java.io.PrintWriter;
