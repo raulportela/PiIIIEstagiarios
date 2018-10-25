@@ -6,6 +6,7 @@
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoClienteProv1;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
 import java.util.Date;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/inclusao"})
+@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/home"})
 public class ServicoCliente extends HttpServlet {
 
     private boolean modoEdicao;
@@ -36,7 +37,7 @@ public class ServicoCliente extends HttpServlet {
 //        request.setAttribute("listaCliente", listaClientes);
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
+                        "/WEB-INF/jsp/cliente/home.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -45,17 +46,19 @@ public class ServicoCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cliente cliente = new Cliente();
-
+        
+        String comango = request.getParameter("crud");
+        System.out.println(comango);
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
-        cliente.setCpf(request.getParameter("cpf"));
-        cliente.setEmail(request.getParameter("email"));
-        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
-        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
-        cliente.setEndereco(request.getParameter("end"));
+//        cliente.setCpf(request.getParameter("cpf"));
+//        cliente.setEmail(request.getParameter("email"));
+//        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
+//        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
+//        cliente.setEndereco(request.getParameter("end"));
 
         try {
-            DaoCliente.inserir(cliente);
+            DaoClienteProv1.inserir(cliente);
         } catch (Exception ex) {
             Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

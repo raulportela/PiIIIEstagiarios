@@ -37,7 +37,7 @@ public class DaoClienteProv1 {
             preparedStatement.setString(1, cliente.getNome());
 
             preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setString(3, cliente.getCpf());
+            preparedStatement.setString(3, ""+cliente.getCpf());
 
 //            String cpf = "";
 //            cpf += cliente.getCpf().substring(0, 3)
@@ -67,18 +67,18 @@ public class DaoClienteProv1 {
         PreparedStatement preparedStatement = null;
 
         try {
-            connection = ConnectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(2, cliente.getNome());
-            preparedStatement.setString(3, cliente.getCpf());
-//            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
-//            preparedStatement.setTimestamp(4, t);
-            preparedStatement.setString(5, cliente.getEmail());
-            preparedStatement.setInt(6, cliente.getTelefone());
-            preparedStatement.setInt(7, cliente.getCelular());
-            preparedStatement.setString(8, cliente.getEndereco());
-
-            preparedStatement.execute();
+//            connection = ConnectionUtils.getConnection();
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(2, cliente.getNome());
+//            preparedStatement.setString(3, cliente.getCpf());
+////            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
+////            preparedStatement.setTimestamp(4, t);
+//            preparedStatement.setString(5, cliente.getEmail());
+//            preparedStatement.setInt(6, cliente.getTelefone());
+//            preparedStatement.setInt(7, cliente.getCelular());
+//            preparedStatement.setString(8, cliente.getEndereco());
+//
+//            preparedStatement.execute();
 
         } finally {
 
@@ -139,10 +139,10 @@ public class DaoClienteProv1 {
 
                 Cliente cliente = new Cliente();
 
-                cliente.setId(result.getLong("CodCliente"));
-                cliente.setNome(sql = result.getString("NomeCliente"));
-                cliente.setSobrenome(result.getString("Sobrenome"));
-                cliente.setCpf(result.getString("Cpf"));
+//                cliente.setId(result.getLong("CodCliente"));
+//                cliente.setNome(sql = result.getString("NomeCliente"));
+//                cliente.setSobrenome(result.getString("Sobrenome"));
+//                cliente.setCpf(result.getString("Cpf"));
 //                Data datanasc = result.getString("DataNascimento");
 //                cliente.setSexo(result.getString("Sexo"));
 //                cliente.setUfNascimento(result.getString("UfNascimento"));
