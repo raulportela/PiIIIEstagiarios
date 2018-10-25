@@ -5,7 +5,6 @@
  */
 package br.senac.tads.pi3a.livrariatades.model.endereco;
 
-import java.util.Date;
 
 /**
  *
@@ -13,17 +12,29 @@ import java.util.Date;
  */
 public class Endereco {
 
-    protected String rua;//60 
-    protected int numero;//independente
-    protected String bairro;//30
-    protected int cep;//oito 
-    protected String complemento;//100
+    private String rua;//60 
+    private int numero;//independente
+    private String bairro;//30
+    private int cep;//oito 
+    private String complemento;//100
 
-    public Endereco(String rua, int numero, String bairro, int cep, String complemento) {
+    public void setRua(String rua) {
         this.rua = rua;
+    }
+
+    public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public void setBairro(String bairro) {
         this.bairro = bairro;
+    }
+
+    public void setCep(int cep) {
         this.cep = cep;
+    }
+
+    public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
 

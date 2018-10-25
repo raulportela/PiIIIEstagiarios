@@ -6,14 +6,18 @@
 package br.senac.tads.pi3a.livrariatades.db.dao.pessoa;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
+import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
+import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,12 +26,17 @@ import java.util.List;
  */
 public class DaoPessoa {
 
-    
     private static boolean isClient;
-        
-    public static void inserirPessoa(Cliente cliente)
+
+    public static void inserirPessoa(Cliente cliente, Funcionario funcionario)
             throws SQLException, Exception {
-        Cliente c1 = cliente;
+        Pessoa pessoa = new Pessoa() {
+        };
+        if (cliente != null && funcionario == null) {
+            pessoa = cliente;
+        } else if (funcionario != null && cliente == null) {
+            pessoa = funcionario;
+        }
 
         String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?,?)";
         Connection connection = null;
@@ -37,10 +46,10 @@ public class DaoPessoa {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setLong(3, cliente.getCpf());
-            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
+            preparedStatement.setString(1, pessoa.getNome());
+            preparedStatement.setString(2, pessoa.getSobrenome());
+            preparedStatement.setLong(3, pessoa.getCpf());
+            Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
 
             preparedStatement.execute();
@@ -49,12 +58,12 @@ public class DaoPessoa {
             if (chaveGeradaVenda.next()) {
                 ultimaChave = chaveGeradaVenda.getInt(1);
             }
-            if (isClient){
+            if (isClient) {
                 DaoCliente.inserir(cliente, ultimaChave);
-            }else{
-                //insere um funcinario;
+            } else {
+                DaoFuncionario.inserir(funcionario, ultimaChave);
             }
-            
+
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -65,24 +74,31 @@ public class DaoPessoa {
         }
     }
 
-    public static void atualizar(Cliente cliente)
+    public static void atualizar(Cliente cliente, Funcionario funcionario)
             throws SQLException, Exception {
+        Pessoa pessoa = new Pessoa() {
+        };
+        if (cliente != null && funcionario == null) {
+            pessoa = cliente;
+        } else if (funcionario != null && cliente == null) {
+            pessoa = funcionario;
+        }
 
         String sql = "UPDATE cliente SET nome=?, sobrenome=?, cpf=?, dataNascimento=?"
                 + "WHERE (id=?)";
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        
+
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, cliente.getNome());
-            preparedStatement.setString(2, cliente.getSobrenome());
-            preparedStatement.setLong(3, cliente.getCpf());
-            Timestamp t = new Timestamp(cliente.getDataNascimento().getTime());
+            preparedStatement.setString(1, pessoa.getNome());
+            preparedStatement.setString(2, pessoa.getSobrenome());
+            preparedStatement.setLong(3, pessoa.getCpf());
+            Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
 
-            
             preparedStatement.execute();
 
         } finally {
@@ -95,38 +111,40 @@ public class DaoPessoa {
             }
         }
     }
-
-    public static void excluir(Integer id)
-            throws SQLException, Exception {
-
-        String sql = "UPDATE cliente SET enabled=? WHERE (cliente_id=?)";
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-
-            connection = ConnectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
-
-            preparedStatement.execute();
-
-        } finally {
-
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-    }
+//ACHO QUE NAO PRECISA DESSE TRECHO, PRECISO DEFINIR COM O GRUPO DEPOIS
+//    public static void excluir(int id)
+//            throws SQLException, Exception {
+//
+//        String sql = "UPDATE cliente SET disponivel=? "
+//                + "WHERE (idPessoa=?)";
+//
+//        Connection connection = null;
+//        PreparedStatement preparedStatement = null;
+//
+//        try {
+//
+//            connection = ConnectionUtils.getConnection();
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setBoolean(1, false);
+//            preparedStatement.setInt(2, id);
+//
+//            DaoCliente.excluir(id);
+//            preparedStatement.execute();
+//
+//        } finally {
+//
+//            if (preparedStatement != null && !preparedStatement.isClosed()) {
+//                preparedStatement.close();
+//            }
+//            if (connection != null && !connection.isClosed()) {
+//                connection.close();
+//            }
+//        }
+//    }
 
     public static List<Cliente> listar()
             throws SQLException, Exception {
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM Pessoa";
         List<Cliente> listaClientes = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -144,28 +162,15 @@ public class DaoPessoa {
 
                 Cliente cliente = new Cliente();
 
-                cliente.setId(result.getLong("CodCliente"));
-                cliente.setNome(sql = result.getString("NomeCliente"));
-                cliente.setSobrenome(result.getString("Sobrenome"));
-                cliente.setCpf(result.getString("Cpf"));
-//                Data datanasc = result.getString("DataNascimento");
-//                cliente.setSexo(result.getString("Sexo"));
-//                cliente.setUfNascimento(result.getString("UfNascimento"));
-//                cliente.setEstadoNascimento(result.getString("EstadoNascimento"));
-//                cliente.setEstadoCivil(result.getString("EstadoCivil"));
-//                cliente.setRua(result.getString("Rua"));
-//                cliente.setNumero(result.getString("Numero"));
-//                cliente.setBairro(result.getString("Bairro"));
-//                cliente.setCep(result.getString("Cep"));
-//                cliente.setComplemento(result.getString("Complemento"));
-//                cliente.setUf(result.getString("Uf"));
-//                cliente.setEstado(result.getString("Estado"));
-//                cliente.setTelefone(result.getString("Telefone"));
-//                cliente.setCelular(result.getString("Celular"));
-//                cliente.setOutroContato(result.getString("OutroContato"));
-//                cliente.setEmail(result.getString("Email"));
+                cliente.setIdPessoa(result.getInt("id"));
+                cliente.setNome(result.getString("nome"));
+                cliente.setSobrenome(result.getString("sobrenome"));
+                cliente.setCpf(result.getLong("cpf"));
+                Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
+                cliente.setDataNascimento(datanasc);
 
                 listaClientes.add(cliente);
+                DaoCliente.listar(listaClientes);
             }
         } finally {
             if (result != null && !result.isClosed()) {
@@ -180,7 +185,7 @@ public class DaoPessoa {
         }
         return listaClientes;
     }
-    
+
     public boolean isIsClient() {
         return isClient;
     }

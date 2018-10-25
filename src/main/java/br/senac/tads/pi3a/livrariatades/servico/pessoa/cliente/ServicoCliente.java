@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Jeferson Nolasco
  */
 @WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/inclusao"})
-public class IncluirAleterarCliente extends HttpServlet {
+public class ServicoCliente extends HttpServlet {
 
     private boolean modoEdicao;
 
@@ -57,7 +57,7 @@ public class IncluirAleterarCliente extends HttpServlet {
         try {
             DaoCliente.inserir(cliente);
         } catch (Exception ex) {
-            Logger.getLogger(IncluirAleterarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         RequestDispatcher dispatcher
@@ -75,7 +75,7 @@ public class IncluirAleterarCliente extends HttpServlet {
 //            listaClientes = daoCli.listar();
 //
 //        } catch (Exception ex) {
-//            Logger.getLogger(IncluirAleterarCliente.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        return listaClientes;
 //    }

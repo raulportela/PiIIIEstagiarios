@@ -36,8 +36,8 @@ public class DaoCliente {
             preparedStatement.setBoolean(3, cliente.isDisponivel());
             preparedStatement.setInt(4, cliente.getTotalCompras());
             
-            DaoContato.inserirContato(cliente, ultimaChavePessoa);
-            DaoEndereco.inserirEndereco(cliente, ultimaChavePessoa);
+            DaoContato.inserirContato(cliente.getContato(), ultimaChavePessoa);
+            DaoEndereco.inserirEndereco(cliente.getEndereco(), ultimaChavePessoa);
             
             preparedStatement.execute();
         } finally {
@@ -66,8 +66,8 @@ public class DaoCliente {
             preparedStatement.setInt(2, cliente.getTotalCompras());
             preparedStatement.setInt(3, cliente.getIdPessoa());
             
-            DaoContato.atualizar(cliente);
-            DaoEndereco.atualizar(cliente);
+            DaoContato.atualizar(cliente.getContato(), cliente.getIdPessoa());
+            DaoEndereco.atualizar(cliente.getEndereco(), cliente.getIdPessoa());
             preparedStatement.execute();
 
         } finally {
@@ -84,22 +84,20 @@ public class DaoCliente {
     public static void excluir(Integer id)
             throws SQLException, Exception {
 
-        String sql = "UPDATE cliente SET enabled=? WHERE (cliente_id=?)";
+        String sql = "UPDATE cliente SET dispinivel=? "
+                + "WHERE (idPessoa=?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
-
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, false);
             preparedStatement.setInt(2, id);
 
             preparedStatement.execute();
-
         } finally {
-
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
             }
@@ -109,13 +107,18 @@ public class DaoCliente {
         }
     }
 
-    public static List<Cliente> listar()
+    public static List<Cliente> listar(List<Cliente> listaPessoa)
             throws SQLException, Exception {
-        String sql = "SELECT * FROM cliente";
+        String sql = "SELECT * FROM Cliente";
+        
+        int contador = 0;
+        Cliente cliente;
         List<Cliente> listaClientes = null;
+        
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
+        
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -126,31 +129,22 @@ public class DaoCliente {
                 if (listaClientes == null) {
                     listaClientes = new ArrayList<Cliente>();
                 }
-                Cliente cliente = new Cliente();
-
-//                cliente.setId(result.getLong("CodCliente"));
-                cliente.setNome(sql = result.getString("NomeCliente"));
-                cliente.setSobrenome(result.getString("Sobrenome"));
-                cliente.setCpf(result.getString("Cpf"));
-//                Data datanasc = result.getString("DataNascimento");
-//                cliente.setSexo(result.getString("Sexo"));
-//                cliente.setUfNascimento(result.getString("UfNascimento"));
-//                cliente.setEstadoNascimento(result.getString("EstadoNascimento"));
-//                cliente.setEstadoCivil(result.getString("EstadoCivil"));
-//                cliente.setRua(result.getString("Rua"));
-//                cliente.setNumero(result.getString("Numero"));
-//                cliente.setBairro(result.getString("Bairro"));
-//                cliente.setCep(result.getString("Cep"));
-//                cliente.setComplemento(result.getString("Complemento"));
-//                cliente.setUf(result.getString("Uf"));
-//                cliente.setEstado(result.getString("Estado"));
-//                cliente.setTelefone(result.getString("Telefone"));
-//                cliente.setCelular(result.getString("Celular"));
-//                cliente.setOutroContato(result.getString("OutroContato"));
-//                cliente.setEmail(result.getString("Email"));
-
-                listaClientes.add(cliente);
+                int idPessoa;
+                idPessoa = result.getInt("idPessoa");
+                cliente = listaPessoa.get(contador);
+                
+                if (idPessoa == cliente.getIdPessoa()){
+                    cliente.setCodCliente(result.getInt("codCliente"));
+                    cliente.setDisponivel(result.getBoolean("disponivel"));
+                    cliente.setTotalCompras(result.getInt("totalCompras"));
+                    listaClientes.add(cliente);
+                }               
+                contador++;
             }
+            
+            DaoContato.listar(listaClientes);
+            DaoEndereco.listar(listaClientes);
+            
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();

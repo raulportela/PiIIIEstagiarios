@@ -47,7 +47,7 @@ FOREIGN KEY (idVenda) REFERENCES Venda (id));
 CREATE TABLE Cliente (
 id INT AUTO_INCREMENT,
 idPessoa INT,
-CodCliente INT,
+codCliente INT,
 disponivel boolean,
 totalCompras INT,
 PRIMARY KEY (id),

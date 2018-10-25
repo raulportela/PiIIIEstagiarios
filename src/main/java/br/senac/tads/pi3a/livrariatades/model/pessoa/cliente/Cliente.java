@@ -17,8 +17,6 @@ import java.util.Date;
 public class Cliente extends Pessoa {
     
     private int idPessoa;
-
-    
     private int codCliente;
     private boolean disponivel;
     

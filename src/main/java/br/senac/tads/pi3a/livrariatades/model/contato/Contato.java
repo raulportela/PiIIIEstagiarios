@@ -13,13 +13,19 @@ import java.util.Date;
  */
 public class Contato {
 
-    protected String email;
-    protected long telefone;
-    protected long celular;
+    private String email;
+    private long telefone;
+    private long celular;
 
-    public Contato(String email, long telefone, long celular) {
+    public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setTelefone(long telefone) {
         this.telefone = telefone;
+    }
+
+    public void setCelular(long celular) {
         this.celular = celular;
     }
 
