@@ -31,8 +31,6 @@ public class Funcionario extends Pessoa {
         this.idPessoa = idPessoa;
     }
     
-    
-
     public Endereco getEndereco() {
         return endereco;
     }

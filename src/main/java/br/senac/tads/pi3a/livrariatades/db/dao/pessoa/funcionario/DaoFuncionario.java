@@ -12,13 +12,17 @@ import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Raul de Paula
  */
 public class DaoFuncionario {
+
     public static void inserir(Funcionario funcionario, int ultimaChavePessoa)
             throws SQLException, Exception {
         String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
@@ -35,10 +39,10 @@ public class DaoFuncionario {
             preparedStatement.setInt(5, funcionario.getSenha());
             preparedStatement.setInt(6, funcionario.getNivelFuncao());
             preparedStatement.setString(7, funcionario.getRg());
-            
+
             DaoContato.inserirContato(funcionario.getContato(), ultimaChavePessoa);
-            DaoEndereco.inserirEndereco(funcionario.getEndereco(), ultimaChavePessoa);
-            
+            DaoEndereco.inserir(funcionario.getEndereco(), ultimaChavePessoa);
+
             preparedStatement.execute();
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
@@ -49,7 +53,7 @@ public class DaoFuncionario {
             }
         }
     }
-    
+
     public static void atualizar(Funcionario funcionario)
             throws SQLException, Exception {
 
@@ -61,7 +65,7 @@ public class DaoFuncionario {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            
+
             preparedStatement.setBoolean(1, funcionario.isDisponivel());
             preparedStatement.setString(2, funcionario.getNomeUsuario());
             preparedStatement.setInt(3, funcionario.getSenha());
@@ -82,7 +86,7 @@ public class DaoFuncionario {
             }
         }
     }
-    
+
     public static void excluir(Integer id)
             throws SQLException, Exception {
 
@@ -107,5 +111,99 @@ public class DaoFuncionario {
                 connection.close();
             }
         }
+    }
+
+    public static List<Funcionario> listar(List<Funcionario> listaPessoa)
+            throws SQLException, Exception {
+        String sql = "SELECT * FROM Funcionario";
+
+        int contador = 0;
+        Funcionario funcionario;
+        List<Funcionario> listaFuncionario = null;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            result = preparedStatement.executeQuery();
+
+            while (result.next()) {
+                if (listaFuncionario == null) {
+                    listaFuncionario = new ArrayList<Funcionario>();
+                }
+                int idPessoa;
+                idPessoa = result.getInt("idPessoa");
+                funcionario = listaPessoa.get(contador);
+
+                if (idPessoa == funcionario.getIdPessoa()) {
+                    funcionario.setCodFuncionario(result.getInt("codFuncionario"));
+                    funcionario.setDisponivel(result.getBoolean("disponivel"));
+                    funcionario.setNomeUsuario(result.getString("nomeUsuario"));
+                    funcionario.setSenha(result.getInt("senha"));
+                    funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                    funcionario.setRg(result.getString("rg"));
+                    funcionario.setContato(DaoContato.procurar(idPessoa));
+                    funcionario.setEndereco(DaoEndereco.procurar(idPessoa));
+
+                    listaFuncionario.add(funcionario);
+                }
+                contador++;
+            }
+        } finally {
+            if (result != null && !result.isClosed()) {
+                result.close();
+            }
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return listaFuncionario;
+    }
+
+    public static Funcionario procurar(Funcionario funcionario)
+            throws SQLException, Exception {
+        String sql = "SELECT * FROM Funcionario"
+                + "WHERE idPessoa=?";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, funcionario.getIdPessoa());
+
+            result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                funcionario.setCodFuncionario(result.getInt("codFuncionario"));
+                funcionario.setDisponivel(result.getBoolean("disponivel"));
+                funcionario.setNomeUsuario(result.getString("nomeUsuario"));
+                funcionario.setSenha(result.getInt("senha"));
+                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setRg(result.getString("rg"));
+                
+                funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
+                funcionario.setEndereco(DaoEndereco.procurar(funcionario.getIdPessoa()));
+            }
+        } finally {
+            if (result != null && !result.isClosed()) {
+                result.close();
+            }
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return funcionario;
     }
 }

@@ -7,13 +7,10 @@ package br.senac.tads.pi3a.livrariatades.db.dao.endereco;
 
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
-import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -21,10 +18,10 @@ import java.util.List;
  */
 public class DaoEndereco {
 
-    public static void inserirEndereco(Endereco endereco, int ultimaChavePessoa)
+    public static void inserir(Endereco endereco, int ultimaChavePessoa)
             throws SQLException, Exception {
         String sql = "INSERT INTO Contato VALUES (0, ?, ?, ?,?,?,?)";
-        
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -55,7 +52,7 @@ public class DaoEndereco {
 
         String sql = "UPDATE Endereco SET rua=?, numero=?, bairro=?, cep=?, complemento=? "
                 + "WHERE (idPessoa=?)";
-        
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -83,45 +80,29 @@ public class DaoEndereco {
         }
     }
 
-    public static List<Cliente> listar(List<Cliente> listaPessoa)
+    public static Endereco procurar(int idPessoa)
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Endereco";
+        String sql = "SELECT * FROM Endereco"
+                + "WHERE idPessoa=?";
 
-        int contador = 0;
-        Cliente cliente;
         Endereco endereco = new Endereco();
-        List<Cliente> listaClientes = null;
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
-
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-
+            preparedStatement.setInt(1, idPessoa);
+            
             result = preparedStatement.executeQuery();
 
-            while (result.next()) {
-                if (listaClientes == null) {
-                    listaClientes = new ArrayList<Cliente>();
-                }
-                int idPessoa;
-                idPessoa = result.getInt("idPessoa");
-                cliente = listaPessoa.get(contador);
-
-                if (idPessoa == cliente.getIdPessoa()) {
-
-                    endereco.setRua(result.getString("rua"));
+            if (result.next()) {
+                endereco.setRua(result.getString("rua"));
                     endereco.setNumero(result.getInt("numero"));
                     endereco.setBairro(result.getString("rua"));
                     endereco.setCep(result.getInt("cep"));
                     endereco.setComplemento(result.getString("complemento"));
-                    cliente.setEndereco(endereco);
-
-                    listaClientes.add(cliente);
-                }
-                contador++;
             }
         } finally {
             if (result != null && !result.isClosed()) {
@@ -134,6 +115,6 @@ public class DaoEndereco {
                 connection.close();
             }
         }
-        return listaClientes;
+        return endereco;
     }
 }

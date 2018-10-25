@@ -9,6 +9,7 @@ import br.senac.tads.pi3a.livrariatades.db.dao.contato.DaoContato;
 import br.senac.tads.pi3a.livrariatades.db.dao.endereco.DaoEndereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
+import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,10 +36,10 @@ public class DaoCliente {
             preparedStatement.setInt(2, cliente.getCodCliente());
             preparedStatement.setBoolean(3, cliente.isDisponivel());
             preparedStatement.setInt(4, cliente.getTotalCompras());
-            
+
             DaoContato.inserirContato(cliente.getContato(), ultimaChavePessoa);
-            DaoEndereco.inserirEndereco(cliente.getEndereco(), ultimaChavePessoa);
-            
+            DaoEndereco.inserir(cliente.getEndereco(), ultimaChavePessoa);
+
             preparedStatement.execute();
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
@@ -49,7 +50,7 @@ public class DaoCliente {
             }
         }
     }
-    
+
     public static void atualizar(Cliente cliente)
             throws SQLException, Exception {
 
@@ -61,11 +62,11 @@ public class DaoCliente {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            
+
             preparedStatement.setBoolean(1, cliente.isDisponivel());
             preparedStatement.setInt(2, cliente.getTotalCompras());
             preparedStatement.setInt(3, cliente.getIdPessoa());
-            
+
             DaoContato.atualizar(cliente.getContato(), cliente.getIdPessoa());
             DaoEndereco.atualizar(cliente.getEndereco(), cliente.getIdPessoa());
             preparedStatement.execute();
@@ -84,7 +85,7 @@ public class DaoCliente {
     public static void excluir(Integer id)
             throws SQLException, Exception {
 
-        String sql = "UPDATE cliente SET dispinivel=? "
+        String sql = "UPDATE Cliente SET dispinivel=? "
                 + "WHERE (idPessoa=?)";
 
         Connection connection = null;
@@ -110,15 +111,15 @@ public class DaoCliente {
     public static List<Cliente> listar(List<Cliente> listaPessoa)
             throws SQLException, Exception {
         String sql = "SELECT * FROM Cliente";
-        
+
         int contador = 0;
         Cliente cliente;
         List<Cliente> listaClientes = null;
-        
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
-        
+
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -132,19 +133,18 @@ public class DaoCliente {
                 int idPessoa;
                 idPessoa = result.getInt("idPessoa");
                 cliente = listaPessoa.get(contador);
-                
-                if (idPessoa == cliente.getIdPessoa()){
+
+                if (idPessoa == cliente.getIdPessoa()) {
                     cliente.setCodCliente(result.getInt("codCliente"));
                     cliente.setDisponivel(result.getBoolean("disponivel"));
                     cliente.setTotalCompras(result.getInt("totalCompras"));
+                    cliente.setContato(DaoContato.procurar(idPessoa));
+                    cliente.setEndereco(DaoEndereco.procurar(idPessoa));
+
                     listaClientes.add(cliente);
-                }               
+                }
                 contador++;
             }
-            
-            DaoContato.listar(listaClientes);
-            DaoEndereco.listar(listaClientes);
-            
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();
@@ -157,6 +157,43 @@ public class DaoCliente {
             }
         }
         return listaClientes;
+    }
+
+    public static Cliente procurar(Cliente cliente)
+            throws SQLException, Exception {
+        String sql = "SELECT * FROM Cliente"
+                + "WHERE idPessoa=?";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, cliente.getIdPessoa());
+
+            result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                cliente.setCodCliente(result.getInt("codCliente"));
+                cliente.setDisponivel(result.getBoolean("disponivel"));
+                cliente.setTotalCompras(result.getInt("totalCompras"));
+                
+                cliente.setContato(DaoContato.procurar(cliente.getIdPessoa()));
+                cliente.setEndereco(DaoEndereco.procurar(cliente.getIdPessoa()));
+            }
+        } finally {
+            if (result != null && !result.isClosed()) {
+                result.close();
+            }
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return cliente;
     }
 
 }
