@@ -13,7 +13,7 @@ public class ValidadorCPF {
 
     public static boolean validadorCPF(String CPF) {
         boolean valido = true;
-        boolean digitosIguais = false;
+        boolean digitosIguais = true;
         int somaMultiplicacoes = 0;
         int charNumero;
         int multiplicador = 10;
