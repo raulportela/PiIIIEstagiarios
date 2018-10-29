@@ -5,8 +5,6 @@
  */
 package br.senac.tads.pi3a.livrariatades.db.dao.pessoa;
 
-import br.senac.tads.pi3a.livrariatades.db.dao.contato.DaoContato;
-import br.senac.tads.pi3a.livrariatades.db.dao.endereco.DaoEndereco;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
@@ -34,10 +32,12 @@ public class DaoPessoa {
             throws SQLException, Exception {
         Pessoa pessoa = new Pessoa() {
         };
-        if (cliente != null && funcionario == null) {
+        if (cliente != null) {
             pessoa = cliente;
-        } else if (funcionario != null && cliente == null) {
+            isClient = true;
+        } else{
             pessoa = funcionario;
+            isClient = false;
         }
 
         String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?, ?)";
