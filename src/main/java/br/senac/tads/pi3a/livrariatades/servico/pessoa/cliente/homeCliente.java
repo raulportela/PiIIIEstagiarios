@@ -36,20 +36,6 @@ public class homeCliente extends HttpServlet {
                 "/WEB-INF/jsp/cliente/home.jsp");
         dispatcher.forward(request, response);
         
-        
-           
-        
-       
-//        if(comando.equals("cadastra")){
-//            dispatcher = request.getRequestDispatcher(
-//                "/WEB-INF/jsp/cliente/cadastraCliente.jsp");
-//        dispatcher.forward(request, response);
-        
-
-         
-
-       
-
     }
 
     @Override
@@ -67,32 +53,5 @@ public class homeCliente extends HttpServlet {
 
     }
 
-//    public List AtulizarLista() {
-//
-//        List<Cliente> listaClientes = null;
-//        try {
-//            DaoCliente daoCli = new DaoCliente();
-//            listaClientes = daoCli.listar();
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return listaClientes;
-//    }
-//        Cliente cliente = new Cliente();
-//        
-//        
-//        cliente.setNome(request.getParameter("nome"));
-//        cliente.setSobrenome(request.getParameter("sobrenome"));
-//        cliente.setCpf(request.getParameter("cpf"));
-//        cliente.setEmail(request.getParameter("email"));
-//        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
-//        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
-//        cliente.setEndereco(request.getParameter("end"));
-//
-//        try {
-//            DaoClienteProv1.inserir(cliente);
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
 }

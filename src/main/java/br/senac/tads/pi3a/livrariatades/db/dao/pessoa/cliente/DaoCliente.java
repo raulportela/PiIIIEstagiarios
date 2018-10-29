@@ -32,10 +32,10 @@ public class DaoCliente {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, ultimaChavePessoa);
-            preparedStatement.setInt(2, cliente.getCodCliente());
-            preparedStatement.setBoolean(3, cliente.isDisponivel());
-            preparedStatement.setInt(4, cliente.getTotalCompras());
+//            preparedStatement.setInt(1, ultimaChavePessoa);
+//            preparedStatement.setInt(2, cliente.getCodCliente());
+//            preparedStatement.setBoolean(3, cliente.isDisponivel());
+//            preparedStatement.setInt(4, cliente.getTotalCompras());
 
             DaoContato.inserirContato(cliente.getContato(), ultimaChavePessoa);
             DaoEndereco.inserir(cliente.getEndereco(), ultimaChavePessoa);
