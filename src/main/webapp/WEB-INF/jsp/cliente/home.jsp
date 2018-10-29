@@ -19,7 +19,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
- <div class="row">
+        <div class="row">
             <div class="col-12 top-menu">
                 <img src="../img/1.png">
                 <div><h6>Bem Vindo!</h6></div>
@@ -27,15 +27,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2 offset-md-2 card-item list-group list-group-flush">
-                <h1>Cliente</h1>			
-                <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modalCadastrar"> Cadastrar</button>
-                <button class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modelLista"> Lista</button>
+
+            <div class="col-2 offset-md-2 card-item list-group list-group-flush"><h1>Cliente</h1>	
                 
+                <a href="${pageContext.request.contextPath}/cliente/cadastra">
+                <button type="button" class="list-group-item list-group-item-action" > Cadastrar</button>
+                </a>
+                <button  type="button"class="list-group-item list-group-item-action" > Lista</button>
+
 
 
 
             </div>
+
             <div class="col-2 offset-md-1 card-item jumbotron"></div>
 
             <div class="col-2 offset-md-1 card-item jumbotron"></div>

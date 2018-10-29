@@ -4,7 +4,7 @@ var trocaTela = function(tela){
     var result = document.getElementById("telaPrincipal");
     var xmlreq = CriaRequest();
     // Exibi a imagem de progresso
-
+    
     // Iniciar uma requisição
     xmlreq.open("POST",tela, true);
     //xmlreq.open( "POST","insertBanco.php",true);

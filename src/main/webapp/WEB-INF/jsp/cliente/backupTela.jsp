@@ -20,15 +20,22 @@
             <div class="col-12 top-menu">
                 <img src="../img/1.png">
                 <div><h6>Bem Vindo!</h6></div>
-
             </div>
         </div>
         <div class="row">
             <div class="col-2 offset-md-2 card-item list-group list-group-flush">
                 <h1>Cliente</h1>			
-                <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modalCadastrar"> Cadastrar</button>
+                <a href="${pageContext.request.contextPath}/cliente/home?comando=cadastra">
+                   
+                 <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modalCadastrar" > Cadastrar</button>
+                </a>
+                </a>
+                
+                <a href="${pageContext.request.contextPath}/cliente/home?comando=listaCliente">
+                    
                 <button class="list-group-item list-group-item-action" data-toggle="modal" data-target="#modelLista"> Lista</button>
                 
+                </a>
 
 
 
@@ -59,7 +66,8 @@
 
                     <div class="modal-body">
 
-                        <form action="${pageContext.request.contextPath}/cliente/inclusao" method="post" class="form-group">
+                        <form action="${pageContext.request.contextPath}/cliente/home" method="post" class="form-group">
+                            <input type="hidden" name="comando" value="cadastrarCliente">
 
                             <label>Nome:</label><input type="text" name="nome" class="form-control" id="nome">
 
@@ -78,9 +86,11 @@
                             <label>Endereço:</label><input type="text" name="end" class="form-control" id="end">
 
                             <div class="modal-footer">
+                                
+                                
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
-                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                <button type="submit" class="btn btn-primary" >Cadastrar</button>
 
                             </div>
 

@@ -24,48 +24,32 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/home"})
-public class ServicoCliente extends HttpServlet {
+@WebServlet(name = "ListarCliente", urlPatterns = {"/cliente/Listar"})
+public class ListarCliente extends HttpServlet {
 
     private boolean modoEdicao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-//        List<Cliente> listaClientes = AtulizarLista();
-//        request.setAttribute("listaCliente", listaClientes);
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/home.jsp");
+        RequestDispatcher dispatcher = dispatcher = request.getRequestDispatcher(
+                "/WEB-INF/jsp/cliente/listarCliente.jsp");
         dispatcher.forward(request, response);
+        
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cliente cliente = new Cliente();
-        
-        String comango = request.getParameter("crud");
-        System.out.println(comango);
-        cliente.setNome(request.getParameter("nome"));
-        cliente.setSobrenome(request.getParameter("sobrenome"));
-//        cliente.setCpf(request.getParameter("cpf"));
-//        cliente.setEmail(request.getParameter("email"));
-//        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
-//        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
-//        cliente.setEndereco(request.getParameter("end"));
 
-        try {
-            DaoClienteProv1.inserir(cliente);
-        } catch (Exception ex) {
-            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String comando = request.getParameter("comando");
+
+        System.out.println(comando);
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/cadastroCliente.jsp");
+                        "/WEB-INF/jsp/cliente/cadastraCliente.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -82,4 +66,20 @@ public class ServicoCliente extends HttpServlet {
 //        }
 //        return listaClientes;
 //    }
+//        Cliente cliente = new Cliente();
+//        
+//        
+//        cliente.setNome(request.getParameter("nome"));
+//        cliente.setSobrenome(request.getParameter("sobrenome"));
+//        cliente.setCpf(request.getParameter("cpf"));
+//        cliente.setEmail(request.getParameter("email"));
+//        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
+//        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
+//        cliente.setEndereco(request.getParameter("end"));
+//
+//        try {
+//            DaoClienteProv1.inserir(cliente);
+//        } catch (Exception ex) {
+//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 }
