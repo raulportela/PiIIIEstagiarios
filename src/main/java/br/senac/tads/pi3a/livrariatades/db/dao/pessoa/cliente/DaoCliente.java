@@ -37,6 +37,8 @@ public class DaoCliente {
 //            preparedStatement.setBoolean(3, cliente.isDisponivel());
 //            preparedStatement.setInt(4, cliente.getTotalCompras());
 
+
+           //AQUI ESTA O ERRO, NÃO ESTA ENTRANDO NO DAOCONTATO E DAOENDEREÇO
             DaoContato.inserirContato(cliente.getContato(), ultimaChavePessoa);
             DaoEndereco.inserir(cliente.getEndereco(), ultimaChavePessoa);
 

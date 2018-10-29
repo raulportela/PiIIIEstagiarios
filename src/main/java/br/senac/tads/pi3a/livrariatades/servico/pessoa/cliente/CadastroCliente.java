@@ -40,7 +40,8 @@ public class CadastroCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cliente cliente = new Cliente();
-
+        
+        cliente.setDisponivel(true);
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
         cliente.setCpf(Long.parseLong(request.getParameter("cpf")));

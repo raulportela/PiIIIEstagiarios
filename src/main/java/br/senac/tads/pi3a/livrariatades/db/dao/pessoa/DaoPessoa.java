@@ -46,7 +46,7 @@ public class DaoPessoa {
         try {
 
             connection = ConnectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql, preparedStatement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
@@ -60,11 +60,14 @@ public class DaoPessoa {
             if (chaveGeradaVenda.next()) {
                 ultimaChave = chaveGeradaVenda.getInt(1);
             }
-            if (isClient) {
+            
+            
+            // NÃO ESTA EXECUTANDO O COMANDO COM ESSE ISCLIENTE, POR ISSO ESTA COMENTADO
+//            if (isClient) {
                 DaoCliente.inserir(cliente, ultimaChave);
-            } else {
-                DaoFuncionario.inserir(funcionario, ultimaChave);
-            }
+//            } else {
+//                DaoFuncionario.inserir(funcionario, ultimaChave);
+//            }
 
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
