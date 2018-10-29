@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "ListarCliente", urlPatterns = {"/cliente/Listar"})
+@WebServlet(name = "ListarCliente", urlPatterns = {"/cliente/listar"})
 public class ListarCliente extends HttpServlet {
 
     private boolean modoEdicao;

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +16,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
+        <c:import url="cabecalho.jsp" />
 
 
         <div>
@@ -39,7 +41,7 @@
 
                 <label>CPF:</label><input type="text" pattern="[0-9]+$"  class="form-control" id="cpf"  placeholder="000.000.000-00">
 
-                <label>Nasc:</label><input type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc">
+                <label>Nasc:</label><input type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
 
                 <label>E-mail:</label><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com">
 
@@ -47,7 +49,15 @@
 
                 <label>Celular:</label><input type="tel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="cel"  placeholder="(xx) 9 9999-9999">
 
-                <label>Endereço:</label><input type="text" class="form-control" id="end">	
+                <label>Rua:</label><input type="text" class="form-control" id="rua" name="rua">
+                
+                <label>Nº:</label><input type="text" class="form-control"  id="numero" name="numero">
+                
+                <label>Bairro:</label><input type="text" class="form-control"  id="bairro" name="bairro">
+                
+                <label>CEP:</label><input type="text" class="form-control"  id="cep" name="cep">
+                
+                <label>Complemento:</label><input type="text" class="form-control"  id="complemento" name="complemento">
 
             </form>
             <div class="modal-footer">

@@ -40,7 +40,7 @@ public class DaoPessoa {
             pessoa = funcionario;
         }
 
-        String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?,?)";
+        String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {

@@ -24,7 +24,7 @@ public class ConnectionUtils {
         Class.forName("com.mysql.jdbc.Driver");
         // Passo 2: Obter a conexao
         connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/bdProj",
+                "jdbc:mysql://localhost:3306/LivrariaSenacultural",
                 "root",
                 "");
         return connection;
