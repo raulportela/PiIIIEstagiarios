@@ -50,7 +50,7 @@
 
                             </thead>
                             <tbody>
-                                <c:forEach items="${listaCliente}" var="cli">
+                                <c:forEach items="${listaClientes}" var="cli">
 
 
 

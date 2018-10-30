@@ -76,16 +76,4 @@ public class CadastroCliente extends HttpServlet {
 
     }
 
-//    public List AtulizarLista() {
-//
-//        List<Cliente> listaClientes = null;
-//        try {
-//            DaoCliente daoCli = new DaoCliente();
-//            listaClientes = daoCli.listar();
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return listaClientes;
-//    }
 }

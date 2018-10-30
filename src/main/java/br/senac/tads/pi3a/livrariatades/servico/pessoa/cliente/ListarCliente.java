@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoClienteProv1;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
@@ -32,10 +33,15 @@ public class ListarCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/cliente/listarCliente.jsp");
-        dispatcher.forward(request, response);
+
+        List<Cliente> listaClientes = AtulizarLista();
+
+        request.setAttribute("clientes", listaClientes);
         
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/WEB-INF/jsp/cliente/backupTela.jsp");
+        dispatcher.forward(request, response);
 
     }
 
@@ -43,43 +49,25 @@ public class ListarCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String comando = request.getParameter("comando");
-
-        System.out.println(comando);
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/cadastraCliente.jsp");
+                        "/WEB-INF/jsp/cliente/backupTela.jsp");
         dispatcher.forward(request, response);
 
     }
 
-//    public List AtulizarLista() {
-//
-//        List<Cliente> listaClientes = null;
-//        try {
-//            DaoCliente daoCli = new DaoCliente();
-//            listaClientes = daoCli.listar();
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return listaClientes;
-//    }
-//        Cliente cliente = new Cliente();
-//        
-//        
-//        cliente.setNome(request.getParameter("nome"));
-//        cliente.setSobrenome(request.getParameter("sobrenome"));
-//        cliente.setCpf(request.getParameter("cpf"));
-//        cliente.setEmail(request.getParameter("email"));
-//        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
-//        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
-//        cliente.setEndereco(request.getParameter("end"));
-//
-//        try {
-//            DaoClienteProv1.inserir(cliente);
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+    public List AtulizarLista() {
+
+        List<Cliente> listaClientes = null;
+        try {
+
+            listaClientes = DaoPessoa.listarCliente();
+
+        } catch (Exception ex) {
+            Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaClientes;
+    }
+
 }
