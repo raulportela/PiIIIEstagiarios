@@ -25,20 +25,20 @@ public class DaoCliente {
 
     public static void inserir(Cliente cliente, int ultimaChavePessoa)
             throws SQLException, Exception {
-        String sql = "INSERT INTO cliente VALUES (0, ?, ?)";
+        String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-//            preparedStatement.setInt(1, ultimaChavePessoa);
-//            preparedStatement.setInt(2, cliente.getCodCliente());
-//            preparedStatement.setBoolean(3, cliente.isDisponivel());
-//            preparedStatement.setInt(4, cliente.getTotalCompras());
+            preparedStatement.setInt(1, ultimaChavePessoa);
+            preparedStatement.setInt(2, cliente.getCodCliente());
+            preparedStatement.setBoolean(3, cliente.isDisponivel());
+            //preparedStatement.setInt(4, cliente.getTotalCompras());
 
 
-           //AQUI ESTA O ERRO, NÃO ESTA ENTRANDO NO DAOCONTATO E DAOENDEREÇO
+           
             DaoContato.inserirContato(cliente.getContato(), ultimaChavePessoa);
             DaoEndereco.inserir(cliente.getEndereco(), ultimaChavePessoa);
 

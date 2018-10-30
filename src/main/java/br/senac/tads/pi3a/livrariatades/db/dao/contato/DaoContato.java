@@ -20,7 +20,7 @@ public class DaoContato {
 
     public static void inserirContato(Contato contato, int ultimaChavePessoa)
             throws SQLException, Exception {
-        String sql = "INSERT INTO Contato VALUES (0, ?, ?, ?,?)";
+        String sql = "INSERT INTO Contato VALUES (0, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

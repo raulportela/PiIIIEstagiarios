@@ -62,12 +62,12 @@ public class DaoPessoa {
             }
             
             
-            // NÃO ESTA EXECUTANDO O COMANDO COM ESSE ISCLIENTE, POR ISSO ESTA COMENTADO
-//            if (isClient) {
+            
+            if (isClient) {
                 DaoCliente.inserir(cliente, ultimaChave);
-//            } else {
-//                DaoFuncionario.inserir(funcionario, ultimaChave);
-//            }
+            } else {
+                DaoFuncionario.inserir(funcionario, ultimaChave);
+            }
 
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
