@@ -123,16 +123,17 @@
 
                             </thead>
                             <tbody>
-                               
+
                                 <c:forEach items="${clientes}" var="cliente"> 
-                                <tr data-toggle="modal" data-target="#modelCliente">
-                                    <th><c:out value="${cliente.getCpf()}" /></th>
-                                    <td><c:out value="${cliente.getNome()}" /></td>
-                                    <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
-                                    <td><c:out value="${cliente.getContato().getEmail()}" /></td>
-                                </tr>
+                                    <tr data-toggle="modal" data-target="#modelClient">
+                                        <th><c:out value="${cliente.getCpf()}" /></th>
+                                        <td><c:out value="${cliente.getNome()}" /></td>
+                                        <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
+                                        <td><c:out value="${cliente.getContato().getEmail()}" /></td>
+                                    </tr>
                                 </c:forEach>
-                                
+
+                               
 
                             </tbody>
                         </table>

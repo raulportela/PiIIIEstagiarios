@@ -50,15 +50,13 @@
 
                             </thead>
                             <tbody>
-                                <c:forEach items="${listaClientes}" var="cli">
-
-
-
+                                
+                                <c:forEach items="${clientes}" var="cliente"> 
                                     <tr data-toggle="modal" data-target="#modelClient">
-                                        <th scope="row">1</th>
-                                        <td><c:out value="${cli.nome}" /></td>
-                                        <td><c:out value="${cli.sobrenome}" /></td>
-                                        <td><c:out value="${cli.cpf}" /></td>
+                                        <th><c:out value="${cliente.getCpf()}" /></th>
+                                        <td><c:out value="${cliente.getNome()}" /></td>
+                                        <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
+                                        <td><c:out value="${cliente.getContato().getEmail()}" /></td>
                                     </tr>
                                 </c:forEach>
 

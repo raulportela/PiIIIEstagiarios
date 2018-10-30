@@ -9,6 +9,7 @@ import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
+import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.sql.Connection;
@@ -35,7 +36,7 @@ public class DaoPessoa {
         if (cliente != null) {
             pessoa = cliente;
             isClient = true;
-        } else{
+        } else {
             pessoa = funcionario;
             isClient = false;
         }
@@ -60,9 +61,7 @@ public class DaoPessoa {
             if (chaveGeradaVenda.next()) {
                 ultimaChave = chaveGeradaVenda.getInt(1);
             }
-            
-            
-            
+
             if (isClient) {
                 DaoCliente.inserir(cliente, ultimaChave);
             } else {
@@ -149,7 +148,9 @@ public class DaoPessoa {
 
     public static List<Cliente> listarCliente()
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Pessoa";
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "INNER JOIN ENDERECO E ON  P.ID = E.IDPESSOA\n"
+                + "INNER JOIN CONTATO C ON  C.IDPESSOA = E.IDPESSOA;";
         List<Cliente> listaClientes = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -173,6 +174,13 @@ public class DaoPessoa {
                 clienteLista.setCpf(result.getLong("cpf"));
                 Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
                 clienteLista.setDataNascimento(datanasc);
+                
+                Contato contato = new Contato();
+                contato.setTelefone(result.getInt("telefone"));
+                contato.setEmail(result.getString("email"));
+                
+                clienteLista.setContato(contato);
+                
 
                 listaClientes.add(clienteLista);
             }
@@ -235,7 +243,6 @@ public class DaoPessoa {
         return listaFuncionarios;
     }
 
-    
     public boolean isIsClient() {
         return isClient;
     }
@@ -243,7 +250,7 @@ public class DaoPessoa {
     public void setIsClient(boolean isClient) {
         this.isClient = isClient;
     }
-    
+
     public static Cliente procurarCliente(int cpf)
             throws SQLException, Exception {
         String sql = "SELECT * FROM Pessoa"
@@ -268,7 +275,7 @@ public class DaoPessoa {
                 cliente.setCpf(result.getLong("cpf"));
                 Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
                 cliente.setDataNascimento(datanasc);
-                
+
                 cliente = DaoCliente.procurar(cliente);
             }
         } finally {
@@ -284,7 +291,7 @@ public class DaoPessoa {
         }
         return cliente;
     }
-    
+
     public static Funcionario procurarFuncionario(int cpf)
             throws SQLException, Exception {
         String sql = "SELECT * FROM Pessoa"
@@ -309,7 +316,7 @@ public class DaoPessoa {
                 funcionario.setCpf(result.getLong("cpf"));
                 Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
                 funcionario.setDataNascimento(datanasc);
-                
+
                 funcionario = DaoFuncionario.procurar(funcionario);
             }
         } finally {
@@ -325,5 +332,5 @@ public class DaoPessoa {
         }
         return funcionario;
     }
-    
+
 }

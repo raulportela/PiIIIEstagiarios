@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "AlterarExcluirCliente", urlPatterns = {"/cliente/AlterarExcluirCliente"
+@WebServlet(name = "AlterarExcluirCliente", urlPatterns = {"/cliente/alterarExcluirCliente"
         + ""})
 public class AlterarExcluirCliente extends HttpServlet {
 
@@ -54,32 +54,4 @@ public class AlterarExcluirCliente extends HttpServlet {
 
     }
 
-//    public List AtulizarLista() {
-//
-//        List<Cliente> listaClientes = null;
-//        try {
-//            DaoCliente daoCli = new DaoCliente();
-//            listaClientes = daoCli.listar();
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return listaClientes;
-//    }
-//        Cliente cliente = new Cliente();
-//        
-//        
-//        cliente.setNome(request.getParameter("nome"));
-//        cliente.setSobrenome(request.getParameter("sobrenome"));
-//        cliente.setCpf(request.getParameter("cpf"));
-//        cliente.setEmail(request.getParameter("email"));
-//        cliente.setTelefone(Integer.parseInt(request.getParameter("tel")));
-//        cliente.setCelular(Integer.parseInt(request.getParameter("cel")));
-//        cliente.setEndereco(request.getParameter("end"));
-//
-//        try {
-//            DaoClienteProv1.inserir(cliente);
-//        } catch (Exception ex) {
-//            Logger.getLogger(ServicoCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 }

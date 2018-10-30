@@ -9,7 +9,10 @@ import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
+import com.oracle.jrockit.jfr.DataType;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +22,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import jdk.nashorn.internal.parser.DateParser;
 
 /**
  *
@@ -40,13 +44,27 @@ public class CadastroCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cliente cliente = new Cliente();
-        
+
         cliente.setDisponivel(true);
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
         cliente.setCpf(Long.parseLong(request.getParameter("cpf")));
-        Date datateste = new Date();
-        cliente.setDataNascimento(datateste);
+        String datajsp = request.getParameter("nasc");
+        
+        
+            //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS
+            
+//        SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
+//        Date data = null;
+//        try {
+//            data = formato.parse(datajsp);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+        Date dateTeste = new Date();
+
+        cliente.setDataNascimento(dateTeste);
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));

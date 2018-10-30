@@ -35,12 +35,14 @@ public class ListarCliente extends HttpServlet {
             throws ServletException, IOException {
 
         List<Cliente> listaClientes = AtulizarLista();
+        
+       
 
         request.setAttribute("clientes", listaClientes);
-        
+        System.out.println(listaClientes.get(0).getContato().getEmail());
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/cliente/backupTela.jsp");
+                "/WEB-INF/jsp/cliente/listarCliente.jsp");
         dispatcher.forward(request, response);
 
     }
