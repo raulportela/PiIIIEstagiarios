@@ -19,7 +19,7 @@ public class Funcionario extends Pessoa {
     private int codFuncionario;
     private boolean disponivel;
     private String nomeUsuario;
-    private int senha;
+    private String senha;
     private int nivelFuncao;
     private int idPessoa;
 
@@ -75,11 +75,11 @@ public class Funcionario extends Pessoa {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

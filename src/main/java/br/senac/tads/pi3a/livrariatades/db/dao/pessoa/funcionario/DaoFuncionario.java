@@ -8,7 +8,6 @@ package br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario;
 import br.senac.tads.pi3a.livrariatades.db.dao.contato.DaoContato;
 import br.senac.tads.pi3a.livrariatades.db.dao.endereco.DaoEndereco;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
-import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +35,7 @@ public class DaoFuncionario {
             preparedStatement.setInt(2, funcionario.getCodFuncionario());
             preparedStatement.setBoolean(3, funcionario.isDisponivel());
             preparedStatement.setString(4, funcionario.getNomeUsuario());
-            preparedStatement.setInt(5, funcionario.getSenha());
+            preparedStatement.setString(5, funcionario.getSenha());
             preparedStatement.setInt(6, funcionario.getNivelFuncao());
             preparedStatement.setString(7, funcionario.getRg());
 
@@ -68,7 +67,7 @@ public class DaoFuncionario {
 
             preparedStatement.setBoolean(1, funcionario.isDisponivel());
             preparedStatement.setString(2, funcionario.getNomeUsuario());
-            preparedStatement.setInt(3, funcionario.getSenha());
+            preparedStatement.setString(3, funcionario.getSenha());
             preparedStatement.setInt(3, funcionario.getNivelFuncao());
             preparedStatement.setString(3, funcionario.getRg());
 
@@ -143,7 +142,7 @@ public class DaoFuncionario {
                     funcionario.setCodFuncionario(result.getInt("codFuncionario"));
                     funcionario.setDisponivel(result.getBoolean("disponivel"));
                     funcionario.setNomeUsuario(result.getString("nomeUsuario"));
-                    funcionario.setSenha(result.getInt("senha"));
+                    funcionario.setSenha(result.getString("senha"));
                     funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
                     funcionario.setRg(result.getString("rg"));
                     funcionario.setContato(DaoContato.procurar(idPessoa));
@@ -186,7 +185,7 @@ public class DaoFuncionario {
                 funcionario.setCodFuncionario(result.getInt("codFuncionario"));
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
-                funcionario.setSenha(result.getInt("senha"));
+                funcionario.setSenha(result.getString("senha"));
                 funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
                 funcionario.setRg(result.getString("rg"));
                 
