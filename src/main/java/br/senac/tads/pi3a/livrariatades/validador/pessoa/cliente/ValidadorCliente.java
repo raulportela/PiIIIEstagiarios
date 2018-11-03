@@ -11,7 +11,6 @@ import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 /**
  *
  * @author Raul de Paula
- * @author Leonardo Maia
  */
 public class ValidadorCliente {
     public static String validadorCliente (Cliente cliente){
