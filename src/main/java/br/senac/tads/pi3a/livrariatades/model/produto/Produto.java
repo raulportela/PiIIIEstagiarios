@@ -11,7 +11,7 @@ package br.senac.tads.pi3a.livrariatades.model.produto;
  */
 public class Produto {
     
-    private long id;
+    private int id;
     private String titulo;
     private String autor;
     private String editora;
@@ -20,7 +20,7 @@ public class Produto {
     private boolean disponivel;
     private Float valor;
     
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -80,7 +80,7 @@ public class Produto {
         this.valor = valor;
     }
 
-    public void setId(long l) {
+    public void setId(int l) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

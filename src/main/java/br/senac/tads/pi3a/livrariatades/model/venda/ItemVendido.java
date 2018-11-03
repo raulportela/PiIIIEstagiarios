@@ -13,7 +13,7 @@ import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
  */
 public class ItemVendido {
     private Produto produto;
-    private int qtd;
+    private int quantidade;
 
     public Produto getProduto() {
         return produto;
@@ -23,11 +23,11 @@ public class ItemVendido {
         this.produto = produto;
     }
 
-    public int getQtd() {
-        return qtd;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
+    public void setQuantidade(int qtd) {
+        this.quantidade = qtd;
     }
 }

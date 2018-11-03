@@ -30,19 +30,26 @@ complemento VARCHAR (100),
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
 
-CREATE TABLE Venda(
-id INT AUTO_INCREMENT,
-idCliente INT,
-valorTotal FLOAT,
-PRIMARY KEY (id));
+-- CREATE TABLE Venda(
+-- id INT AUTO_INCREMENT,
+-- idPessoa INT,
+-- codCliente INT,
+-- notaFiscal VARCHAR(10) NOT NULL,
+-- dtCompra DATE NOT NULL,
+-- valorTotal FLOAT NOT NULL,
+-- PRIMARY KEY (id),
+-- FOREIGN KEY(idPessoa) REFERENCES Pessoa(id),
+-- FOREIGN KEY(codCliente) REFERENCES Cliente(codCliente));
 
-CREATE TABLE ItemVenda(
-id INT AUTO_INCREMENT,
-idVenda INT,
-nomeProduto VARCHAR(60),
-valorProduto FLOAT,
-PRIMARY KEY (id),
-FOREIGN KEY (idVenda) REFERENCES Venda (id));
+-- CREATE TABLE ItemVenda(
+-- id INT AUTO_INCREMENT,
+-- idVenda INT,
+-- idProduto INT,
+-- quantidade INT,
+-- valorUnitario FLOAT,
+-- PRIMARY KEY (id),
+-- FOREIGN KEY (idProduto) REFERENCES Produto (id),
+-- FOREIGN KEY (idVenda) REFERENCES Venda (id));
 
 CREATE TABLE Cliente (
 id INT AUTO_INCREMENT,
