@@ -5,12 +5,14 @@
  */
 package br.senac.tads.pi3a.livrariatades.validador.contato;
 
+import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
+
 /**
  *
  * @author Maia
  */
 public class ValidadorContato {
-    public static String validar(){
+    public static String validar(Contato contato){
         return "";
     }
 }
