@@ -5,10 +5,15 @@
  */
 package br.senac.tads.pi3a.livrariatades.validador.endereco;
 
+import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
+
 /**
  *
  * @author Maia
  */
 public class ValidadorEndereco {
+    public static String validar (Endereco endereco){
+        return "";
+    }
     
 }

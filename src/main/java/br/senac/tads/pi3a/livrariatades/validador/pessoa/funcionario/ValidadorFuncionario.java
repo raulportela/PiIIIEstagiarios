@@ -9,6 +9,7 @@ import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import br.senac.tads.pi3a.livrariatades.validador.contato.ValidadorContato;
+import br.senac.tads.pi3a.livrariatades.validador.endereco.ValidadorEndereco;
 
 /**
  *
@@ -51,11 +52,11 @@ public class ValidadorFuncionario {
             valido = false;  
         }
         
-        validoContato = ValidadorContato.validar();
+        validoContato = ValidadorContato.validar(contato);
+        validoEndereco = ValidadorEndereco.validar(endereco);
         
-        
-        if (valido == false) {
-            return mensagemErro;
+        if (valido == false && validoContato != null && validoEndereco != null ) {
+            return mensagemErro += validoContato + validoEndereco;
         } else {
             return null;
         }
