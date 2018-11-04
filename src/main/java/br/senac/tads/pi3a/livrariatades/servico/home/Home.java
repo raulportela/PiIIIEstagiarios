@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
+package br.senac.tads.pi3a.livrariatades.servico.home;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Jeferson Nolasco
+ * @author Raul de Paula
  */
-@WebServlet(name = "Clientehome", urlPatterns = {"/cliente/home"})
-public class homeCliente extends HttpServlet {
-
-    private boolean modoEdicao;
+@WebServlet(name = "Home", urlPatterns = {"/home"})
+public class Home extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -28,23 +27,12 @@ public class homeCliente extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/home/home.jsp");
         dispatcher.forward(request, response);
-        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String comando = request.getParameter("comando");
-
-        System.out.println(comando);
-
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/cadastraCliente.jsp");
-        dispatcher.forward(request, response);
-
+        
     }
-
 
 }

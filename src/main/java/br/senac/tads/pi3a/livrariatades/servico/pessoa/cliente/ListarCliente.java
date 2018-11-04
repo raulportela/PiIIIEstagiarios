@@ -28,8 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ListarCliente", urlPatterns = {"/cliente/listar"})
 public class ListarCliente extends HttpServlet {
 
-    private boolean modoEdicao;
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,10 +49,10 @@ public class ListarCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
                         "/WEB-INF/jsp/cliente/backupTela.jsp");
+        
         dispatcher.forward(request, response);
 
     }
