@@ -5,7 +5,6 @@
  */
 package br.senac.tads.pi3a.livrariatades.model.contato;
 
-import java.util.Date;
 
 /**
  *

@@ -16,46 +16,45 @@ import br.senac.tads.pi3a.livrariatades.validador.endereco.ValidadorEndereco;
  * @author Raul de Paula
  */
 public class ValidadorFuncionario {
-    public static String validadorFuncionario (Funcionario funcionario, Contato contato, Endereco endereco){
+
+    public static String validar(Funcionario funcionario, Contato contato, Endereco endereco) {
         String mensagemErro = "Informar Campos Obrigatórios: ";
         String validoContato, validoEndereco;
         boolean valido = true;
-        
-        
-        
+
         if (funcionario == null) {
             mensagemErro += "\nNão foi informado um Funcionario";
             return mensagemErro;
         }
-        
-        if (funcionario.getNomeUsuario()== null || "".equals(funcionario.getNomeUsuario())) {
+
+        if (funcionario.getNomeUsuario() == null || "".equals(funcionario.getNomeUsuario())) {
             mensagemErro += "\nNome de usuário";
             valido = false;
         } else if (funcionario.getNomeUsuario().length() > 20) {
             mensagemErro += "\nNome de usário deve conter menos de 20 caracteres";
             valido = false;
         }
-        
+
         if (funcionario.getSenha() == null || "".equals(funcionario.getSenha())) {
             mensagemErro += "\nSenha";
-             valido = false;           
-        } else if (funcionario.getSenha().length() <6) {
+            valido = false;
+        } else if (funcionario.getSenha().length() < 6) {
             mensagemErro += "\nSenha deve possuir no mínimo 6 caracteres";
-            valido = false;  
+            valido = false;
         }
-        
+
         if (funcionario.getRg() == null) {
             mensagemErro += "\nRG";
-            valido = false;  
-        }else if (funcionario.getRg().length() > 20) {
+            valido = false;
+        } else if (funcionario.getRg().length() > 20) {
             mensagemErro += "\nRG excede o limite permitido. Máximo 20 caracteres";
-            valido = false;  
+            valido = false;
         }
-        
+
         validoContato = ValidadorContato.validar(contato);
         validoEndereco = ValidadorEndereco.validar(endereco);
-        
-        if (valido == false && validoContato != null && validoEndereco != null ) {
+
+        if (valido == false && validoContato != null && validoEndereco != null) {
             return mensagemErro += validoContato + validoEndereco;
         } else {
             return null;
