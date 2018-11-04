@@ -5,14 +5,7 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoClienteProv1;
-import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +26,7 @@ public class homeCliente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/cliente/home.jsp");
+                "/WEB-INF/jsp/home/home.jsp");
         dispatcher.forward(request, response);
         
     }
