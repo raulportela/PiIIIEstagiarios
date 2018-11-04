@@ -53,15 +53,12 @@ public class DaoVenda {
             }
             for (ItemVendido item : venda.getListaItensVendidos()) {
                 inserirItemVenda(item, ultimaChave);
-//                decrementarEstoque(item);
-
+                decrementarEstoque(item);
             }
-
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
             }
-
             if (connection != null && !connection.isClosed()) {
                 connection.close();
             }
@@ -91,27 +88,34 @@ public class DaoVenda {
             }
         }
     }
-//
-//    public static void decrementarEstoque(ItemVendido item) throws SQLException, Exception {
-//        String sql = "UPDATE Produto SET quantidade=?, nomeUsuario=?, senha=?, nivelFuncao=?,rg=? "
-//                + "WHERE (idPessoa=?)";
-//        Connection connection = null;
-//        PreparedStatement preparedStatement = null;
-//        try {
-//            connection = ConnectionUtils.getConnection();
-//            preparedStatement = connection.prepareStatement(sql);
-//            //preparedStatement.setInt(1, item.getProduto().getCodigoProduto());
-//
-//            preparedStatement.execute();
-//        } finally {
-//            if (preparedStatement != null && !preparedStatement.isClosed()) {
-//                preparedStatement.isClosed();
-//            }
-//
-//            if (connection != null && !connection.isClosed()) {
-//                connection.isClosed();
-//            }
-//        }
-//
-//    }
+
+    public static void decrementarEstoque(ItemVendido item) throws SQLException, Exception {
+        String sql = "UPDATE Produto SET quantidade=?, disponivel=?"
+                + "WHERE (id=?)";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            if (item.getProduto().getQuantidade() == 0) {
+                preparedStatement.setInt(1, item.getProduto().getQuantidade());
+                preparedStatement.setBoolean(2, false);
+            }else if (item.getProduto().getQuantidade() > 0) {
+                preparedStatement.setInt(1, item.getProduto().getQuantidade());
+                preparedStatement.setBoolean(2, true);
+            }
+            preparedStatement.setInt(3, item.getProduto().getId());
+
+            preparedStatement.execute();
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.isClosed();
+            }
+
+            if (connection != null && !connection.isClosed()) {
+                connection.isClosed();
+            }
+        }
+    }
 }
