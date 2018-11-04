@@ -32,12 +32,8 @@ public class ListarCliente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Cliente> listaClientes = AtulizarLista();
-        
-       
-
-        request.setAttribute("clientes", listaClientes);
-        System.out.println(listaClientes.get(0).getContato().getEmail());
+//        List<Cliente> listaClientes = AtulizarLista();
+//        request.setAttribute("clientes", listaClientes);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/listarCliente.jsp");

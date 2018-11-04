@@ -17,8 +17,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
-        <c:import url="/home/cabecalho.jsp" />
-
+        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
 
         <div>
 
@@ -61,7 +60,7 @@
                 <label>Complemento:</label><input type="text" class="form-control"  id="complemento" name="complemento">
 
                 <div class="modal-footer">
-                    <a href="${pageContext.request.contextPath}/cliente/home">   
+                    <a href="${pageContext.request.contextPath}/home">   
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </a>
 
@@ -71,10 +70,6 @@
             </form>
 
         </div>
-
-
-
-
 
     </body>
 </html>

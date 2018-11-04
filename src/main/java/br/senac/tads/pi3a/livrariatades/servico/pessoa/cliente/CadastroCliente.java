@@ -28,13 +28,13 @@ import jdk.nashorn.internal.parser.DateParser;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/cadastra"})
+@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/cadastrar"})
 public class CadastroCliente extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = dispatcher = request.getRequestDispatcher(
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/cadastraCliente.jsp");
         dispatcher.forward(request, response);
 

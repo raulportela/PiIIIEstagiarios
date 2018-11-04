@@ -16,7 +16,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
-        <c:import url="cabecalho.jsp" />
+        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
 
         <div id="modelLista" role="dialog" >
 
@@ -27,12 +27,13 @@
                     <div class="modal-header">
 
                         <h5 class="modal-title" id="exampleModalLabel">Lista</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
-
+                        
+                        <center><h6><a href="${pageContext.request.contextPath}/cliente/cadastrar">+</a></h6></center>
+                        <a href="${pageContext.request.contextPath}/home">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
                             <span aria-hidden="true">&times;</span>
-
                         </button>
+                        </a>
 
                     </div>
                     <div class="modal-body">
@@ -65,9 +66,15 @@
                     </div>
 
                     <div class="modal-footer">
-
+                        <a href="${pageContext.request.contextPath}/home">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Alterar</button>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/home">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Excluir</button>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/home">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-
+                        </a>
                     </div>
                 </div>
             </div>
