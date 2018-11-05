@@ -6,11 +6,8 @@
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoClienteProv1;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,8 +29,14 @@ public class ListarCliente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-//        List<Cliente> listaClientes = AtulizarLista();
-//        request.setAttribute("clientes", listaClientes);
+        List<Cliente> listaClientes = null;
+        try {
+
+            listaClientes = DaoPessoa.listarCliente();
+        } catch (Exception ex) {
+            Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        request.setAttribute("clientes", listaClientes);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/listarCliente.jsp");

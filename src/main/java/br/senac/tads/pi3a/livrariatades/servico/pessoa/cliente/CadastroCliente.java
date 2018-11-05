@@ -9,10 +9,7 @@ import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
-import com.oracle.jrockit.jfr.DataType;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +19,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import jdk.nashorn.internal.parser.DateParser;
 
 /**
  *
@@ -89,7 +85,7 @@ public class CadastroCliente extends HttpServlet {
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/cadastraCliente.jsp");
+                        "/WEB-INF/jsp/cliente/home");
         dispatcher.forward(request, response);
 
     }

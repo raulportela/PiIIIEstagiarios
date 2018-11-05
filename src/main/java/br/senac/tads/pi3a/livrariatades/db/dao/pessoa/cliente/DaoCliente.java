@@ -37,8 +37,6 @@ public class DaoCliente {
             preparedStatement.setBoolean(3, cliente.isDisponivel());
             preparedStatement.setInt(4, cliente.getTotalCompras());
 
-
-           
             DaoContato.inserirContato(cliente.getContato(), ultimaChavePessoa);
             DaoEndereco.inserir(cliente.getEndereco(), ultimaChavePessoa);
 
@@ -163,7 +161,7 @@ public class DaoCliente {
 
     public static Cliente procurar(Cliente cliente)
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Cliente"
+        String sql = "SELECT * FROM Cliente "
                 + "WHERE idPessoa=?";
 
         Connection connection = null;
@@ -175,15 +173,14 @@ public class DaoCliente {
             preparedStatement.setInt(1, cliente.getIdPessoa());
 
             result = preparedStatement.executeQuery();
+            
+            cliente.setCodCliente(result.getInt("codCliente"));
+            cliente.setDisponivel(result.getBoolean("disponivel"));
+            cliente.setTotalCompras(result.getInt("totalCompras"));
 
-            if (result.next()) {
-                cliente.setCodCliente(result.getInt("codCliente"));
-                cliente.setDisponivel(result.getBoolean("disponivel"));
-                cliente.setTotalCompras(result.getInt("totalCompras"));
-                
-                cliente.setContato(DaoContato.procurar(cliente.getIdPessoa()));
-                cliente.setEndereco(DaoEndereco.procurar(cliente.getIdPessoa()));
-            }
+            cliente.setContato(DaoContato.procurar(cliente.getIdPessoa()));
+            cliente.setEndereco(DaoEndereco.procurar(cliente.getIdPessoa()));
+
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();

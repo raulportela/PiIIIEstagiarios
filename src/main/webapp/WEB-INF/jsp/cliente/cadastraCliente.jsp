@@ -33,7 +33,7 @@
 
         <div class="modal-body">
 
-            <form action="${pageContext.request.contextPath}/cliente/cadastra" method="post" class="form-group">
+            <form action="${pageContext.request.contextPath}/cliente/cadastrar" method="post" class="form-group">
 
                 <label>Nome:</label><input type="text" class="form-control" id="nome" name="nome">
 
@@ -51,7 +51,7 @@
 
                 <label>Rua:</label><input type="text" class="form-control" id="rua" name="rua">
 
-                <label>Nº:</label><input type="text" class="form-control"  id="numero" name="numero">
+                <label>Nº:</label><input type="text" value="200" class="form-control"  id="numero" name="numero">
 
                 <label>Bairro:</label><input type="text" class="form-control"  id="bairro" name="bairro">
 

@@ -27,12 +27,12 @@
                     <div class="modal-header">
 
                         <h5 class="modal-title" id="exampleModalLabel">Lista</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
-                        
+
                         <center><h6><a href="${pageContext.request.contextPath}/cliente/cadastrar">+</a></h6></center>
                         <a href="${pageContext.request.contextPath}/home">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </a>
 
                     </div>
@@ -51,7 +51,7 @@
 
                             </thead>
                             <tbody>
-                                
+
                                 <c:forEach items="${clientes}" var="cliente"> 
                                     <tr data-toggle="modal" data-target="#modelClient">
                                         <th><c:out value="${cliente.getCpf()}" /></th>
@@ -66,19 +66,27 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="${pageContext.request.contextPath}/home">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Alterar</button>
+                        <a href="${pageContext.request.contextPath}/cliente/alterarExcluirCliente?cpf=selecionarColuna()">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Alterar</button>
+                        </a>
+                        <a href="${pageContext.request.contextPath}/opcao1?opcao=2">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selecionarColuna()">Excluir</button>
                         </a>
                         <a href="${pageContext.request.contextPath}/home">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Excluir</button>
-                        </a>
-                        <a href="${pageContext.request.contextPath}/home">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
+                            
+        <script>
+            function selecionarColuna() {
+                var x = document.getElementsByTagName("LI");
+                var cpf = innerHTML = x[0].innerHTML;
+                return cpf;
+            }
+        </script>
     </body>
 </html>
 

@@ -148,10 +148,8 @@ public class DaoPessoa {
 
     public static List<Cliente> listarCliente()
             throws SQLException, Exception {
-        String sql = "SELECT * FROM PESSOA P\n"
-                + "INNER JOIN ENDERECO E ON  P.ID = E.IDPESSOA\n"
-                + "INNER JOIN CONTATO C ON  C.IDPESSOA = E.IDPESSOA;";
-        List<Cliente> listaClientes = null;
+        String sql = "SELECT * FROM Pessoa";
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
@@ -162,29 +160,20 @@ public class DaoPessoa {
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
-                if (listaClientes == null) {
-                    listaClientes = new ArrayList<Cliente>();
-                }
+                Cliente cliente = new Cliente();
 
-                Cliente clienteLista = new Cliente();
-
-                clienteLista.setIdPessoa(result.getInt("id"));
-                clienteLista.setNome(result.getString("nome"));
-                clienteLista.setSobrenome(result.getString("sobrenome"));
-                clienteLista.setCpf(result.getLong("cpf"));
-                Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
-                clienteLista.setDataNascimento(datanasc);
+                cliente.setIdPessoa(result.getInt("id"));
+                cliente.setNome(result.getString("nome"));
+                cliente.setSobrenome(result.getString("sobrenome"));
+                cliente.setCpf(result.getLong("cpf"));
+                Timestamp t = result.getTimestamp("dataNascimento");
+                Date datanasc = t;
+                cliente.setDataNascimento(datanasc);
                 
-                Contato contato = new Contato();
-                contato.setTelefone(result.getInt("telefone"));
-                contato.setEmail(result.getString("email"));
+                cliente = DaoCliente.procurar(cliente);
                 
-                clienteLista.setContato(contato);
-                
-
-                listaClientes.add(clienteLista);
+                listaClientes.add(cliente);
             }
-            DaoCliente.listar(listaClientes);
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();
