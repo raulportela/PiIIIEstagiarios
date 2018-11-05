@@ -10,6 +10,7 @@ import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
+import java.net.URLPermission;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -82,12 +84,9 @@ public class CadastroCliente extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/home");
-        dispatcher.forward(request, response);
-
+        
+     
+        response.sendRedirect(request.getContextPath() + "/cliente/listar");
     }
 
 }
