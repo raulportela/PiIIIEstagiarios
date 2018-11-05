@@ -20,16 +20,20 @@ import br.senac.tads.pi3a.livrariatades.validador.pessoa.funcionario.ValidadorFu
  */
 public class ValidadorPessoa {
     
-    public static String validar (Pessoa pessoa, Cliente cliente, Funcionario funcionario,
-            Contato contato, Endereco endereco){
+    public static String validar (Cliente cliente, Funcionario funcionario){
         
+        Pessoa pessoa = new Pessoa() {};
         String mensagemErro = "Informar Campos Obrigatórios";
-        boolean valido = true, validoCPF; 
-        String validoCliente, validoFuncionario;
+        boolean valido = true, validoCPF, isCliente; 
         
-        if (pessoa == null) {
-            mensagemErro += "Não foi informado um Cliente";
-            return mensagemErro;
+        //entrar no dao pessoa e ver anotação Raul
+        
+        if (cliente != null) {
+            pessoa = cliente;
+            isCliente = true;
+        } else{
+            pessoa = funcionario;
+            isCliente = false;
         }
         
         if (pessoa.getNome().equals("") || pessoa.getNome() == null) {
@@ -61,20 +65,12 @@ public class ValidadorPessoa {
             valido = false;
         }
         
-        //FALTA VALIDAR DATA DE NASCIIMENTO
+        //FALTA VALIDAR DATA DE NASCIIMENTO, NÃO PODE SER SUPERIOR A DATA ATUAL DO SISTEMA
         
-        if (Integer.toString(cliente.getCodCliente()) != null || cliente.getCodCliente() != 0) {
-            validoCliente = ValidadorCliente.validar(cliente, contato, endereco);
-            if (validoCliente != null) {
-                mensagemErro += validoCliente;
-                valido = false;
-            }
-        } else if (Integer.toString(funcionario.getCodFuncionario()) != null || funcionario.getCodFuncionario() != 0) {
-            validoFuncionario = ValidadorFuncionario.validar(funcionario, contato, endereco);
-            if (validoFuncionario != null) {
-                mensagemErro += validoFuncionario;
-                valido = false;
-            }
+        if (isCliente == true) {
+            mensagemErro += ValidadorCliente.validar(cliente);
+        } else {
+            mensagemErro += ValidadorFuncionario.validar(funcionario);
         }
         
         if (valido == false) {
