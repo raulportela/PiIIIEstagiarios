@@ -31,7 +31,7 @@ public class ValidadorFuncionario {
             mensagemErro += "\nNome de usuário";
             valido = false;
         } else if (funcionario.getNomeUsuario().length() > 20) {
-            mensagemErro += "\nNome de usário deve conter menos de 20 caracteres";
+            mensagemErro += "\nNome excede o limite. 20 caracteres";
             valido = false;
         }
 
@@ -47,7 +47,7 @@ public class ValidadorFuncionario {
             mensagemErro += "\nRG";
             valido = false;
         } else if (funcionario.getRg().length() > 20) {
-            mensagemErro += "\nRG excede o limite permitido. Máximo 20 caracteres";
+            mensagemErro += "\nRG excede o limite. 20 caracteres";
             valido = false;
         }
 

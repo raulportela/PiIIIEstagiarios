@@ -27,7 +27,7 @@ public class ValidadorContato {
             mensagemErro += "\nCelular.";
             valido = false;
         } else if (Long.toString(contato.getCelular()).length() > 11) {
-            mensagemErro += "Telefone celular excede limite máximo. 11 caracteres.";
+            mensagemErro += "Telefone celular excede limite. 11 caracteres.";
             valido = false;
         }
         
@@ -35,7 +35,7 @@ public class ValidadorContato {
             mensagemErro += "\nTelefone.";
             valido = false;
         } else if (Long.toString(contato.getTelefone()).length() > 10) {
-            mensagemErro += "Telefone fixo excede limite máximo. 10 caracteres.";
+            mensagemErro += "Telefone fixo excede limite. 10 caracteres.";
             valido = false;
         }
         
@@ -43,7 +43,7 @@ public class ValidadorContato {
             mensagemErro += "\nE-mail";
             valido = false;
         } else if (contato.getEmail().length() > 60) {
-            mensagemErro += "\nE-mail excede o limite máximo. 60 caracteres.";
+            mensagemErro += "\nE-mail excede o limite. 60 caracteres.";
             valido = false;
         }
         

@@ -11,7 +11,7 @@ package br.senac.tads.pi3a.livrariatades.validador;
  */
 public class ValidadorCPF {
 
-    public static boolean validadorCPF(String CPF) {
+    public static boolean validadar(String CPF) {
         boolean valido = true;
         boolean digitosIguais = true;
         int somaMultiplicacoes = 0;
