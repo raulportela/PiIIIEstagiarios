@@ -10,6 +10,7 @@ import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
+import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.sql.Connection;
@@ -31,6 +32,7 @@ public class DaoPessoa {
 
     public static void inserirPessoa(Cliente cliente, Funcionario funcionario)
             throws SQLException, Exception {
+        //leo é esse trecho 
         Pessoa pessoa = new Pessoa() {
         };
         if (cliente != null) {
@@ -148,11 +150,19 @@ public class DaoPessoa {
 
     public static List<Cliente> listarCliente()
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Pessoa";
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN CLIENTE C\n"
+                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN CONTATO CT\n"
+                + "ON P.ID = CT.IDPESSOA\n"
+                + "JOIN ENDERECO E\n"
+                + "ON P.ID = E.IDPESSOA;";
+
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
+        Cliente cliente;
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -160,7 +170,8 @@ public class DaoPessoa {
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
-                Cliente cliente = new Cliente();
+
+                cliente = new Cliente();
 
                 cliente.setIdPessoa(result.getInt("id"));
                 cliente.setNome(result.getString("nome"));
@@ -169,11 +180,29 @@ public class DaoPessoa {
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 cliente.setDataNascimento(datanasc);
-                
-                cliente = DaoCliente.procurar(cliente);
-                
+
+                cliente.setCodCliente(result.getInt("codCliente"));
+                cliente.setDisponivel(result.getBoolean("disponivel"));
+                cliente.setTotalCompras(result.getInt("totalCompras"));
+
+                Contato contato = new Contato();
+                contato.setEmail(result.getString("email"));
+                contato.setTelefone(result.getLong("telefone"));
+                contato.setCelular(result.getLong("celular"));
+                cliente.setContato(contato);
+
+                Endereco endereco = new Endereco();
+                endereco.setRua(result.getString("rua"));
+                endereco.setNumero(result.getInt("numero"));
+                endereco.setBairro(result.getString("bairro"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setComplemento(result.getString("complemento"));
+
+                cliente.setEndereco(endereco);
+
                 listaClientes.add(cliente);
             }
+            return listaClientes;
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();
@@ -185,7 +214,7 @@ public class DaoPessoa {
                 connection.close();
             }
         }
-        return listaClientes;
+
     }
 
     public static List<Funcionario> listarFuncionario()

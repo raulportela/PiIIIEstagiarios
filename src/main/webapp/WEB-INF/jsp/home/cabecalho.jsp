@@ -12,7 +12,9 @@
     <body>
         <div class="row">
             <div class="col-12 top-menu">
+                <a href="${pageContext.request.contextPath}/home">
                 <img src="../img/1.png">
+                </a>
                 <div><h6>Bem Vindo!</h6></div>
             </div>
         </div>

@@ -93,4 +93,24 @@ PRIMARY KEY (id),
 FOREIGN KEY (idLivro) REFERENCES Livro (id),
 FOREIGN KEY (idVenda) REFERENCES Venda (id));
 
+SELECT * FROM PESSOA;
+SELECT * from CLIENTE
+where idPessoa = 1;
+SELECT * FROM ENDERECO where idPessoa = 1;
+SELECT * FROM CONTATO;
+
+
+
+INSERT INTO PESSOA VALUES (3, 'Jeferson', 'nolasco', 43507576864, '1996-08-19');
+INSERT INTO CLIENTE VALUES (3, 3, 1, 1, 0);
+INSERT INTO CONTATO VALUES (3, 3, 'jefersonnls@hotmail.com', 1156116839, 11977544550);
+insert into endereco values (3,3, 'mora depois do leo', 15,'uma bairro p cima', 04430250, '');
+
+SELECT * FROM PESSOA P
+JOIN CLIENTE C
+ON P.ID = C.IDPESSOA
+JOIN CONTATO CT
+ON P.ID = CT.IDPESSOA
+JOIN ENDERECO E
+ON P.ID = E.IDPESSOA;
 -- drop database livrariasenacultural;
