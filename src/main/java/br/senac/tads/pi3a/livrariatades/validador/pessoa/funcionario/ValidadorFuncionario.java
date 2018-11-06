@@ -17,7 +17,7 @@ import br.senac.tads.pi3a.livrariatades.validador.endereco.ValidadorEndereco;
  */
 public class ValidadorFuncionario {
 
-    public static String validar(Funcionario funcionario, Contato contato, Endereco endereco) {
+    public static String validar(Funcionario funcionario) {
         String mensagemErro = "Informar Campos Obrigatórios: ";
         String validoContato, validoEndereco;
         boolean valido = true;
@@ -51,11 +51,31 @@ public class ValidadorFuncionario {
             valido = false;
         }
 
+        Contato contato = new Contato();
+        contato.setCelular(funcionario.getContato().getCelular());
+        contato.setEmail(funcionario.getContato().getEmail());
+        contato.setTelefone(funcionario.getContato().getTelefone());
         validoContato = ValidadorContato.validar(contato);
+        
+        Endereco endereco = new Endereco();
+        endereco.setBairro(funcionario.getEndereco().getBairro());
+        endereco.setCep(funcionario.getEndereco().getCep());
+        endereco.setComplemento(funcionario.getEndereco().getComplemento());
+        endereco.setNumero(funcionario.getEndereco().getNumero());
+        endereco.setRua(funcionario.getEndereco().getRua());
         validoEndereco = ValidadorEndereco.validar(endereco);
+        
+        if (validoContato != null) {
+            mensagemErro += validoContato;
+            valido = false;
+        }
+        if (validoEndereco != null) {
+            mensagemErro += validoEndereco;
+            valido = false;
+        }
 
-        if (valido == false && validoContato != null && validoEndereco != null) {
-            return mensagemErro += validoContato + validoEndereco;
+        if (valido == false) {
+            return mensagemErro;
         } else {
             return null;
         }
