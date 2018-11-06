@@ -54,9 +54,9 @@
 
                                 <c:forEach items="${clientes}" var="cliente"> 
                                     <tr data-toggle="modal" data-target="#modelClient">
-                                        <th><c:out value="${cliente.getCpf()}" id="click" /></th>
-                                        <td><c:out value="${cliente.getNome() + ' ' + cliente.getSobrenome()}" /></td>
-                                        <td><c:out value="${cliente.getContato().getTelefone() + ' / ' + cliente.getContato().getCelular()}" /></td>
+                                        <th><c:out value="${cliente.getCpf()}" /></th>
+                                        <td><c:out value="${cliente.getNome()}" /></td>
+                                        <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
                                         <td><c:out value="${cliente.getContato().getEmail()}" /></td>
                                     </tr>
                                 </c:forEach>
@@ -87,9 +87,6 @@
                 return cpf;
             }
             
-            $("#click").on('click', function(this){
-                $(this).
-            });
             
         </script>
     </body>
