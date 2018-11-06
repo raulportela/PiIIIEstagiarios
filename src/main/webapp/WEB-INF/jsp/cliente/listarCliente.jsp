@@ -54,7 +54,7 @@
 
                                 <c:forEach items="${clientes}" var="cliente"> 
                                     <tr data-toggle="modal" data-target="#modelClient">
-                                        <th><c:out value="${cliente.getCpf()}" /></th>
+                                        <th><c:out value="${cliente.getCpf()}" id="click" /></th>
                                         <td><c:out value="${cliente.getNome() + ' ' + cliente.getSobrenome()}" /></td>
                                         <td><c:out value="${cliente.getContato().getTelefone() + ' / ' + cliente.getContato().getCelular()}" /></td>
                                         <td><c:out value="${cliente.getContato().getEmail()}" /></td>
@@ -67,7 +67,7 @@
 
                     <div class="modal-footer">
                         <a href="${pageContext.request.contextPath}/cliente/alterarExcluirCliente?cpf=selecionarColuna()">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Alterar</button>
+                            <button type="button" class="btn btn-primary" value="<" data-dismiss="modal">Alterar</button>
                         </a>
                         <a href="${pageContext.request.contextPath}/opcao1?opcao=2">
                             <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selecionarColuna()">Excluir</button>
@@ -82,10 +82,15 @@
                             
         <script>
             function selecionarColuna() {
-                var x = document.getElementsByTagName("LI");
+                var x = document.getElementsById("LI");
                 var cpf = innerHTML = x[0].innerHTML;
                 return cpf;
             }
+            
+            $("#click").on('click', function(this){
+                $(this).
+            });
+            
         </script>
     </body>
 </html>
