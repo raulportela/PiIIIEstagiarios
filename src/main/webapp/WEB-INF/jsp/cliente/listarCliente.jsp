@@ -67,7 +67,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/listar?opcao=2&cpf=${cliente.getCpf()}">
+                                            <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=2&cpf=${cliente.getCpf()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${cliente.getNome()}">Excluir</button>
                                             </a>
                                         </td>

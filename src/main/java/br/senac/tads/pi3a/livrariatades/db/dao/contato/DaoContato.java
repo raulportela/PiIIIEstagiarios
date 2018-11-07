@@ -45,11 +45,12 @@ public class DaoContato {
         }
     }
 
-    public static void atualizar(Contato contato, int idPessoa)
+    public static void atualizar(Contato contato, String cpf)
             throws SQLException, Exception {
 
-        String sql = "UPDATE Cliente SET email=?, telefone=?,celular=? "
-                + "WHERE (idPessoa=?)";
+        String sql = "UPDATE CONTATO SET email=?, telefone=?, celular=?\n"
+                + "WHERE id = (SELECT ID FROM PESSOA\n"
+                + "						WHERE cpf=?);";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -61,7 +62,7 @@ public class DaoContato {
             preparedStatement.setString(1, contato.getEmail());
             preparedStatement.setLong(2, contato.getTelefone());
             preparedStatement.setLong(3, contato.getCelular());
-            preparedStatement.setLong(4, idPessoa);
+            preparedStatement.setString(4, cpf);
 
             preparedStatement.execute();
         } finally {
@@ -75,7 +76,7 @@ public class DaoContato {
         }
     }
 
-     public static Contato procurar(int idPessoa)
+    public static Contato procurar(int idPessoa)
             throws SQLException, Exception {
         String sql = "SELECT * FROM Contato"
                 + "WHERE idPessoa=?";

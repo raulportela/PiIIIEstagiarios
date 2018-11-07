@@ -47,11 +47,12 @@ public class DaoEndereco {
         }
     }
 
-    public static void atualizar(Endereco endereco, int idPessoa)
+    public static void atualizar(Endereco endereco, String cpf)
             throws SQLException, Exception {
 
-        String sql = "UPDATE Endereco SET rua=?, numero=?, bairro=?, cep=?, complemento=? "
-                + "WHERE (idPessoa=?)";
+        String sql = "UPDATE ENDERECO SET rua=?, numero=?, bairro=?, cep=?, complemento=?\n"
+                + "WHERE id = (SELECT ID FROM PESSOA\n"
+                + "						WHERE cpf=?);";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -65,7 +66,7 @@ public class DaoEndereco {
             preparedStatement.setString(3, endereco.getBairro());
             preparedStatement.setInt(4, endereco.getCep());
             preparedStatement.setString(5, endereco.getComplemento());
-            preparedStatement.setInt(6, idPessoa);
+            preparedStatement.setString(6, cpf);
 
             preparedStatement.execute();
 
@@ -94,15 +95,15 @@ public class DaoEndereco {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idPessoa);
-            
+
             result = preparedStatement.executeQuery();
 
             if (result.next()) {
                 endereco.setRua(result.getString("rua"));
-                    endereco.setNumero(result.getInt("numero"));
-                    endereco.setBairro(result.getString("rua"));
-                    endereco.setCep(result.getInt("cep"));
-                    endereco.setComplemento(result.getString("complemento"));
+                endereco.setNumero(result.getInt("numero"));
+                endereco.setBairro(result.getString("rua"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setComplemento(result.getString("complemento"));
             }
         } finally {
             if (result != null && !result.isClosed()) {

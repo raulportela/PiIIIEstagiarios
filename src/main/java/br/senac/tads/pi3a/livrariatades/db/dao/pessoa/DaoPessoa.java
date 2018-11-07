@@ -85,14 +85,15 @@ public class DaoPessoa {
             throws SQLException, Exception {
         Pessoa pessoa = new Pessoa() {
         };
-        if (cliente != null && funcionario == null) {
+        if (cliente != null) {
             pessoa = cliente;
-        } else if (funcionario != null && cliente == null) {
+        }
+        if (funcionario != null) {
             pessoa = funcionario;
         }
 
-        String sql = "UPDATE cliente SET nome=?, sobrenome=?, cpf=?, dataNascimento=?"
-                + "WHERE (id=?)";
+        String sql = "UPDATE PESSOA SET nome=?, sobrenome=?, cpf=?, dataNascimento=?\n"
+                + "WHERE (cpf=?);";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -105,9 +106,15 @@ public class DaoPessoa {
             preparedStatement.setString(3, pessoa.getCpf());
             Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
-
+            preparedStatement.setString(5, pessoa.getCpf());
             preparedStatement.execute();
 
+            if (cliente != null) {
+                DaoCliente.atualizar(cliente, pessoa.getCpf());
+            }
+            if (funcionario != null) {
+                DaoFuncionario.atualizar(funcionario);
+            }
         } finally {
 
             if (preparedStatement != null && !preparedStatement.isClosed()) {
@@ -127,7 +134,8 @@ public class DaoPessoa {
                 + "JOIN CONTATO CT\n"
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
-                + "ON P.ID = E.IDPESSOA";
+                + "ON P.ID = E.IDPESSOA\n"
+                + "WHERE (C.DISPONIVEL=?)";
 
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
@@ -138,7 +146,7 @@ public class DaoPessoa {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setBoolean(1, true);
-            
+
             result = preparedStatement.executeQuery();
 
             while (result.next()) {

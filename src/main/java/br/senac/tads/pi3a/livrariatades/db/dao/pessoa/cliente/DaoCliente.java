@@ -48,11 +48,13 @@ public class DaoCliente {
         }
     }
 
-    public static void atualizar(Cliente cliente)
+    public static void atualizar(Cliente cliente, String cpf)
             throws SQLException, Exception {
 
-        String sql = "UPDATE Cliente SET disponivel=?, totalCompras=? "
-                + "WHERE (idPessoa=?)";
+        String sql = "UPDATE CLIENTE SET codCliente=?"
+                + ", disponivel=?, totalCompras=?\n"
+                + "WHERE id = (SELECT ID FROM PESSOA\n"
+                + "						WHERE cpf=?);";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -60,12 +62,13 @@ public class DaoCliente {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setBoolean(1, cliente.isDisponivel());
-            preparedStatement.setInt(2, cliente.getTotalCompras());
-            preparedStatement.setInt(3, cliente.getIdPessoa());
+            preparedStatement.setInt(1, cliente.getCodCliente());
+            preparedStatement.setBoolean(2, cliente.isDisponivel());
+            preparedStatement.setInt(3, cliente.getTotalCompras());
+            preparedStatement.setString(4, cpf);
 
-            DaoContato.atualizar(cliente.getContato(), cliente.getIdPessoa());
-            DaoEndereco.atualizar(cliente.getEndereco(), cliente.getIdPessoa());
+            DaoContato.atualizar(cliente.getContato(), cpf);
+            DaoEndereco.atualizar(cliente.getEndereco(), cpf);
             preparedStatement.execute();
 
         } finally {
@@ -79,11 +82,13 @@ public class DaoCliente {
         }
     }
 
-    public static void excluir(Integer id)
+    public static void excluir(String cpf)
             throws SQLException, Exception {
 
-        String sql = "UPDATE Cliente SET dispinivel=? "
-                + "WHERE (idPessoa=?)";
+        String sql = "UPDATE CLIENTE C\n"
+                + "SET C.DISPONIVEL = 0\n"
+                + "WHERE C.IDPESSOA = (SELECT ID FROM PESSOA p\n"
+                + "							WHERE P.CPF=?);";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -91,8 +96,7 @@ public class DaoCliente {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setString(1, cpf);
 
             preparedStatement.execute();
         } finally {
@@ -122,10 +126,10 @@ public class DaoCliente {
                 cliente.setCodCliente(result.getInt("codCliente"));
                 cliente.setDisponivel(result.getBoolean("disponivel"));
                 cliente.setTotalCompras(result.getInt("totalCompras"));
-                
-               cliente.setContato(DaoContato.procurar(cliente.getIdPessoa()));
-               cliente.setEndereco(DaoEndereco.procurar(cliente.getIdPessoa()));
-                
+
+                cliente.setContato(DaoContato.procurar(cliente.getIdPessoa()));
+                cliente.setEndereco(DaoEndereco.procurar(cliente.getIdPessoa()));
+
                 return cliente;
             }
         } finally {

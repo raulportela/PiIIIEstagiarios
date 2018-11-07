@@ -71,8 +71,8 @@ public class DaoFuncionario {
             preparedStatement.setInt(3, funcionario.getNivelFuncao());
             preparedStatement.setString(3, funcionario.getRg());
 
-            DaoContato.atualizar(funcionario.getContato(), funcionario.getIdPessoa());
-            DaoEndereco.atualizar(funcionario.getEndereco(), funcionario.getIdPessoa());
+//            DaoContato.atualizar(funcionario.getContato(), funcionario.getIdPessoa());
+//            DaoEndereco.atualizar(funcionario.getEndereco(), funcionario.getIdPessoa());
             preparedStatement.execute();
 
         } finally {

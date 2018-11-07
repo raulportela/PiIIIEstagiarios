@@ -39,7 +39,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-group" items="${cliente}" var="cliente">
+                        <form class="form-group" items="${cliente}" var="cliente" action="${pageContext.request.contextPath}/cliente/alterar" method="post">
 
                             <label>Nome:</label><input value="${cliente.getNome()}" type="text" class="form-control" id="nome" name="nome">
 
@@ -47,7 +47,7 @@
 
                             <label>CPF:</label><input value="${cliente.getCpf()}" type="text" pattern="[0-9]+$"  class="form-control" id="cpf"  placeholder="000.000.000-00" name="cpf">
 
-                            <label>Nasc:</label><input value="${cliente.getDataNascimento()}" type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
+                            <label>Nasc:</label><input value="${cliente.getDataNascimento()}" type="text"  class="form-control" id="nasc" name="nasc">
 
                             <label>E-mail:</label><input value="${cliente.getContato().getEmail()}" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com" name="email">
 
@@ -65,12 +65,14 @@
 
                             <label>Complemento:</label><input value="${cliente.getEndereco().getComplemento()}" type="text" class="form-control"  id="complemento" name="complemento">
 
-
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" onclick="">Alterar</button>
+                                <a href="${pageContext.request.contextPath}/home">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                                </a>
+                            </div>
                         </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="">Alterar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                        </div>
+
 
                     </div>
 
