@@ -6,6 +6,7 @@
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
@@ -19,13 +20,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "AlterarExcluirCliente", urlPatterns = {"/cliente/alterarExcluirCliente"
-        + ""})
+@WebServlet(name = "AlterarCliente", urlPatterns = {"/cliente/alterar"
+    + ""})
 public class AlterarExcluirCliente extends HttpServlet {
 
     private boolean modoEdicao;
@@ -33,22 +35,38 @@ public class AlterarExcluirCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String cpf = request.getParameter("cpf");
-        
-        
         Cliente cliente = null;
-        try {
-            cliente = DaoPessoa.procurarCliente(Integer.parseInt(cpf));
-        } catch (Exception ex) {
-            Logger.getLogger(AlterarExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {
+
+            String opcao = request.getParameter("opcao");
+            String cpf = request.getParameter("cpf");
+            
+            if (opcao.equals("1")) {
+                try {
+                    cliente = DaoPessoa.procurarCliente(Integer.parseInt(cpf));
+                    DaoCliente.excluir(cliente.getIdPessoa());
+                    response.sendRedirect(request.getContextPath() + "cliente/listar");
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+//          tem que ta vendo esse negocio aqui
+//        if (opcao != null) {
+//            HttpSession sessao = request.getSession();
+//            sessao.setAttribute("opcaoSelecionada", opcao);
+//        }
         }
-        request.setAttribute("clientes", cliente);
+
         
+        request.setAttribute("clientes", cliente);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/alterarExcluirCliente.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
     @Override
@@ -63,10 +81,8 @@ public class AlterarExcluirCliente extends HttpServlet {
         cliente.setSobrenome(request.getParameter("sobrenome"));
         cliente.setCpf(Long.parseLong(request.getParameter("cpf")));
         String datajsp = request.getParameter("nasc");
-        
-        
-            //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS
-            
+
+        //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS
 //        SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
 //        Date data = null;
 //        try {
@@ -74,7 +90,6 @@ public class AlterarExcluirCliente extends HttpServlet {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
         Date dateTeste = new Date();
 
         cliente.setDataNascimento(dateTeste);

@@ -26,7 +26,7 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLabel">Lista</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
+                        <h5 class="modal-title" id="exampleModalLabel">Lista de Clientes</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
 
                         <center><h6><a href="${pageContext.request.contextPath}/cliente/cadastrar">+</a></h6></center>
                         <a href="${pageContext.request.contextPath}/home">
@@ -47,6 +47,9 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">Tel</th>
                                     <th scope="col">E-mail</th>
+                                    <th scope="col">Detalhes</th>
+                                    <th scope="col">Excluir</th>
+                                    
                                 </tr>
 
                             </thead>
@@ -58,6 +61,16 @@
                                         <td><c:out value="${cliente.getNome()}" /></td>
                                         <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
                                         <td><c:out value="${cliente.getContato().getEmail()}" /></td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=1&cpf=${cliente.getCpf()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/cliente/listar?opcao=2&cpf=${cliente.getCpf()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${cliente.getNome()}">Excluir</button>
+                                            </a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
 
@@ -66,12 +79,6 @@
                     </div>
 
                     <div class="modal-footer">
-                        <a href="${pageContext.request.contextPath}/cliente/alterarExcluirCliente?cpf=selecionarColuna()">
-                            <button type="button" class="btn btn-primary" value="<" data-dismiss="modal">Alterar</button>
-                        </a>
-                        <a href="${pageContext.request.contextPath}/opcao1?opcao=2">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="selecionarColuna()">Excluir</button>
-                        </a>
                         <a href="${pageContext.request.contextPath}/home">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                         </a>
@@ -79,16 +86,7 @@
                 </div>
             </div>
         </div>
-                            
-        <script>
-            function selecionarColuna() {
-                var x = document.getElementsById("LI");
-                var cpf = innerHTML = x[0].innerHTML;
-                return cpf;
-            }
-            
-            
-        </script>
+
     </body>
 </html>
 

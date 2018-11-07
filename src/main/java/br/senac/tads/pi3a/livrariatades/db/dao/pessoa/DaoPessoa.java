@@ -38,7 +38,8 @@ public class DaoPessoa {
         if (cliente != null) {
             pessoa = cliente;
             isClient = true;
-        } else {
+        }
+        if (funcionario != null) {
             pessoa = funcionario;
             isClient = false;
         }
@@ -117,36 +118,6 @@ public class DaoPessoa {
             }
         }
     }
-//ACHO QUE NAO PRECISA DESSE TRECHO, PRECISO DEFINIR COM O GRUPO DEPOIS
-//    public static void excluir(int id)
-//            throws SQLException, Exception {
-//
-//        String sql = "UPDATE funcionarioLista SET disponivel=? "
-//                + "WHERE (idPessoa=?)";
-//
-//        Connection connection = null;
-//        PreparedStatement preparedStatement = null;
-//
-//        try {
-//
-//            connection = ConnectionUtils.getConnection();
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setBoolean(1, false);
-//            preparedStatement.setInt(2, id);
-//
-//            DaoCliente.excluir(id);
-//            preparedStatement.execute();
-//
-//        } finally {
-//
-//            if (preparedStatement != null && !preparedStatement.isClosed()) {
-//                preparedStatement.close();
-//            }
-//            if (connection != null && !connection.isClosed()) {
-//                connection.close();
-//            }
-//        }
-//    }
 
     public static List<Cliente> listarCliente()
             throws SQLException, Exception {
@@ -219,11 +190,19 @@ public class DaoPessoa {
 
     public static List<Funcionario> listarFuncionario()
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Pessoa";
-        List<Funcionario> listaFuncionarios = null;
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN FUNCIONARIO C\n"
+                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN CONTATO CT\n"
+                + "ON P.ID = CT.IDPESSOA\n"
+                + "JOIN ENDERECO E\n"
+                + "ON P.ID = E.IDPESSOA;";
+
+        ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
+        Funcionario funcionario;
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -231,22 +210,43 @@ public class DaoPessoa {
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
-                if (listaFuncionarios == null) {
-                    listaFuncionarios = new ArrayList<Funcionario>();
-                }
 
-                Funcionario funcionarioLista = new Funcionario();
+                funcionario = new Funcionario();
 
-                funcionarioLista.setIdPessoa(result.getInt("id"));
-                funcionarioLista.setNome(result.getString("nome"));
-                funcionarioLista.setSobrenome(result.getString("sobrenome"));
-                funcionarioLista.setCpf(result.getLong("cpf"));
-                Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
-                funcionarioLista.setDataNascimento(datanasc);
+                funcionario.setIdPessoa(result.getInt("id"));
+                funcionario.setNome(result.getString("nome"));
+                funcionario.setSobrenome(result.getString("sobrenome"));
+                funcionario.setCpf(result.getLong("cpf"));
+                Timestamp t = result.getTimestamp("dataNascimento");
+                Date datanasc = t;
+                funcionario.setDataNascimento(datanasc);
 
-                listaFuncionarios.add(funcionarioLista);
+                funcionario.setCodFuncionario(result.getInt("codFuncionario"));
+                funcionario.setDisponivel(result.getBoolean("disponivel"));
+                funcionario.setNomeUsuario(result.getString("nomeUsuario"));
+                int senha = result.getInt("senha");
+                funcionario.setSenha("" + senha);
+                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setRg(result.getString("rg"));
+
+                Contato contato = new Contato();
+                contato.setEmail(result.getString("email"));
+                contato.setTelefone(result.getLong("telefone"));
+                contato.setCelular(result.getLong("celular"));
+                funcionario.setContato(contato);
+
+                Endereco endereco = new Endereco();
+                endereco.setRua(result.getString("rua"));
+                endereco.setNumero(result.getInt("numero"));
+                endereco.setBairro(result.getString("bairro"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setComplemento(result.getString("complemento"));
+
+                funcionario.setEndereco(endereco);
+
+                listaFuncionarios.add(funcionario);
             }
-            DaoFuncionario.listar(listaFuncionarios);
+            return listaFuncionarios;
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();
@@ -258,7 +258,6 @@ public class DaoPessoa {
                 connection.close();
             }
         }
-        return listaFuncionarios;
     }
 
     public boolean isIsClient() {
@@ -271,8 +270,14 @@ public class DaoPessoa {
 
     public static Cliente procurarCliente(int cpf)
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Pessoa"
-                + "WHERE cpf=?";
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN CLIENTE C\n"
+                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN CONTATO CT\n"
+                + "ON P.ID = CT.IDPESSOA\n"
+                + "JOIN ENDERECO E\n"
+                + "ON P.ID = E.IDPESSOA\n"
+                + "where P.ID = 1;";
 
         Cliente cliente = new Cliente();
 
