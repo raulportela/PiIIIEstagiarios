@@ -46,7 +46,7 @@ public class IncluirFuncionario extends HttpServlet {
         funcionario.setDisponivel(true);
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setSobrenome(request.getParameter("sobrenome"));
-        funcionario.setCpf(Long.parseLong(request.getParameter("cpf")));
+        funcionario.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
             //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS
 //        SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");

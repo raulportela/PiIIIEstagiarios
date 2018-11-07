@@ -17,7 +17,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
-        <c:import url="cabecalho.jsp" />
+        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
 
 
         <div class="" id="modelClient" tabindex="-2" role="dialog" aria-hidden="true"> 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-group">
+                        <form class="form-group" items="${cliente}" var="cliente">
 
                             <label>Nome:</label><input value="${cliente.getNome()}" type="text" class="form-control" id="nome" name="nome">
 
@@ -47,7 +47,7 @@
 
                             <label>CPF:</label><input value="${cliente.getCpf()}" type="text" pattern="[0-9]+$"  class="form-control" id="cpf"  placeholder="000.000.000-00" name="cpf">
 
-                            <label>Nasc:</label><input value="${cliente.getDataNascimento}" type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
+                            <label>Nasc:</label><input value="${cliente.getDataNascimento()}" type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
 
                             <label>E-mail:</label><input value="${cliente.getContato().getEmail()}" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com" name="email">
 

@@ -118,11 +118,11 @@ public class Funcionario extends Pessoa {
     }
 
     @Override
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

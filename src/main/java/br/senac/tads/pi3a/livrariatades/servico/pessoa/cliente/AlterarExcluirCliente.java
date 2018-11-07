@@ -6,7 +6,6 @@
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
@@ -26,11 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "AlterarCliente", urlPatterns = {"/cliente/alterar"
-    + ""})
+@WebServlet(name = "AlterarCliente", urlPatterns = {"/cliente/alterar"})
 public class AlterarExcluirCliente extends HttpServlet {
-
-    private boolean modoEdicao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,9 +40,7 @@ public class AlterarExcluirCliente extends HttpServlet {
             
             if (opcao.equals("1")) {
                 try {
-                    cliente = DaoPessoa.procurarCliente(Integer.parseInt(cpf));
-                    DaoCliente.excluir(cliente.getIdPessoa());
-                    response.sendRedirect(request.getContextPath() + "cliente/listar");
+                    cliente = DaoPessoa.procurarCliente(cpf);
                 } catch (Exception ex) {
                     Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -60,11 +54,10 @@ public class AlterarExcluirCliente extends HttpServlet {
 //        }
         }
 
-        
-        request.setAttribute("clientes", cliente);
+        request.setAttribute("cliente", cliente);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/cliente/alterarExcluirCliente.jsp");
+                "/WEB-INF/jsp/cliente/alterarCliente.jsp");
         dispatcher.forward(request, response);
 
     }
@@ -73,13 +66,12 @@ public class AlterarExcluirCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String comando = request.getParameter("comando");
         Cliente cliente = new Cliente();
 
         cliente.setDisponivel(true);
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
-        cliente.setCpf(Long.parseLong(request.getParameter("cpf")));
+        cliente.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
 
         //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS

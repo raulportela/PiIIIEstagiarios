@@ -54,7 +54,7 @@ public class DaoPessoa {
 
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
-            preparedStatement.setLong(3, pessoa.getCpf());
+            preparedStatement.setString(3, pessoa.getCpf());
             Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
 
@@ -102,7 +102,7 @@ public class DaoPessoa {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
-            preparedStatement.setLong(3, pessoa.getCpf());
+            preparedStatement.setString(3, pessoa.getCpf());
             Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
 
@@ -127,7 +127,7 @@ public class DaoPessoa {
                 + "JOIN CONTATO CT\n"
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
-                + "ON P.ID = E.IDPESSOA;";
+                + "ON P.ID = E.IDPESSOA";
 
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
@@ -137,7 +137,8 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-
+            preparedStatement.setBoolean(1, true);
+            
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -147,7 +148,7 @@ public class DaoPessoa {
                 cliente.setIdPessoa(result.getInt("id"));
                 cliente.setNome(result.getString("nome"));
                 cliente.setSobrenome(result.getString("sobrenome"));
-                cliente.setCpf(result.getLong("cpf"));
+                cliente.setCpf(result.getString("cpf"));
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 cliente.setDataNascimento(datanasc);
@@ -216,7 +217,7 @@ public class DaoPessoa {
                 funcionario.setIdPessoa(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
-                funcionario.setCpf(result.getLong("cpf"));
+                funcionario.setCpf(result.getString("cpf"));
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 funcionario.setDataNascimento(datanasc);
@@ -260,15 +261,7 @@ public class DaoPessoa {
         }
     }
 
-    public boolean isIsClient() {
-        return isClient;
-    }
-
-    public void setIsClient(boolean isClient) {
-        this.isClient = isClient;
-    }
-
-    public static Cliente procurarCliente(int cpf)
+    public static Cliente procurarCliente(String cpf)
             throws SQLException, Exception {
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
@@ -277,7 +270,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "where P.ID = 1;";
+                + "WHERE P.CPF = ?";
 
         Cliente cliente = new Cliente();
 
@@ -287,19 +280,41 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, cpf);
+            preparedStatement.setString(1, cpf);
 
             result = preparedStatement.executeQuery();
 
             if (result.next()) {
+
+                cliente = new Cliente();
+
                 cliente.setIdPessoa(result.getInt("id"));
                 cliente.setNome(result.getString("nome"));
                 cliente.setSobrenome(result.getString("sobrenome"));
-                cliente.setCpf(result.getLong("cpf"));
-                Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
+                cliente.setCpf(result.getString("cpf"));
+                Timestamp t = result.getTimestamp("dataNascimento");
+                Date datanasc = t;
                 cliente.setDataNascimento(datanasc);
 
-                cliente = DaoCliente.procurar(cliente);
+                cliente.setCodCliente(result.getInt("codCliente"));
+                cliente.setDisponivel(result.getBoolean("disponivel"));
+                cliente.setTotalCompras(result.getInt("totalCompras"));
+
+                Contato contato = new Contato();
+                contato.setEmail(result.getString("email"));
+                contato.setTelefone(result.getLong("telefone"));
+                contato.setCelular(result.getLong("celular"));
+                cliente.setContato(contato);
+
+                Endereco endereco = new Endereco();
+                endereco.setRua(result.getString("rua"));
+                endereco.setNumero(result.getInt("numero"));
+                endereco.setBairro(result.getString("bairro"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setComplemento(result.getString("complemento"));
+
+                cliente.setEndereco(endereco);
+
             }
         } finally {
             if (result != null && !result.isClosed()) {
@@ -317,8 +332,14 @@ public class DaoPessoa {
 
     public static Funcionario procurarFuncionario(int cpf)
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Pessoa"
-                + "WHERE cpf=?";
+        String sql = "SELECT * FROM PESSOA P\n"
+                + "JOIN FUNCIONARIO C\n"
+                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN CONTATO CT\n"
+                + "ON P.ID = CT.IDPESSOA\n"
+                + "JOIN ENDERECO E\n"
+                + "ON P.ID = E.IDPESSOA\n"
+                + "where P.CPF = ?";
 
         Funcionario funcionario = new Funcionario();
 
@@ -333,14 +354,40 @@ public class DaoPessoa {
             result = preparedStatement.executeQuery();
 
             if (result.next()) {
+                funcionario = new Funcionario();
+
                 funcionario.setIdPessoa(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
-                funcionario.setCpf(result.getLong("cpf"));
-                Date datanasc = new Date(result.getTimestamp("dataNascimento").getTime());
+                funcionario.setCpf(result.getString("cpf"));
+                Timestamp t = result.getTimestamp("dataNascimento");
+                Date datanasc = t;
                 funcionario.setDataNascimento(datanasc);
 
-                funcionario = DaoFuncionario.procurar(funcionario);
+                funcionario.setCodFuncionario(result.getInt("codFuncionario"));
+                funcionario.setDisponivel(result.getBoolean("disponivel"));
+                funcionario.setNomeUsuario(result.getString("nomeUsuario"));
+                int senha = result.getInt("senha");
+                funcionario.setSenha("" + senha);
+                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setRg(result.getString("rg"));
+
+                Contato contato = new Contato();
+                contato.setEmail(result.getString("email"));
+                contato.setTelefone(result.getLong("telefone"));
+                contato.setCelular(result.getLong("celular"));
+                funcionario.setContato(contato);
+
+                Endereco endereco = new Endereco();
+                endereco.setRua(result.getString("rua"));
+                endereco.setNumero(result.getInt("numero"));
+                endereco.setBairro(result.getString("bairro"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setComplemento(result.getString("complemento"));
+
+                funcionario.setEndereco(endereco);
+
+                return funcionario;
             }
         } finally {
             if (result != null && !result.isClosed()) {
@@ -353,7 +400,7 @@ public class DaoPessoa {
                 connection.close();
             }
         }
-        return funcionario;
+        return null;
     }
 
 }

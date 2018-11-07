@@ -45,7 +45,7 @@ public class CadastroCliente extends HttpServlet {
         cliente.setDisponivel(true);
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
-        cliente.setCpf(Long.parseLong(request.getParameter("cpf")));
+        cliente.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
         
         

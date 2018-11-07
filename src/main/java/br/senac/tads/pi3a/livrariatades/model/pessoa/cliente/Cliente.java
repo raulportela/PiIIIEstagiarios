@@ -15,11 +15,13 @@ import java.util.Date;
  * @author Jeferson Nolasco
  */
 public class Cliente extends Pessoa {
-    
+
     private int idPessoa;
     private int codCliente;
     private boolean disponivel;
-    
+    Contato contato;
+    Endereco endereco;
+
     public int getIdPessoa() {
         return idPessoa;
     }
@@ -27,7 +29,7 @@ public class Cliente extends Pessoa {
     public void setIdPessoa(int idPessoa) {
         this.idPessoa = idPessoa;
     }
-    
+
     public boolean isDisponivel() {
         return disponivel;
     }
@@ -68,8 +70,6 @@ public class Cliente extends Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    Contato contato;
-    Endereco endereco;
 
     @Override
     public String getNome() {
@@ -90,11 +90,11 @@ public class Cliente extends Pessoa {
     }
 
     @Override
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -107,11 +107,10 @@ public class Cliente extends Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", getNome(), getSobrenome(),
-                getCpf(), getDataNascimento(), contato.getEmail(), contato.getTelefone(), contato.getCelular());
-
-    }
-
+//    @Override
+//    public String toString() {
+//        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", getNome(), getSobrenome(),
+//                getCpf(), getDataNascimento(), contato.getEmail(), contato.getTelefone(), contato.getCelular());
+//
+//    }
 }

@@ -15,7 +15,7 @@ public abstract class Pessoa {
 
     protected String nome;
     protected String sobrenome;
-    protected long cpf;
+    protected String cpf;
     protected Date dataNascimento;
 
     public String getNome() {
@@ -26,7 +26,7 @@ public abstract class Pessoa {
         return sobrenome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 

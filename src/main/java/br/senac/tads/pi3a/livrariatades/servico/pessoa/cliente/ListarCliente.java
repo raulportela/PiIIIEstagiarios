@@ -6,7 +6,6 @@
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *

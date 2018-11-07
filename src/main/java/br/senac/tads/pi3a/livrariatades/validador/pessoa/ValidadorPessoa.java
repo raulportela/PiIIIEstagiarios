@@ -5,8 +5,6 @@
  */
 package br.senac.tads.pi3a.livrariatades.validador.pessoa;
 
-import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
-import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
@@ -52,12 +50,12 @@ public class ValidadorPessoa {
             valido = false;
         }
         
-        validoCPF = ValidadorCPF.validadar(Long.toString(pessoa.getCpf()));
+        validoCPF = ValidadorCPF.validadar(pessoa.getCpf());
         
-        if (Long.toString(pessoa.getCpf()).equals("") || Long.toString(pessoa.getCpf()) == null) {
+        if (pessoa.getCpf().equals("") || pessoa.getCpf() == null) {
             mensagemErro += "\nCPF.";
             valido = false;
-        } else if (Long.toString(pessoa.getCpf()).length() > 11) {
+        } else if (pessoa.getCpf().length() > 11) {
             mensagemErro += "\nCPF excede limite máximo. 11 caracteres.";
             valido = false;
         } else if (validoCPF == false) {
