@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3a.livrariatades.servico.home;
+package br.senac.tads.pi3a.livrariatades.servico.produto;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,18 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
- * @author Raul de Paula
+ * @author merlucci
  */
-@WebServlet(name = "Home", urlPatterns = {"/home"})
-public class Home extends HttpServlet {
+@WebServlet(name = "ProdutosDash", urlPatterns = {"/produto"})
+public class ProdutosDash extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/home2.jsp");
+                "/WEB-INF/jsp/produto/produtoDash.jsp");
         dispatcher.forward(request, response);
     }
 
