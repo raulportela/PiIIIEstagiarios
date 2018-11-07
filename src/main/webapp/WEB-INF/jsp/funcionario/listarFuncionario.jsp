@@ -61,12 +61,12 @@
                                         <td><c:out value="${funcionario.getContato().getTelefone()}" /></td>
                                         <td><c:out value="${funcionario.getContato().getEmail()}" /></td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/listar?opcao=1&cpf=${funcionario.getCpf()}">
+                                            <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=1&cpf=${funcionario.getCpf()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" >Visualizar</button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/listar?opcao=2&cpf=${funcionario.getCpf()}">
+                                            <a href="${pageContext.request.contextPath}/funcionario/listar?opcao=2&cpf=${funcionario.getCpf()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${funcionario.getNome()}">Excluir</button>
                                             </a>
                                         </td>

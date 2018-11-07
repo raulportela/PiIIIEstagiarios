@@ -55,6 +55,7 @@ public class DaoCliente {
                 + ", disponivel=?, totalCompras=?\n"
                 + "WHERE id = (SELECT ID FROM PESSOA\n"
                 + "						WHERE cpf=?);";
+        
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 

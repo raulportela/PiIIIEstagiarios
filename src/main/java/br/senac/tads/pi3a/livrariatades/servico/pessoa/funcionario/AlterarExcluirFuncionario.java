@@ -1,16 +1,17 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.funcionario;
 
+import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.*;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
-import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.CadastroCliente;
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
@@ -24,38 +25,58 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Raul de Paula
+ * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoAlterarFuncionario", urlPatterns = {"/funcionario/cadastrar"})
-public class IncluirFuncionario extends HttpServlet {
+@WebServlet(name = "AlterarCliente", urlPatterns = {"/funcionario/alterar"})
+public class AlterarExcluirFuncionario extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/funcionario/cadastrarFuncionario.jsp");
-        dispatcher.forward(request, response);
+        Cliente cliente = null;
+
+        if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {
+
+            String opcao = request.getParameter("opcao");
+            String cpf = request.getParameter("cpf");
+
+            if (opcao.equals("1")) {
+                try {
+                    cliente = DaoPessoa.procurarCliente(cpf);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                request.setAttribute("cliente", cliente);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher(
+                        "/WEB-INF/jsp/cliente/alterarFruncionario.jsp");
+                dispatcher.forward(request, response);
+            } else if (opcao.equals("2")) {
+                try {
+                    DaoCliente.excluir(cpf);
+                    response.sendRedirect(request.getContextPath() + "/cliente/listar");
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Funcionario funcionario = new Funcionario();
+                Funcionario funcionario = new Funcionario();
 
         funcionario.setDisponivel(true);
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setSobrenome(request.getParameter("sobrenome"));
         funcionario.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
-            //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS
-//        SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
-//        Date data = null;
-//        try {
-//            data = formato.parse(datajsp);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+       
         Date dateTeste = new Date();
         funcionario.setDataNascimento(dateTeste);
         funcionario.setRg(request.getParameter("rg"));
@@ -77,15 +98,15 @@ public class IncluirFuncionario extends HttpServlet {
 
         funcionario.setContato(contato);
         funcionario.setEndereco(endereco);
-
+ 
         try {
-            DaoPessoa.inserirPessoa(null, funcionario);
+            DaoPessoa.atualizar(null, funcionario);
         } catch (Exception ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-     
+
         response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+
     }
 
 }

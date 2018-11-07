@@ -113,7 +113,7 @@ public class DaoPessoa {
                 DaoCliente.atualizar(cliente, pessoa.getCpf());
             }
             if (funcionario != null) {
-                DaoFuncionario.atualizar(funcionario);
+                DaoFuncionario.atualizar(funcionario, pessoa.getCpf());
             }
         } finally {
 
@@ -200,12 +200,14 @@ public class DaoPessoa {
     public static List<Funcionario> listarFuncionario()
             throws SQLException, Exception {
         String sql = "SELECT * FROM PESSOA P\n"
-                + "JOIN FUNCIONARIO C\n"
-                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN FUNCIONARIO F\n"
+                + "ON P.ID = F.IDPESSOA\n"
                 + "JOIN CONTATO CT\n"
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
-                + "ON P.ID = E.IDPESSOA;";
+                + "ON P.ID = E.IDPESSOA\n"
+                + "WHERE (F.DISPONIVEL=?)";
+        
 
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
         Connection connection = null;
@@ -341,13 +343,13 @@ public class DaoPessoa {
     public static Funcionario procurarFuncionario(int cpf)
             throws SQLException, Exception {
         String sql = "SELECT * FROM PESSOA P\n"
-                + "JOIN FUNCIONARIO C\n"
-                + "ON P.ID = C.IDPESSOA\n"
+                + "JOIN FUNCIONARIO F\n"
+                + "ON P.ID = F.IDPESSOA\n"
                 + "JOIN CONTATO CT\n"
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "where P.CPF = ?";
+                + "WHERE P.CPF = ?";
 
         Funcionario funcionario = new Funcionario();
 

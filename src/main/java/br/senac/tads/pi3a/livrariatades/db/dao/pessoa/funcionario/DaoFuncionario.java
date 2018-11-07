@@ -13,8 +13,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -53,11 +51,14 @@ public class DaoFuncionario {
         }
     }
 
-    public static void atualizar(Funcionario funcionario)
+    public static void atualizar(Funcionario funcionario, String cpf)
             throws SQLException, Exception {
 
-        String sql = "UPDATE Funcionario SET disponivel=?, nomeUsuario=?, senha=?, nivelFuncao=?,rg=? "
-                + "WHERE (idPessoa=?)";
+        String sql = "UPDATE FUNCIONARIO SET codFuncionario=?"
+                + ", disponivel=?, nomeUsuario=?, senha=?, nivelFuncao=?, rg=?\n"
+                + "WHERE id = (SELECT ID FROM PESSOA\n"
+                + "						WHERE cpf=?);";
+        
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -65,14 +66,17 @@ public class DaoFuncionario {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setBoolean(1, funcionario.isDisponivel());
-            preparedStatement.setString(2, funcionario.getNomeUsuario());
-            preparedStatement.setString(3, funcionario.getSenha());
-            preparedStatement.setInt(3, funcionario.getNivelFuncao());
-            preparedStatement.setString(3, funcionario.getRg());
+            preparedStatement.setInt(1, funcionario.getCodFuncionario());
+            preparedStatement.setBoolean(2, funcionario.isDisponivel());
+            preparedStatement.setString(3, funcionario.getNomeUsuario());
+            preparedStatement.setString(4, funcionario.getSenha());
+            preparedStatement.setInt(5, funcionario.getNivelFuncao());
+            preparedStatement.setString(6, funcionario.getRg());
+            preparedStatement.setString(7, cpf);
 
-//            DaoContato.atualizar(funcionario.getContato(), funcionario.getIdPessoa());
-//            DaoEndereco.atualizar(funcionario.getEndereco(), funcionario.getIdPessoa());
+            DaoContato.atualizar(funcionario.getContato(), cpf);
+            DaoEndereco.atualizar(funcionario.getEndereco(), cpf);
+            
             preparedStatement.execute();
 
         } finally {
@@ -89,8 +93,10 @@ public class DaoFuncionario {
     public static void excluir(Integer id)
             throws SQLException, Exception {
 
-        String sql = "UPDATE Funcionario SET dispinivel=? "
-                + "WHERE (idPessoa=?)";
+        String sql = "UPDATE FUNCIONARIO F\n"
+                + "SET F.DISPONIVEL = 0\n"
+                + "WHERE F.IDPESSOA = (SELECT ID FROM PESSOA p\n"
+                + "							WHERE P.CPF=?);";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -110,60 +116,6 @@ public class DaoFuncionario {
                 connection.close();
             }
         }
-    }
-
-    public static List<Funcionario> listar(List<Funcionario> listaPessoa)
-            throws SQLException, Exception {
-        String sql = "SELECT * FROM Funcionario";
-
-        int contador = 0;
-        Funcionario funcionario;
-        List<Funcionario> listaFuncionario = null;
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet result = null;
-
-        try {
-            connection = ConnectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
-
-            result = preparedStatement.executeQuery();
-
-            while (result.next()) {
-                if (listaFuncionario == null) {
-                    listaFuncionario = new ArrayList<Funcionario>();
-                }
-                int idPessoa;
-                idPessoa = result.getInt("idPessoa");
-                funcionario = listaPessoa.get(contador);
-
-                if (idPessoa == funcionario.getIdPessoa()) {
-                    funcionario.setCodFuncionario(result.getInt("codFuncionario"));
-                    funcionario.setDisponivel(result.getBoolean("disponivel"));
-                    funcionario.setNomeUsuario(result.getString("nomeUsuario"));
-                    funcionario.setSenha(result.getString("senha"));
-                    funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
-                    funcionario.setRg(result.getString("rg"));
-                    funcionario.setContato(DaoContato.procurar(idPessoa));
-                    funcionario.setEndereco(DaoEndereco.procurar(idPessoa));
-
-                    listaFuncionario.add(funcionario);
-                }
-                contador++;
-            }
-        } finally {
-            if (result != null && !result.isClosed()) {
-                result.close();
-            }
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
-        }
-        return listaFuncionario;
     }
 
     public static Funcionario procurar(Funcionario funcionario)
