@@ -26,12 +26,13 @@ public class ValidadorCliente {
             mensagemErro += "Não foi informado um Cliente";
             return mensagemErro;
         }
+        
         Contato contato = new Contato();
         contato.setCelular(cliente.getContato().getCelular());
         contato.setEmail(cliente.getContato().getEmail());
         contato.setTelefone(cliente.getContato().getTelefone());
         validoContato = ValidadorContato.validar(contato);
-        
+
         Endereco endereco = new Endereco();
         endereco.setBairro(cliente.getEndereco().getBairro());
         endereco.setCep(cliente.getEndereco().getCep());
@@ -39,7 +40,7 @@ public class ValidadorCliente {
         endereco.setNumero(cliente.getEndereco().getNumero());
         endereco.setRua(cliente.getEndereco().getRua());
         validoEndereco = ValidadorEndereco.validar(endereco);
-        
+
         if (validoContato != null) {
             mensagemErro += validoContato;
             valido = false;

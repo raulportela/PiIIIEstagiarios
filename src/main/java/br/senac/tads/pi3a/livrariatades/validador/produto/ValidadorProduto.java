@@ -5,10 +5,13 @@
  */
 package br.senac.tads.pi3a.livrariatades.validador.produto;
 
+import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
+
 /**
  *
  * @author Raul de Paula
  */
 public class ValidadorProduto {
+    
     
 }
