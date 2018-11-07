@@ -73,6 +73,11 @@ public class CadastrarFuncionario extends HttpServlet {
         try {
             DaoPessoa.inserirPessoa(null, funcionario);
         } catch (Exception ex) {
+            Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            DaoPessoa.inserirPessoa(null, funcionario);
+        } catch (Exception ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         

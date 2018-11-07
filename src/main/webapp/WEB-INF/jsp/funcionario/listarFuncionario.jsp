@@ -1,7 +1,7 @@
 <%-- 
-    Document   : cadastrarCLiente
+    Document   : cadastrarFuncionario
     Created on : 17/10/2018, 22:57:40
-    Author     : Maia
+    Author     : dePaula
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,7 +47,7 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">Tel</th>
                                     <th scope="col">E-mail</th>
-                                    <th scope="col">Visualizar</th>
+                                    <th scope="col">Detalhes</th>
                                     <th scope="col">Excluir</th>
                                 </tr>
 
@@ -62,12 +62,12 @@
                                         <td><c:out value="${funcionario.getContato().getEmail()}" /></td>
                                         <td>
                                             <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=1&cpf=${funcionario.getCpf()}">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Visualizar</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Detalhes</button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/funcionario/listar?opcao=2&cpf=${funcionario.getCpf()}">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${funcionario.getNome()}">Excluir</button>
+                                            <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=2&cpf=${funcionario.getCpf()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Excluir</button>
                                             </a>
                                         </td>
                                     </tr>

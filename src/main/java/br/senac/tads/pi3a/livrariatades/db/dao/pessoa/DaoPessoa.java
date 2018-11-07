@@ -217,7 +217,7 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-
+            preparedStatement.setBoolean(1, true);
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -340,7 +340,7 @@ public class DaoPessoa {
         return cliente;
     }
 
-    public static Funcionario procurarFuncionario(int cpf)
+    public static Funcionario procurarFuncionario(String cpf)
             throws SQLException, Exception {
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
@@ -359,13 +359,11 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, cpf);
+            preparedStatement.setString(1, cpf);
 
             result = preparedStatement.executeQuery();
 
             if (result.next()) {
-                funcionario = new Funcionario();
-
                 funcionario.setIdPessoa(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));

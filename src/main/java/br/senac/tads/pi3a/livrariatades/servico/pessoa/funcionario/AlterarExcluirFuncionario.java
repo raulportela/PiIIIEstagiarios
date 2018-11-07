@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -7,10 +7,9 @@ package br.senac.tads.pi3a.livrariatades.servico.pessoa.funcionario;
 
 import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.*;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
-import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
 import java.util.Date;
@@ -33,7 +32,7 @@ public class AlterarExcluirFuncionario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cliente cliente = null;
+        Funcionario funcionario = null;
 
         if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {
 
@@ -42,48 +41,45 @@ public class AlterarExcluirFuncionario extends HttpServlet {
 
             if (opcao.equals("1")) {
                 try {
-                    cliente = DaoPessoa.procurarCliente(cpf);
+                    funcionario = DaoPessoa.procurarFuncionario(cpf);
                 } catch (Exception ex) {
                     Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                request.setAttribute("cliente", cliente);
-
+                request.setAttribute("funcionario", funcionario);
                 RequestDispatcher dispatcher = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/alterarFruncionario.jsp");
+                        "/WEB-INF/jsp/funcionario/alterarFuncionario.jsp");
                 dispatcher.forward(request, response);
             } else if (opcao.equals("2")) {
                 try {
-                    DaoCliente.excluir(cpf);
-                    response.sendRedirect(request.getContextPath() + "/cliente/listar");
+                    DaoFuncionario.excluir(cpf);
+                    response.sendRedirect(request.getContextPath() + "/funcionario/listar");
                 } catch (Exception ex) {
                     Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-                Funcionario funcionario = new Funcionario();
+        Funcionario funcionario = new Funcionario();
 
         funcionario.setDisponivel(true);
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setSobrenome(request.getParameter("sobrenome"));
         funcionario.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
-       
+
         Date dateTeste = new Date();
         funcionario.setDataNascimento(dateTeste);
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
         funcionario.setSenha(request.getParameter("senha"));
         funcionario.setNivelFuncao(Integer.parseInt(request.getParameter("funcao")));
-        
+
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
         contato.setTelefone(Long.parseLong(request.getParameter("tel")));
@@ -98,7 +94,7 @@ public class AlterarExcluirFuncionario extends HttpServlet {
 
         funcionario.setContato(contato);
         funcionario.setEndereco(endereco);
- 
+
         try {
             DaoPessoa.atualizar(null, funcionario);
         } catch (Exception ex) {

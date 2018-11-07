@@ -17,11 +17,10 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </head>
     <body>
-        <c:import url="cabecalho.jsp" />
+        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
 
 
         <div class="" id="modelClient" tabindex="-2" role="dialog" aria-hidden="true"> 
-
 
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 
@@ -39,7 +38,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-group" items="${funcionario}" var="funcionario">
+                        <form class="form-group" items="${funcionario}" var="funcionario" action="${pageContext.request.contextPath}/funcionario/alterar" method="post">
 
                             <label>Nome:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="nome" name="nome">
 
@@ -49,7 +48,7 @@
 
                             <label>RG:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="rg" name="rg">
 
-                            <label>Nasc:</label><input value="${funcionario.getDataNascimento}" type="date" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
+                            <label>Nasc:</label><input value="${funcionario.getDataNascimento()}" type="text" class="form-control" id="nasc" name="nasc">
 
                             <label>E-mail:</label><input value="${funcionario.getContato().getEmail()}" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com" name="email">
 
@@ -63,7 +62,7 @@
 
                             <label>Celular:</label><input value="${funcionario.getContato().getCelular()}" type="cel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="cel"  placeholder="(xx) 9999-9999" name="cel">
 
-                            <label>Rua:</label><input value="${fubcionario.getEndereco().getRua()}" type="text" class="form-control" id="rua" name="rua">
+                            <label>Rua:</label><input value="${funcionario.getEndereco().getRua()}" type="text" class="form-control" id="rua" name="rua">
 
                             <label>Nº:</label><input value="${funcionario.getEndereco().getNumero()}" type="text" class="form-control"  id="numero" name="numero">
 
@@ -73,11 +72,14 @@
 
                             <label>Complemento:</label><input value="${funcionario.getEndereco().getComplemento()}" type="text" class="form-control"  id="complemento" name="complemento">
 
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" onclick="">Alterar</button>
+                                <a href="${pageContext.request.contextPath}/home">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                                </a>
+                            </div>
                         </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="">Alterar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                        </div>
+
 
                     </div>
 

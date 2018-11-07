@@ -22,7 +22,7 @@ public class DaoFuncionario {
 
     public static void inserir(Funcionario funcionario, int ultimaChavePessoa)
             throws SQLException, Exception {
-        String sql = "INSERT INTO cliente VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO FUNCIONARIO VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -90,7 +90,7 @@ public class DaoFuncionario {
         }
     }
 
-    public static void excluir(Integer id)
+    public static void excluir(String cpf)
             throws SQLException, Exception {
 
         String sql = "UPDATE FUNCIONARIO F\n"
@@ -104,8 +104,7 @@ public class DaoFuncionario {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setString(1, cpf);
 
             preparedStatement.execute();
         } finally {
