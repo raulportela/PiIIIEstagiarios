@@ -38,7 +38,7 @@
                                     <th scope="col">Tel</th>
                                     <th scope="col">E-mail</th>
                                     <th scope="col">Detalhes</th>
-                                    <th scope="col">Excluir</th>
+                                    
 
                                 </tr>
                             </thead>

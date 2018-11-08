@@ -41,7 +41,7 @@
 
                             <label>Quantidade:</label><input type="text" class="form-control" id="quantidade">	
 
-                            <label>Valor:</label><input type="text" class="form-control" id="valor" >
+                            <label>Valor Unitário:</label><input type="text" class="form-control" id="valor" >
 
 
                 <div class="modal-footer">

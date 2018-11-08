@@ -56,6 +56,7 @@
                                         <th scope="col">Estoque</th>
                                         <th scope="col">Quantidade</th>
                                         <th scope="col">Valor Unitário</th>
+                                        <th scope="col">Remover</th>
 
                                     </tr>
 
@@ -63,23 +64,30 @@
                                 <tbody>
 
                                     <tr data-toggle="modal">
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td><a href=""></a><button type="submit" class="btn btn-primary">Excluir</button></a></td>
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <a>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Remover</button>
+                                            </a>
+                                        </td>
 
                                     </tr>
 
                                 </tbody>
                             </table>
 
-                            <label>ValorTotal:</label><input type="text"" class="form-control" id="valor" >
+                            <label>ValorTotal:</label><input type="text" class="form-control" id="valor" >
 
                         </form>
+                        
                         <div class="modal-footer" >
+                            <a href="${pageContext.request.contextPath}/home">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
+                            </a>
 
                             <button type="submit" class="btn btn-primary" onclick="">Concluir Venda</button>
 

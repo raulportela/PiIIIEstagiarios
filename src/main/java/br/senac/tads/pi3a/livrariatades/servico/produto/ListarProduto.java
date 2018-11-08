@@ -16,29 +16,27 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Raul de Paula
+ * @author Jeferson Nolasco
  */
-@WebServlet(name = "CadastrarProduto", urlPatterns = {"/produto/cadastrar"})
-public class Cadastrar extends HttpServlet {
+@WebServlet(name = "PesquisarProduto", urlPatterns = {"/produto/listar"})
+public class ListarProduto extends HttpServlet {
+
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
-        "/WEB-INF/jsp/produto/cadastrarProduto.jsp");
+          RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/WEB-INF/jsp/produto/listarProduto.jsp");
         dispatcher.forward(request, response);
-        
        
     }
 
-    
-     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+       
     }
 
-    
 
 }
