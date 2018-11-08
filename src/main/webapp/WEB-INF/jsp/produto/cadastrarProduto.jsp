@@ -27,21 +27,21 @@
 
         <div class="modal-body">
 
-            <form action="" method="post" class="form-group">
+            <form action="${pageContext.request.contextPath}/produto/cadastrar" method="post" class="form-group">
 
-                 <label>Editora:</label><input type="text" class="form-control" id="nome">
+                <label>Editora:</label><input type="text" class="form-control" id="editora" name="editora">
 
-                            <label>Autor:</label><input type="text" class="form-control" id="sobrenome">
+                <label>Autor:</label><input type="text" class="form-control" id="autor" name="autor">
 
-                            <label>Titulo:</label><input type="text" class="form-control" id="titulo" >
+                <label>Titulo:</label><input type="text" class="form-control" id="titulo" name="titulo" >
 
-                            Descrição<br>
-                            <textarea cols="100" rows="10"></textarea><br>
+                Descrição<br>
+                <textarea cols="100" rows="10" id="descricao" name="descricao"></textarea><br>
 
 
-                            <label>Quantidade:</label><input type="text" class="form-control" id="quantidade">	
+                <label>Quantidade:</label><input type="text" class="form-control" id="quantidade" name="quantidade">	
 
-                            <label>Valor Unitário:</label><input type="text" class="form-control" id="valor" >
+                <label>Valor Unitário:</label><input type="text" class="form-control" id="valorunitario" name="valorunitario" >
 
 
                 <div class="modal-footer">
