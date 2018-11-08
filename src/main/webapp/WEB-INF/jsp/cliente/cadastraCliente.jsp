@@ -51,7 +51,7 @@
 
                 <label>Rua:</label><input type="text" class="form-control" id="rua" name="rua">
 
-                <label>Nº:</label><input type="text" value="200" class="form-control"  id="numero" name="numero">
+                <label>Nº:</label><input type="text" value="" class="form-control"  id="numero" name="numero">
 
                 <label>Bairro:</label><input type="text" class="form-control"  id="bairro" name="bairro">
 
