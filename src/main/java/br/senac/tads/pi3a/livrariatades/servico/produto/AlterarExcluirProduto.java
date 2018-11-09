@@ -5,13 +5,9 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.produto;
 
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
-import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.cliente.DaoCliente;
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
-import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.ListarCliente;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
