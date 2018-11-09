@@ -38,7 +38,8 @@
                 <label>Titulo:</label><input value="${produto.getTitulo()}" type="text" class="form-control" id="titulo" name="titulo" >
 
                 Descrição<br>
-                <textarea  value="${produto.getDescricao()}" cols="100" rows="10" class="form-control" id="descricao" name="descricao"></textarea><br>
+                
+                <textarea  cols="100" rows="10" class="form-control" id="descricao" name="descricao"> <c:out value="${produto.getDescricao()}" /></textarea><br>
 
                 <label>Quantidade:</label><input value="${produto.getQuantidade()}" type="text" class="form-control" id="quantidade" name="quantidade">	
 
