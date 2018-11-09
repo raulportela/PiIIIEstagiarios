@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-2 offset-md-2 card-item list-group list-group-flush">
                 <center><h6><a href="${pageContext.request.contextPath}/cliente/cadastrar">+</a></h6></center>
-                <center><a href="${pageContext.request.contextPath}/cliente/listar"><img src="img/cliente.png" width="100" height="100"></a></center>
+                <center><a href="${pageContext.request.contextPath}/cliente/listar"><img src="img/Cliente.png" width="100" height="100"></a></center>
                 <center><h1>Cliente</h1></center>
 
             </div>

@@ -62,7 +62,7 @@
                                         <td><c:out value="${funcionario.getContato().getEmail()}" /></td>
                                         <td>
                                             <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=1&cpf=${funcionario.getCpf()}">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Detalhes</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                             </a>
                                         </td>
                                         <td>

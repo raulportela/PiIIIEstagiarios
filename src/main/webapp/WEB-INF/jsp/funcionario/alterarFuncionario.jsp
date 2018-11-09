@@ -46,17 +46,17 @@
 
                             <label>CPF:</label><input value="${funcionario.getCpf()}" type="text" pattern="[0-9]+$"  class="form-control" id="cpf"  placeholder="000.000.000-00" name="cpf">
 
-                            <label>RG:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="rg" name="rg">
+                            <label>RG:</label><input value="${funcionario.getRg()}" type="text" class="form-control" id="rg" name="rg">
 
                             <label>Nasc:</label><input value="${funcionario.getDataNascimento()}" type="text" class="form-control" id="nasc" name="nasc">
 
                             <label>E-mail:</label><input value="${funcionario.getContato().getEmail()}" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com" name="email">
 
-                            <label>Nome de Usuário:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="nomeusuario" name="nomeUsuario">
+                            <label>Nome de Usuário:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="nomeusuario" name="nomeusuario">
 
-                            <label>Senha:</label><input value="${funcionario.getNome()}" type="password" class="form-control" id="senha" name="senha">
+                            <label>Senha:</label><input value="${funcionario.getSenha()}" type="password" class="form-control" id="senha" name="senha">
 
-                            <label>Nivel de funcao:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="nivelFuncao" name="nivelFuncao">
+                            <label>Nivel de funcao:</label><input value="${funcionario.getNivelFuncao()}" type="text" class="form-control" id="nivelFuncao" name="nivelfuncao">
 
                             <label>Telefone:</label><input value="${funcionario.getContato().getTelefone()}" type="tel" maxlength="15" pattern="[0-9]+$"  class="form-control" id="tel" placeholder="(xx) 9999-9999" name="tel">
 

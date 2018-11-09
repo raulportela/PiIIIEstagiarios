@@ -5,7 +5,6 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.pessoa.funcionario;
 
-import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.*;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
@@ -26,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "AlterarCliente", urlPatterns = {"/funcionario/alterar"})
+@WebServlet(name = "Alterarfuncinario", urlPatterns = {"/funcionario/alterar"})
 public class AlterarExcluirFuncionario extends HttpServlet {
 
     @Override
@@ -43,8 +42,9 @@ public class AlterarExcluirFuncionario extends HttpServlet {
                 try {
                     funcionario = DaoPessoa.procurarFuncionario(cpf);
                 } catch (Exception ex) {
-                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
 
                 request.setAttribute("funcionario", funcionario);
                 RequestDispatcher dispatcher = request.getRequestDispatcher(
@@ -53,10 +53,11 @@ public class AlterarExcluirFuncionario extends HttpServlet {
             } else if (opcao.equals("2")) {
                 try {
                     DaoFuncionario.excluir(cpf);
-                    response.sendRedirect(request.getContextPath() + "/funcionario/listar");
                 } catch (Exception ex) {
-                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                    response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+                
             }
         }
     }
@@ -78,7 +79,7 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
         funcionario.setSenha(request.getParameter("senha"));
-        funcionario.setNivelFuncao(Integer.parseInt(request.getParameter("funcao")));
+        funcionario.setNivelFuncao(Integer.parseInt(request.getParameter("nivelfuncao")));
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
@@ -98,8 +99,9 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         try {
             DaoPessoa.atualizar(null, funcionario);
         } catch (Exception ex) {
-            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
 
         response.sendRedirect(request.getContextPath() + "/funcionario/listar");
 

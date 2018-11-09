@@ -51,6 +51,17 @@ complemento VARCHAR (100),
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
 
+CREATE TABLE Livro(
+id INT AUTO_INCREMENT,
+disponivel boolean,
+titulo VARCHAR (60) NOT NULL,
+descricao VARCHAR (300) NOT NULL,
+quantidade INT NOT NULL,
+valor FLOAT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY(idAutor) REFERENCES Autor(id),
+FOREIGN KEY(idEditora) REFERENCES Editora(id));
+
 CREATE TABLE Editora(
 id INT AUTO_INCREMENT,
 nome VARCHAR (50) NOT NULL,
@@ -60,19 +71,6 @@ CREATE TABLE Autor(
 id INT AUTO_INCREMENT,
 nomeCompleto VARCHAR (70),
 PRIMARY KEY (id));
-
-CREATE TABLE Livro(
-id INT AUTO_INCREMENT,
-idEditora INT,
-idAutor INT,
-disponivel boolean,
-titulo VARCHAR (60) NOT NULL,
-descricao VARCHAR (300) NOT NULL,
-quantidade INT NOT NULL,
-valor FLOAT NOT NULL,
-PRIMARY KEY (id),
-FOREIGN KEY(idAutor) REFERENCES Autor(id),
-FOREIGN KEY(idEditora) REFERENCES Editora(id));
 
 CREATE TABLE Venda(
 id INT AUTO_INCREMENT,
