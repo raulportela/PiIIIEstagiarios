@@ -49,18 +49,18 @@
 
         </div>
         <div class="row">
-            <div class="col-2 offset-md-2 card-item list-group list-group-flush">
+            <div class="col-2 offset-md-2 card-item list-group list-group-flush" >
                 <center><h6><a  href="${pageContext.request.contextPath}/venda/efetuar">+</a></h6></center>
                 <center><a href="listaProdutos.jsp"><img src="img/Venda.png" width="100" height="100"></a></center>
                 <center><h1>Venda</h1></center>
             </div>
 
             <div class="col-2 offset-md-1 card-item list-group list-group-flush">
-                <center><h6><a href="abrirChamado.jsp">+</a></h6></center>
-                <center><a href=""><img src="img/Suporte.png" width="100" height="100"></a></center>
+                <center><h6><a href="${pageContext.request.contextPath}/suporte/cadastrar">+</a></h6></center>
+                <center><a href="${pageContext.request.contextPath}/suporte/listar"><img src="img/Suporte.png" width="100" height="100"></a></center>
                 <center><h1>Suporte</h1></center>
             </div>
-            <div class="col-2 offset-md-1 card-item list-group list-group-flush">
+            <div class="col-2 offset-md-1 card-item list-group list-group-flush" readonly>
                 <center><a href=""><img src="img/Relatorio.png" width="100" height="100"></a></center>
                 <center><h1>Relatorio</h1></center>
 

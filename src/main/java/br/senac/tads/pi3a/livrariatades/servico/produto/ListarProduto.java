@@ -6,10 +6,8 @@
 package br.senac.tads.pi3a.livrariatades.servico.produto;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
-import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

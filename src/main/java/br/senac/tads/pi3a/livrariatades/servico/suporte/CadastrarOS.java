@@ -5,8 +5,11 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.suporte;
 
+import br.senac.tads.pi3a.livrariatades.db.dao.suporte.DaoSuporte;
+import br.senac.tads.pi3a.livrariatades.model.suporte.Suporte;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,6 +36,19 @@ public class CadastrarOS extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Suporte suporte = new Suporte();
+
+        suporte.setCodFuncionario(Integer.parseInt(request.getParameter("codfuncionario")));
+        suporte.setStatusChamado(true);
+        suporte.setNomeChamado(request.getParameter("nomechamado"));
+        suporte.setDetalhe(request.getParameter("detalhe"));
+        
+        try {
+            DaoSuporte.inserir(suporte);
+            response.sendRedirect(request.getContextPath() + "/suporte/listar");
+        } catch (Exception ex) {
+            Logger.getLogger(CadastrarOS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

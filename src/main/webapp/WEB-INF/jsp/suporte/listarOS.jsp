@@ -1,5 +1,5 @@
 <%-- 
-    Document   : cadastrarCLiente
+    Document   : cadastrarOS
     Created on : 17/10/2018, 22:57:40
     Author     : Maia
 --%>
@@ -21,8 +21,8 @@
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Lista de Clientes</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
-                        <center><h6><a href="${pageContext.request.contextPath}/cliente/cadastrar">+</a></h6></center>
+                        <h5 class="modal-title" id="exampleModalLabel">Ordens de Serviço</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
+                        <center><h6><a href="${pageContext.request.contextPath}/suporte/cadastrar">+</a></h6></center>
                         <a href="${pageContext.request.contextPath}/home">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -33,30 +33,33 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">CPF</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Tel</th>
-                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Código OS</th>
+                                    <th scope="col">Código Funcionario</th>
+                                    <th scope="col">O. Serviço</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Data Abertura</th>
+                                    <th scope="col">Data Fechamento</th>
                                     <th scope="col">Detalhes</th>
-                                    
-
+                                    <th scope="col">Finalizar OS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${clientes}" var="cliente"> 
+                                <c:forEach items="${suportes}" var="suporte"> 
                                     <tr data-toggle="modal" data-target="#modelClient">
-                                        <th><c:out value="${cliente.getCpf()}" /></th>
-                                        <td><c:out value="${cliente.getNome()}" /></td>
-                                        <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
-                                        <td><c:out value="${cliente.getContato().getEmail()}" /></td>
+                                        <th><c:out value="${suporte.getId()}" /></th>
+                                        <th><c:out value="${suporte.getCodFuncionario()}" /></th>
+                                        <td><c:out value="${suporte.getNomeChamado()}" /></td>
+                                        <td><c:out value="${suporte.isStatusChamado()}" /></td>
+                                        <td><c:out value="${suporte.getDataAbertura()}" /></td>
+                                        <td><c:out value="${suporte.getDataFechamento()}" /></td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=1&cpf=${cliente.getCpf()}">
+                                            <a href="${pageContext.request.contextPath}/suporte/alterar?opcao=1&id=${suporte.getId()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=2&cpf=${cliente.getCpf()}">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${cliente.getNome()}">Excluir</button>
+                                            <a href="${pageContext.request.contextPath}/suporte/alterar?opcao=2&id=${suporte.getId()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar OS</button>
                                             </a>
                                         </td>
                                     </tr>
