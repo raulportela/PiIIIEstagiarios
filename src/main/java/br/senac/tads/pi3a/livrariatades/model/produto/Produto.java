@@ -19,6 +19,24 @@ public class Produto {
     private Integer quantidade;
     private boolean disponivel;
     private Float valor;
+
+    public int getIdEditora() {
+        return idEditora;
+    }
+
+    public void setIdEditora(int idEditora) {
+        this.idEditora = idEditora;
+    }
+
+    public int getIdAutor() {
+        return idAutor;
+    }
+
+    public void setIdAutor(int idAutor) {
+        this.idAutor = idAutor;
+    }
+    private int idEditora;
+    private int idAutor;
     
     public int getId() {
         return id;
@@ -81,7 +99,7 @@ public class Produto {
     }
 
     public void setId(int l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.id = l;
     }
     
 }

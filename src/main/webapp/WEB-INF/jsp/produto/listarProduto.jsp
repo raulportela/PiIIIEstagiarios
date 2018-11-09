@@ -28,29 +28,31 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Cod</th>
-                                    <th scope="col">Autor</th>
                                     <th scope="col">Titulo</th>
+                                    <th scope="col">Autor</th>
                                     <th scope="col">Quantidade</th>
                                     <th scope="col">Valor</th>
+                                    <th scope="col">Detalhes</th>
                                     <th scope="col">Excluir</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${clientes}" var="cliente"> 
+                                <c:forEach items="${produtos}" var="produto"> 
                                     <tr data-toggle="modal" data-target="#modelProduto">
-                                        <th><c:out value="${cliente.getCpf()}" /></th>
-                                        <td><c:out value="${cliente.getNome()}" /></td>
-                                        <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
-                                        <td><c:out value="${cliente.getContato().getEmail()}" /></td>
+                                        <th><c:out value="${produto.getId()}" /></th>
+                                        <td><c:out value="${produto.getTitulo()}" /></td>
+                                        <td><c:out value="${produto.getAutor()}" /></td>
+                                        <td><c:out value="${produto.getQuantidade()}" /></td>
+                                        <td><c:out value="${produto.getValor()}" /></td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=1&cpf=${cliente.getCpf()}">
+                                            <a href="${pageContext.request.contextPath}/produto/alterar?opcao=1&id=${produto.getId()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=2&cpf=${cliente.getCpf()}">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${cliente.getNome()}">Selecionar</button>
+                                            <a href="${pageContext.request.contextPath}/produto/alterar?opcao=2&id=${produto.getId()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
                                             </a>
                                         </td>
                                     </tr>

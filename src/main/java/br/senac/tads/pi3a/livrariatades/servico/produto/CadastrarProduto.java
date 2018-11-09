@@ -8,7 +8,6 @@ package br.senac.tads.pi3a.livrariatades.servico.produto;
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;

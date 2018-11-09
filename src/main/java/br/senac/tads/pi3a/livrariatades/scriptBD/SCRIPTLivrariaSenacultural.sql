@@ -53,6 +53,8 @@ FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
 
 CREATE TABLE Livro(
 id INT AUTO_INCREMENT,
+idEditora INT,
+idAutor INT,
 disponivel boolean,
 titulo VARCHAR (60) NOT NULL,
 descricao VARCHAR (300) NOT NULL,

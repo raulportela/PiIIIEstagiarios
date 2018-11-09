@@ -34,23 +34,6 @@ public class ListarCliente extends HttpServlet {
         listaClientes = AtulizarLista();
         request.setAttribute("clientes", listaClientes);
 
-//        String opcao = request.getParameter("opcao");
-//        String cpf = request.getParameter("cpf");
-//        if (opcao.equals("1")){
-//            try {
-//                Cliente cliente = DaoPessoa.procurarCliente(Integer.parseInt(cpf));
-//                DaoCliente.excluir(cliente.getIdPessoa());
-//                response.sendRedirect(request.getContextPath() + "cliente/listar");
-//            } catch (Exception ex) {
-//                Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            
-//        }
-//        if (opcao != null) {
-//            HttpSession sessao = request.getSession();
-//            sessao.setAttribute("opcaoSelecionada", opcao);
-//        }
-        
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/listarCliente.jsp");
         dispatcher.forward(request, response);
