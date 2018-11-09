@@ -9,7 +9,6 @@ import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
-import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.CadastroCliente;
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;

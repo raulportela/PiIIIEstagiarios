@@ -51,6 +51,16 @@ complemento VARCHAR (100),
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
 
+CREATE TABLE Editora(
+id INT AUTO_INCREMENT,
+nome VARCHAR (50) NOT NULL,
+PRIMARY KEY(id));
+
+CREATE TABLE Autor(
+id INT AUTO_INCREMENT,
+nomeCompleto VARCHAR (70),
+PRIMARY KEY (id));
+
 CREATE TABLE Livro(
 id INT AUTO_INCREMENT,
 idEditora INT,
@@ -63,16 +73,6 @@ valor FLOAT NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY(idAutor) REFERENCES Autor(id),
 FOREIGN KEY(idEditora) REFERENCES Editora(id));
-
-CREATE TABLE Editora(
-id INT AUTO_INCREMENT,
-nome VARCHAR (50) NOT NULL,
-PRIMARY KEY(id));
-
-CREATE TABLE Autor(
-id INT AUTO_INCREMENT,
-nomeCompleto VARCHAR (70),
-PRIMARY KEY (id));
 
 CREATE TABLE Venda(
 id INT AUTO_INCREMENT,
@@ -93,15 +93,25 @@ PRIMARY KEY (id),
 FOREIGN KEY (idLivro) REFERENCES Livro (id),
 FOREIGN KEY (idVenda) REFERENCES Venda (id));
 
--- SELECTS QUE PRECISAM PARA O PROGRAMA
+CREATE TABLE Suporte(
+id INT AUTO_INCREMENT,
+codFuncionario INT,
+statusChamado boolean,
+nomeChamado VARCHAR (50),
+dataAbertura DATE,
+dataFechamento DATE,
+detalhe VARCHAR(300),
+PRIMARY KEY (id),
+FOREIGN KEY (codFuncionario) REFERENCES Funcionario(id));
 
-SELECT * FROM PESSOA;
-SELECT * from CLIENTE
-where idPessoa = 1;
-SELECT * FROM ENDERECO where idPessoa = 1;
-SELECT * FROM CONTATO;
-SELECT * FROM FUNCIONARIO;
+-- Selecionar Livro
+SELECT * FROM LIVRO L 
+JOIN EDITORA E
+ON L.IDEDITORA = E.ID
+JOIN AUTOR A
+ON L.IDAUTOR = A.ID;
 
+-- Selecionar Cliente
 SELECT * FROM PESSOA P
 JOIN CLIENTE C
 ON P.ID = C.IDPESSOA
@@ -110,6 +120,7 @@ ON P.ID = CT.IDPESSOA
 JOIN ENDERECO E
 ON P.ID = E.IDPESSOA;
 
+-- Selecionar funcionario
 SELECT * FROM PESSOA P
 JOIN FUNCIONARIO F
 ON P.ID = F.IDPESSOA
@@ -124,5 +135,9 @@ INSERT INTO CONTATO VALUES (3, 3, 'jefersonnls@hotmail.com', 1156116839, 1197754
 insert into endereco values (3,3, 'mora depois do leo', 15,'uma bairro p cima', 04430250, '');
 INSERT INTO FUNCIONARIO VALUES(1, 1, 0, 1, 'raul_portela', 558889, 1,'397524122');
 
+UPDATE LIVRO SET DISPONIVEL=1, TITULO='Trepeça do jeh e luana', DESCRICAO='Casal maluco', QUANTIDADE=9, VALOR=28.90 
+WHERE ID = 6;
+
+INSERT INTO LIVRO VALUES (2, 1, 4, 1, 'JEZAO', 'MLK DAHORA MSM', 10, 2.50);
 
 -- drop database livrariasenacultural;

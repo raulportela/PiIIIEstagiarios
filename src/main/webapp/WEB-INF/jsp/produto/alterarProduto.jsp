@@ -38,7 +38,7 @@
                 <label>Titulo:</label><input value="${produto.getTitulo()}" type="text" class="form-control" id="titulo" name="titulo" >
 
                 Descrição<br>
-                <textarea value="${produto.getDescricao()}" cols="100" rows="10" id="descricao" name="descricao"></textarea><br>
+                <textarea  value="${produto.getDescricao()}" cols="100" rows="10" class="form-control" id="descricao" name="descricao"></textarea><br>
 
                 <label>Quantidade:</label><input value="${produto.getQuantidade()}" type="text" class="form-control" id="quantidade" name="quantidade">	
 
@@ -48,7 +48,7 @@
                     <a href="${pageContext.request.contextPath}/home">   
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </a>
-                    <button type="submit" class="btn btn-primary" >Cadastrar</button>
+                    <button type="submit" class="btn btn-primary" >Alterar</button>
                 </div>
             </form>
 

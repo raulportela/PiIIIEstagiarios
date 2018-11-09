@@ -115,6 +115,7 @@ public class DaoProduto {
             preparedStatement.setString(3, produto.getDescricao());
             preparedStatement.setInt(4, produto.getQuantidade());
             preparedStatement.setFloat(5, produto.getValor());
+            preparedStatement.setInt(6, produto.getId());
             preparedStatement.execute();
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {

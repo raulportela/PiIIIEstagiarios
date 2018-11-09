@@ -80,10 +80,11 @@ public class AlterarExcluirProduto extends HttpServlet {
         
         try {
             DaoProduto.atualizar(produto);
+            
         } catch (Exception ex) {
             Logger.getLogger(AlterarExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        response.sendRedirect(request.getContextPath() + "/produto/listar");
     }
 
 }

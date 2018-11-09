@@ -51,9 +51,6 @@ public class CadastrarProduto extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
         response.sendRedirect(request.getContextPath() + "/produto/listar");
     }
 

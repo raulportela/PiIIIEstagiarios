@@ -50,7 +50,7 @@
                                         <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
                                         <td><c:out value="${cliente.getContato().getEmail()}" /></td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=1&cpf=${cliente.getCpf()}">
+                                            <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=1&cpf=${cliente.getCpf()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                             </a>
                                         </td>
