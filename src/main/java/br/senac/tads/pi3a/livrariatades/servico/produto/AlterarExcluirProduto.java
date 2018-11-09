@@ -63,9 +63,14 @@ public class AlterarExcluirProduto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        
         Produto produto = new Produto();
 
         produto.setDisponivel(true);
+        produto.setIdAutor(Integer.parseInt(request.getParameter("idautor")));
+        produto.setIdEditora(Integer.parseInt(request.getParameter("ideditora")));
         produto.setId(Integer.parseInt(request.getParameter("cod")));
         produto.setEditora(request.getParameter("editora"));
         produto.setAutor(request.getParameter("autor"));
