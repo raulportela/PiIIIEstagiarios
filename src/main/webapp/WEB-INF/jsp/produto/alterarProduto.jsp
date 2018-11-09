@@ -27,12 +27,8 @@
 
         <div class="modal-body">
 
-            <form items="${produto}" var="produto" action="${pageContext.request.contextPath}/produto/alterar" method="post" class="form-group">
+            <form items="${produto}" var="produto" action="${pageContext.request.contextPath}/produto/alterar?idautor=${produto.getIdEditora()}&ideditora=${produto.getIdAutor()}" method="post" class="form-group">
                 
-                <input value="${produto.getIdEditora()}" type="text" class="form-control" id="idautor" name="idautor" readonly>
-                
-                <input value="${produto.getIdAutor()}" type="text" class="form-control" id="ideditora" name="ideditora" readonly>
-
                 <label>Cod:</label><input value="${produto.getId()}" type="text" class="form-control" id="cod" name="cod" readonly>
                 
                 <label>Editora:</label><input value="${produto.getEditora()}" type="text" class="form-control" id="editora" name="editora">
