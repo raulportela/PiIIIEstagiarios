@@ -84,14 +84,14 @@ public class DaoProduto {
                 + "WHERE (ID = ?)";
         String sql2 = "UPDATE AUTOR SET NOMECOMPLETO=?\n"
                 + "WHERE (ID = ?)";
-        String sql3 = "UPDATE LIVRO SET DISPONIVEL=?, TITULO=?, DESCRICAO=?, QUANTIDADE=?, VALOR=?\n"
+        String sql3 = "UPDATE LIVRO SET IDEDITORA=?, IDAUTOR=?, DISPONIVEL=?, TITULO=?, DESCRICAO=?, QUANTIDADE=?, VALOR=?\n"
                 + "WHERE (ID = ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         connection = ConnectionUtils.getConnection();
         try {
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql, preparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, produto.getEditora());
             preparedStatement.setInt(2, produto.getIdEditora());
             preparedStatement.execute();
@@ -110,12 +110,15 @@ public class DaoProduto {
 
             // execução da terceira inserção
             preparedStatement = connection.prepareStatement(sql3);
-            preparedStatement.setBoolean(1, produto.isDisponivel());
-            preparedStatement.setString(2, produto.getTitulo());
-            preparedStatement.setString(3, produto.getDescricao());
-            preparedStatement.setInt(4, produto.getQuantidade());
-            preparedStatement.setFloat(5, produto.getValor());
+            preparedStatement.setInt(1, produto.getIdEditora() );
+            preparedStatement.setInt(2, produto.getIdAutor());
+            preparedStatement.setBoolean(3, produto.isDisponivel());
+            preparedStatement.setString(4, produto.getTitulo());
+            preparedStatement.setString(5, produto.getDescricao());
+            preparedStatement.setInt(6, produto.getQuantidade());
+            preparedStatement.setFloat(7, produto.getValor());
             preparedStatement.execute();
+           
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -224,6 +227,8 @@ public class DaoProduto {
 
                 if (result.next()) {
                     Produto produto = new Produto();
+                    
+                    
 
                     produto.setId(result.getInt("L.id"));
                     produto.setTitulo(result.getString("titulo"));
