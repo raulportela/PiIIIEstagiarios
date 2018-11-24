@@ -13,8 +13,20 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
     </head>
     <body>
+        <script language="javascript">
+            var meses = new Array('JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO');
+            var diasSemana = new Array('domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado');
+            var modificacao = new Date(document.lastModified);
+            var dia = modificacao.getDate();
+            var mes = meses [modificacao.getMonth()];
+            var ano = modificacao.getFullYear();
+            var semana = diasSemana[modificacao.getDay()];
+            var dataFinal = dia +"/"+mes+"/"+ano; 
+        </script>
 
         <div>
 
@@ -38,13 +50,12 @@
 
                         <form class="form-group">
 
-                            <label>CPF:</label><input type="text" class="form-control" id="cpf">
-
+                            <label>CPF:</label> <a href="${pageContext.request.contextPath}/cliente/listar"><img src="../img/Pesquisa.png" width="20" height="20"></a><input type="text" class="form-control" id="cpf" size="10">
                             <label>Cliente:</label><input type="text" class="form-control" id="cliente">
+                            <label>Nota Fiscal:</label><input type="text" class="form-control" id="notafiscal" >
 
-                            <label>Nota Fiscal:</label><input type="text"" class="form-control" id="notafiscal" >
-                            <label>Data:</label><input type="text"" class="form-control" id="data" >
-
+                            <label>Data:</label> 
+                            <br> <script> document.write(dataFinal)</script>
 
                             <table class="table table-hover">
 
@@ -83,10 +94,10 @@
                             <label>ValorTotal:</label><input type="text" class="form-control" id="valor" >
 
                         </form>
-                        
+
                         <div class="modal-footer" >
                             <a href="${pageContext.request.contextPath}/home">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
                             </a>
 
                             <button type="submit" class="btn btn-primary" onclick="">Concluir Venda</button>
