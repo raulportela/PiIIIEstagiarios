@@ -16,7 +16,8 @@
     </head>
     <body>
 
-
+        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
+        
         <div class="modal-dialog" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -40,7 +41,7 @@
                         <form class="form-group">
 
                             <label>Login:</label><input type="text" class="form-control" id="nome" name="nome">
-                            <label>Senha:</label><input type="text" class="form-control" id="senha" name="senha">
+                            <label>Senha:</label><input type="password" class="form-control" id="senha" name="senha">
 
                             <div class="modal-footer">
                                 <center>	
