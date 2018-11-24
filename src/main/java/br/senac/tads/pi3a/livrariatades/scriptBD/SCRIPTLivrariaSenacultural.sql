@@ -17,6 +17,11 @@ codFilial INT,
 PRIMARY KEY (id),
 FOREIGN KEY (codFilial) REFERENCES Filial (id)); 	
 
+INSERT INTO Pessoa VALUES (default, 'Administrador', 'São Paulo', 00000000000, '2000-1-1', 0);
+INSERT INTO Pessoa VALUES (default, 'Administrador', 'Brasília', 11111111111, '2000-1-1', 1);
+INSERT INTO Pessoa VALUES (default, 'Administrador', 'Campina Grande', 22222222222, '2000-1-1', 2);
+INSERT INTO Pessoa VALUES (default, 'Administrador', 'Joinville', 33333333333, '2000-1-1', 3);
+
 CREATE TABLE Cliente (
 id INT AUTO_INCREMENT,
 idPessoa INT,
@@ -46,8 +51,6 @@ telefone LONG,
 celular LONG,
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
-
-
 
 CREATE TABLE Endereco(
 id INT NOT NULL AUTO_INCREMENT,
