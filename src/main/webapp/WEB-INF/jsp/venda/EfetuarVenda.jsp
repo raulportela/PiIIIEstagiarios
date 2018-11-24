@@ -18,16 +18,18 @@
 
     </head>
     <body>
-        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp"  />
+        <div>
+            <c:import url="/WEB-INF/jsp/home/cabecalho.jsp"  />
+        </div>
         <script language="javascript">
-            var meses = new Array('JANEIRO', 'FEVEREIRO', 'MARÇO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO', 'NOVEMBRO', 'DEZEMBRO');
+            var meses = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
             var diasSemana = new Array('domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado');
             var modificacao = new Date(document.lastModified);
             var dia = modificacao.getDate();
             var mes = meses [modificacao.getMonth()];
             var ano = modificacao.getFullYear();
             var semana = diasSemana[modificacao.getDay()];
-            var dataFinal = dia +"/"+mes+"/"+ano; 
+            var dataFinal = dia + "/" + mes + "/" + ano;
         </script>
 
         <div>
@@ -38,7 +40,7 @@
 
                     <div class="modal-header">
 
-                        <h5 class="modal-title" id="exampleModalLabel">Venda</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Venda - <script> document.write(dataFinal)</script></h5>
 
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
@@ -53,11 +55,8 @@
                         <form class="form-group">
 
                             <label>CPF:</label> <a href="${pageContext.request.contextPath}/cliente/listar"><img src="../img/Pesquisa.png" width="20" height="20"></a><input type="text" class="form-control" id="cpf" size="10">
-                            <label>Cliente:</label><input type="text" class="form-control" id="cliente">
+                            <label>Cliente:</label><input type="text" class="form-control" id="cliente" readonly="">
                             <label>Nota Fiscal:</label><input type="text" class="form-control" id="notafiscal" >
-
-                            <label>Data:</label> 
-                            <br> <script> document.write(dataFinal)</script>
 
                             <table class="table table-hover">
 

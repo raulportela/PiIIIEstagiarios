@@ -61,7 +61,7 @@
                 <center><h1>Suporte</h1></center>
             </div>
             <div class="col-2 offset-md-1 card-item list-group list-group-flush" readonly>
-                <center><a href=""><img src="img/Relatorio.png" width="100" height="100"></a></center>
+                <center><a href="${pageContext.request.contextPath}/relatorio"><img src="img/Relatorio.png" width="100" height="100"></a></center>
                 <center><h1>Relatorio</h1></center>
 
             </div>
