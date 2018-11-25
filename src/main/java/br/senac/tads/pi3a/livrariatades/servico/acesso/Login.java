@@ -5,9 +5,12 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.acesso;
 
+import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,10 +45,15 @@ public class Login extends HttpServlet {
         String nomeUsuario = request.getParameter("nomeUsuario");
         String senhaAberta = request.getParameter("senhaAberta");
         
-        Funcionario funcionario = DaoFuncionario.procurarPorNomeUsuario(nomeUsuario);
+        Funcionario funcionario = null;
+        try {
+            funcionario = DaoFuncionario.procurarPorNomeUsuario(nomeUsuario);
+        } catch (Exception ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if (funcionario != null) {
-            boolean senhaValida = BCrypt.checkpw(senhaAberta, funcionario.getHashSenha););
+            boolean senhaValida = BCrypt.checkpw(senhaAberta, funcionario.getHashSenha());
             if (senhaValida) {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("funcionario", funcionario);
