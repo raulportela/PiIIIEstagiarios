@@ -23,6 +23,7 @@ public class Funcionario extends Pessoa {
     private String hashSenha;
     private int nivelFuncao;
     private int idPessoa;
+    private int codFilial;
 
     public int getIdPessoa() {
         return idPessoa;
@@ -140,6 +141,14 @@ public class Funcionario extends Pessoa {
     
     public void setSenha(String senhaAberta){
         this.hashSenha = BCrypt.hashpw(senhaAberta, BCrypt.gensalt());
+    }
+
+    public int getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(int codFilial) {
+        this.codFilial = codFilial;
     }
     
 }
