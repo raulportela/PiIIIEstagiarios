@@ -35,10 +35,10 @@ public class ValidadorFuncionario {
             valido = false;
         }
 
-        if (funcionario.getSenha() == null || "".equals(funcionario.getSenha())) {
+        if (funcionario.getHashSenha()== null || "".equals(funcionario.getHashSenha())) {
             mensagemErro += "\nSenha";
             valido = false;
-        } else if (funcionario.getSenha().length() < 6) {
+        } else if (funcionario.getHashSenha().length() < 6) {
             mensagemErro += "\nSenha deve possuir no mínimo 6 caracteres";
             valido = false;
         }

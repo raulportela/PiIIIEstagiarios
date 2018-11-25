@@ -33,7 +33,7 @@ public class DaoFuncionario {
             preparedStatement.setInt(2, funcionario.getCodFuncionario());
             preparedStatement.setBoolean(3, funcionario.isDisponivel());
             preparedStatement.setString(4, funcionario.getNomeUsuario());
-            preparedStatement.setString(5, funcionario.getSenha());
+            preparedStatement.setString(5, funcionario.getHashSenha());
             preparedStatement.setInt(6, funcionario.getNivelFuncao());
             preparedStatement.setString(7, funcionario.getRg());
 
@@ -69,7 +69,7 @@ public class DaoFuncionario {
             preparedStatement.setInt(1, funcionario.getCodFuncionario());
             preparedStatement.setBoolean(2, funcionario.isDisponivel());
             preparedStatement.setString(3, funcionario.getNomeUsuario());
-            preparedStatement.setString(4, funcionario.getSenha());
+            preparedStatement.setString(4, funcionario.getHashSenha());
             preparedStatement.setInt(5, funcionario.getNivelFuncao());
             preparedStatement.setString(6, funcionario.getRg());
             preparedStatement.setString(7, cpf);
@@ -155,5 +155,49 @@ public class DaoFuncionario {
             }
         }
         return funcionario;
+    }
+    
+    public static Funcionario procurarPorNomeUsuario (String nomeUsuario)
+            throws SQLException, Exception {
+        Funcionario funcionario = new Funcionario ();
+        
+        String sql = "SELECT * FROM Funcionario"
+                + "WHERE nomeUsuario=?";
+        
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, nomeUsuario);
+
+            result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                funcionario.setCodFuncionario(result.getInt("codFuncionario"));
+                funcionario.setDisponivel(result.getBoolean("disponivel"));
+                funcionario.setNomeUsuario(result.getString("nomeUsuario"));
+                funcionario.setSenha(result.getString("senha"));
+                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setRg(result.getString("rg"));
+                
+                funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
+                funcionario.setEndereco(DaoEndereco.procurar(funcionario.getIdPessoa()));
+            }
+        } finally {
+            if (result != null && !result.isClosed()) {
+                result.close();
+            }
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        return funcionario;
+        
     }
 }

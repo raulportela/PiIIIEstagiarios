@@ -9,6 +9,7 @@ import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
 import java.util.Date;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Funcionario extends Pessoa {
     private int codFuncionario;
     private boolean disponivel;
     private String nomeUsuario;
-    private String senha;
+    private String hashSenha;
     private int nivelFuncao;
     private int idPessoa;
 
@@ -75,13 +76,7 @@ public class Funcionario extends Pessoa {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+   
 
     public int getNivelFuncao() {
         return nivelFuncao;
@@ -133,6 +128,18 @@ public class Funcionario extends Pessoa {
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getHashSenha() {
+        return hashSenha;
+    }
+
+    public void setHashSenha(String senha) {
+        this.hashSenha = senha;
+    }
+    
+    public void setSenha(String senhaAberta){
+        this.hashSenha = BCrypt.hashpw(senhaAberta, BCrypt.gensalt());
     }
     
 }
