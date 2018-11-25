@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi3a.livrariatades.servico.acesso;
 
+import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -36,8 +39,26 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String nome = request.getParameter("nome");
-        String senha = request.getParameter("senha");
+        String nomeUsuario = request.getParameter("nomeUsuario");
+        String senhaAberta = request.getParameter("senhaAberta");
+        
+        Funcionario funcionario = DaoFuncionario.procurarPorNomeUsuario(nomeUsuario);
+        
+        if (funcionario != null) {
+            boolean senhaValida = BCrypt.checkpw(senhaAberta, funcionario.getHashSenha););
+            if (senhaValida) {
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("funcionario", funcionario);
+                response.sendRedirect(request.getContextPath() + "/home");
+                return;
+            }
+        }
+        
+        request.setAttribute("mensagemErro", "Usuário ou senha inválido");
+        RequestDispatcher dispatcher
+                = request.getRequestDispatcher(
+                        "/WEB-INF/jsp/acesso/login.jsp");
+        dispatcher.forward(request, response);
         
     }
 

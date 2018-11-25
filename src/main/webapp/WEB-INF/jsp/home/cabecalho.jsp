@@ -13,9 +13,34 @@
         <div class="row">
             <div class="col-12 top-menu">
                 <a href="${pageContext.request.contextPath}/home">
-                <img src="../img/LogoLivro.png">
+                    <img src="../img/LogoLivro.png">
                 </a>
-                <div><h6>Bem Vindo!</h6></div>
+                <c:if test="${sessionScope.funcionario != null}">
+
+                    <div>
+                        <h6>Bem Vindo!</h6>
+
+                        <h6><c:out value="${sessionScope.funcionario.getNome}" value= " " value="${sessionScope.funcionario.getSobrenome}"/> </h6>
+
+                        <c:if test="${sessionScope.funcionario.getCodFilial == 1}">
+                            <h6>Sede - São Paulo</h6>
+                        </c:if>
+
+                        <c:if test="${sessionScope.funcionario.getCodFilial == 2}">
+                            <h6>Sede - Brasilia</h6>
+                        </c:if>
+
+                        <c:if test="${sessionScope.funcionario.getCodFilial == 3}">
+                            <h6>Sede - Campina Grande</h6>
+                        </c:if>
+
+                        <c:if test="${sessionScope.funcionario.getCodFilial == 4}">
+                            <h6>Sede - Joinville</h6>
+                        </c:if>
+                    </div>
+
+                </c:if>
+
             </div>
         </div>
 

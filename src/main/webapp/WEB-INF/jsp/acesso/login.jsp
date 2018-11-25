@@ -16,42 +16,47 @@
     </head>
     <body>
 
-        <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
-        
-        <div class="modal-dialog" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
 
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <div class="modal-content">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 
-                    <div class="modal-header">
+            <div class="modal-content">
 
-                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                <div class="modal-header">
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
 
-                            <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
-                        </button>
+                        <span aria-hidden="true">&times;</span>
 
-                    </div>
+                    </button>
 
-                    <div class="modal-body">
+                </div>
 
-                        <form class="form-group">
+                <div class="modal-body">
+                    <c:if test="${mensagemErro != null}">
+                        <p style="color: red">
+                        <c:out value="${mensagemErro}" />
+                        </p>
+                    </c:if>
+                    <form class="form-group">
 
-                            <label>Login:</label><input type="text" class="form-control" id="nome" name="nome">
-                            <label>Senha:</label><input type="password" class="form-control" id="senha" name="senha">
+                        <label>Login:</label><input type="text" class="form-control" id="nome" name="nomeUsuario">
+                        
+                        <label>Senha:</label><input type="password" class="form-control" id="senha" name="senhaAberta">
 
-                            <div class="modal-footer">
-                                <center>	
-                                    <button type="submit" class="btn btn-primary">Login</button>
-                                </center>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="modal-footer">
+                            <center>	
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </center>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>	
-    </body>
+        </div>
+    </div>	
+</body>
 </html>
