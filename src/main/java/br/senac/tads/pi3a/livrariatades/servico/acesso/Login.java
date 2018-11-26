@@ -8,7 +8,6 @@ package br.senac.tads.pi3a.livrariatades.servico.acesso;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.funcionario.DaoFuncionario;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -36,7 +35,6 @@ public class Login extends HttpServlet {
         dispatcher.forward(request, response);
       
     }
-
  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +67,5 @@ public class Login extends HttpServlet {
         dispatcher.forward(request, response);
         
     }
-
-  
 
 }
