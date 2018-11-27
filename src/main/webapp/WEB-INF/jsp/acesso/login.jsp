@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +43,7 @@
                         <c:out value="${mensagemErro}" />
                         </p>
                     </c:if>
-                    <form class="form-group">
+                    <form class="form-group" action="${pageContext.request.contextPath}/login" method="post">
 
                         <label>Login:</label><input type="text" class="form-control" id="nome" name="nomeUsuario">
                         

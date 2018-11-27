@@ -78,8 +78,7 @@ public class DaoContato {
 
     public static Contato procurar(int idPessoa)
             throws SQLException, Exception {
-        String sql = "SELECT * FROM Contato"
-                + "WHERE idPessoa=?";
+        String sql = "SELECT * FROM Contato WHERE idPessoa=?";
 
         Contato contato = new Contato();
 

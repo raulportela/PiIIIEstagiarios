@@ -161,8 +161,7 @@ public class DaoFuncionario {
             throws SQLException, Exception {
         Funcionario funcionario = new Funcionario ();
         
-        String sql = "SELECT * FROM Funcionario"
-                + "WHERE nomeUsuario=?";
+        String sql = "SELECT * FROM Funcionario WHERE nomeUsuario=?";
         
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -183,8 +182,9 @@ public class DaoFuncionario {
                 funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
                 funcionario.setRg(result.getString("rg"));
                 
-                funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
-                funcionario.setEndereco(DaoEndereco.procurar(funcionario.getIdPessoa()));
+//                funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
+//                funcionario.setEndereco(DaoEndereco.procurar(funcionario.getIdPessoa()));
+                return funcionario;
             }
         } finally {
             if (result != null && !result.isClosed()) {

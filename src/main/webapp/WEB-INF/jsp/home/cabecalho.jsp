@@ -20,23 +20,6 @@
                     <div>
                         <h6>Bem Vindo!</h6>
 
-                        <h6><c:out value="${sessionScope.funcionario.getNome}" value= " " value="${sessionScope.funcionario.getSobrenome}"/> </h6>
-
-                        <c:if test="${sessionScope.funcionario.getCodFilial == 1}">
-                            <h6>Sede - São Paulo</h6>
-                        </c:if>
-
-                        <c:if test="${sessionScope.funcionario.getCodFilial == 2}">
-                            <h6>Sede - Brasilia</h6>
-                        </c:if>
-
-                        <c:if test="${sessionScope.funcionario.getCodFilial == 3}">
-                            <h6>Sede - Campina Grande</h6>
-                        </c:if>
-
-                        <c:if test="${sessionScope.funcionario.getCodFilial == 4}">
-                            <h6>Sede - Joinville</h6>
-                        </c:if>
                     </div>
 
                 </c:if>
