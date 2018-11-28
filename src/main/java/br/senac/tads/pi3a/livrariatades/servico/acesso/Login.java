@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
         }
         
         if (funcionario != null) {
-            boolean senhaValida = BCrypt.checkpw(senhaAberta, funcionario.getHashSenha());
+            boolean senhaValida = funcionario.validarSenha(senhaAberta);
             if (senhaValida) {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("funcionario", funcionario);

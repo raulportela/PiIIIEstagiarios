@@ -17,6 +17,7 @@ public abstract class Pessoa {
     protected String sobrenome;
     protected String cpf;
     protected Date dataNascimento;
+    protected int codFilial; 
 
     public String getNome() {
         return nome;
@@ -33,11 +34,15 @@ public abstract class Pessoa {
     public Date getDataNascimento() {
         return dataNascimento;
     }
+    
+     public int getCodFilial() {
+        return codFilial;
+    }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", getNome(), getSobrenome(),
-                getCpf(), getDataNascimento());
+        return String.format("%s,%s,%s,%s,%d", getNome(), getSobrenome(),
+                getCpf(), getDataNascimento(), getCodFilial());
 
     }
 

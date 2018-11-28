@@ -106,7 +106,15 @@ public class Cliente extends Pessoa {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+    
+  @Override
+    public int getCodFilial() {
+        return codFilial;
+    }
 
+    public void setCodFilial(int codFilial) {
+        this.codFilial = codFilial;
+    }
 //    @Override
 //    public String toString() {
 //        return String.format("%s,%s,%s,%s,%s,%s,%s,%s", getNome(), getSobrenome(),

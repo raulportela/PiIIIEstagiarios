@@ -130,7 +130,7 @@ public class Funcionario extends Pessoa {
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
+    
     public String getHashSenha() {
         return hashSenha;
     }
@@ -142,7 +142,12 @@ public class Funcionario extends Pessoa {
     public void setSenha(String senhaAberta){
         this.hashSenha = BCrypt.hashpw(senhaAberta, BCrypt.gensalt());
     }
+    
+    public boolean validarSenha(String senhaAberta) {
+        return BCrypt.checkpw(senhaAberta, hashSenha);
+    }
 
+    @Override
     public int getCodFilial() {
         return codFilial;
     }
