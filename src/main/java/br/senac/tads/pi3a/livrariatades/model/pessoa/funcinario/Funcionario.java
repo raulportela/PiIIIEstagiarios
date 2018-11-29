@@ -138,10 +138,12 @@ public class Funcionario extends Pessoa {
         this.hashSenha = senhaAberta;
     }
     
-    
+    public void setSenha(String senhaAberta) {
+        this.hashSenha = BCrypt.hashpw(senhaAberta, BCrypt.gensalt());
+    }
     
     public boolean validarSenha(String senhaAberta) {
-        return BCrypt.checkpw(senhaAberta, this.hashSenha);
+        return BCrypt.checkpw(senhaAberta, hashSenha);
     }
 
     @Override
