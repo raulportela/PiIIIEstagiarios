@@ -182,8 +182,8 @@ public class DaoFuncionario {
                 funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
                 funcionario.setRg(result.getString("rg"));
                 
-                //funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
-                //funcionario.setEndereco(DaoEndereco.procurar(funcionario.getIdPessoa()));
+                funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
+                funcionario.setEndereco(DaoEndereco.procurar(funcionario.getIdPessoa()));
                 return funcionario;
             }
         } finally {

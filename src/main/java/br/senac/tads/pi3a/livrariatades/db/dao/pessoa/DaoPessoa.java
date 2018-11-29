@@ -44,7 +44,7 @@ public class DaoPessoa {
             isClient = false;
         }
 
-        String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Pessoa VALUES (0, ?, ?, ?, ?, ?)";
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -57,6 +57,7 @@ public class DaoPessoa {
             preparedStatement.setString(3, pessoa.getCpf());
             Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
+            preparedStatement.setInt(5, pessoa.getCodFilial());
 
             preparedStatement.execute();
             int ultimaChave = 0;
