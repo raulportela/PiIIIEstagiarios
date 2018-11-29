@@ -57,7 +57,7 @@ public class DaoPessoa {
             preparedStatement.setString(3, pessoa.getCpf());
             Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
-            preparedStatement.setInt(5, pessoa.getCodFilial());
+            preparedStatement.setInt(5, 1);
 
             preparedStatement.execute();
             int ultimaChave = 0;
@@ -208,7 +208,6 @@ public class DaoPessoa {
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
                 + "WHERE (F.DISPONIVEL=?)";
-        
 
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
         Connection connection = null;
@@ -236,8 +235,7 @@ public class DaoPessoa {
                 funcionario.setCodFuncionario(result.getInt("codFuncionario"));
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
-                int senha = result.getInt("senha");
-                funcionario.setSenha("" + senha);
+                funcionario.setHashSenha(result.getString("senha"));
                 funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
                 funcionario.setRg(result.getString("rg"));
 
@@ -350,7 +348,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "WHERE P.CPF = ?";
+                + "WHERE F.CPF = ?";
 
         Funcionario funcionario = new Funcionario();
 
@@ -376,8 +374,7 @@ public class DaoPessoa {
                 funcionario.setCodFuncionario(result.getInt("codFuncionario"));
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
-                int senha = result.getInt("senha");
-                funcionario.setSenha("" + senha);
+                funcionario.setHashSenha(result.getString("senha"));
                 funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
                 funcionario.setRg(result.getString("rg"));
 

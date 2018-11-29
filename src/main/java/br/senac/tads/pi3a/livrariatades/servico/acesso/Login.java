@@ -51,8 +51,7 @@ public class Login extends HttpServlet {
         }
         
         if (funcionario != null) {
-            boolean senhaValida = funcionario.validarSenha(senhaAberta);
-            if (senhaValida) {
+            if (senhaAberta.equals(funcionario.getHashSenha())) {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("funcionario", funcionario);
                 response.sendRedirect(request.getContextPath() + "/home");

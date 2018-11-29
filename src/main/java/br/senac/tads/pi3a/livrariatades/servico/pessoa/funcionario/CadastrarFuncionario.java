@@ -51,7 +51,7 @@ public class CadastrarFuncionario extends HttpServlet {
         funcionario.setDataNascimento(dateTeste);
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
-        funcionario.setSenha(request.getParameter("senha"));
+        funcionario.setHashSenha(request.getParameter("senha"));
         funcionario.setNivelFuncao(Integer.parseInt(request.getParameter("funcao")));
         
         Contato contato = new Contato();

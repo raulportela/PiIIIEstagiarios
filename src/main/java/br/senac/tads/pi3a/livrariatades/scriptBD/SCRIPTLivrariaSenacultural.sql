@@ -62,6 +62,11 @@ celular LONG,
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
 
+INSERT INTO Contato VALUES (1, 1, 'adminsp@adminsp.com', 11111111, 111111111);  
+INSERT INTO Contato VALUES (2, 2, 'adminbr@adminbr.com', 22222222, 222222222);  
+INSERT INTO Contato VALUES (3, 3, 'admincg@admincg.com', 33333333, 333333333);  
+INSERT INTO Contato VALUES (4, 4, 'adminjv@adminjv.com', 44444444, 444444444);  
+
 CREATE TABLE Endereco(
 id INT NOT NULL AUTO_INCREMENT,
 idPessoa int,
@@ -72,6 +77,11 @@ cep INT NOT NULL,
 complemento VARCHAR (100),
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
+
+INSERT INTO Endereco VALUES (1, 1, 'rua admin sp', 1, 'admin sp', 1111111, '');  
+INSERT INTO Endereco VALUES (2, 2, 'rua admin brasilia', 2, 'admin br', 2222222, '');  
+INSERT INTO Endereco VALUES (3, 3, 'rua admin campo grande', 3, 'admin cg', 3333333, '');  
+INSERT INTO Endereco VALUES (4, 4, 'rua admin joinville', 4, 'admin jv', 4444444, '');  
 
 CREATE TABLE Editora(
 id INT AUTO_INCREMENT,
@@ -153,7 +163,7 @@ ON P.ID = CT.IDPESSOA
 JOIN ENDERECO E
 ON P.ID = E.IDPESSOA;
 
-SELECT * FROM PESSOA;
+SELECT * FROM Funcionario;
 
 -- Selecionar funcionario
 SELECT * FROM PESSOA P
@@ -164,6 +174,9 @@ ON P.ID = CT.IDPESSOA
 JOIN ENDERECO E
 ON P.ID = E.IDPESSOA;
 
-SELECT * FROM Funcionario;
+update funcionario set senha= 'Dominio55'
+where id = 5;
 
+SELECT * FROM Filial;
+Select * From Endereco;
 -- drop database livrariasenacultural;
