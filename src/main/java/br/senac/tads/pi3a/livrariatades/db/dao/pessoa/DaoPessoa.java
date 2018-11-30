@@ -348,7 +348,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "WHERE F.CPF = ?";
+                + "WHERE P.CPF = ?";
 
         Funcionario funcionario = new Funcionario();
 

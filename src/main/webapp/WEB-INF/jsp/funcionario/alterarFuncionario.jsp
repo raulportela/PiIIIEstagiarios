@@ -54,7 +54,7 @@
 
                             <label>Nome de Usuário:</label><input value="${funcionario.getNome()}" type="text" class="form-control" id="nomeusuario" name="nomeusuario">
 
-                            <label>Senha:</label><input value="${funcionario.getSenha()}" type="password" class="form-control" id="senha" name="senha">
+                            <label>Senha:</label><input value="${funcionario.getHashSenha()}" type="password" class="form-control" id="senha" name="senha">
 
                             <label>Nivel de funcao:</label><input value="${funcionario.getNivelFuncao()}" type="text" class="form-control" id="nivelFuncao" name="nivelfuncao">
 
