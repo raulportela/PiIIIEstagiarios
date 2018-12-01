@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,6 +31,12 @@ public class listarFuncionario extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+//        HttpSession sessao = request.getSession();
+//        if (sessao.getAttribute("usuario") == null) {
+//            response.sendRedirect(request.getContextPath() + "/login");
+//            return;
+//        }
 
         List<Funcionario> listaFuncionarios;
         listaFuncionarios = AtulizarLista();
@@ -49,6 +56,7 @@ public class listarFuncionario extends HttpServlet {
     public List AtulizarLista() {
 
         List<Funcionario> listaClientes = null;
+        
         try {
 
             listaClientes = DaoPessoa.listarFuncionario();
