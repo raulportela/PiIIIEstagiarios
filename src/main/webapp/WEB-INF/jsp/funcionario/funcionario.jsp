@@ -5,13 +5,13 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-2 card-item list-group list-group-flush">
-                        <center><a href="${pageContext.request.contextPath}/produto/listar"><img src="img/Produto.png" width="100" height="100"></a></center>
+                        <center><a href="${pageContext.request.contextPath}/funcionario/listar"><img src="img/Funcionario.png" width="100" height="100"></a></center>
                         <center><h1>Lista</h1></center>
 
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-2 card-item list-group list-group-flush">
-                        <center><a href="${pageContext.request.contextPath}/produto/cadastrar"><img src="img/Produto.png" width="100" height="100"></a></center>
+                        <center><a href="${pageContext.request.contextPath}/funcionario/cadastrar"><img src="img/Funcionario.png" width="100" height="100"></a></center>
                         <center><h1>Cadastrar</h1></center>
 
                     </div>
