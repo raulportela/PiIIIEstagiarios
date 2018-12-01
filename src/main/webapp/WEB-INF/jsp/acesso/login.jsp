@@ -17,8 +17,8 @@
     </head>
     <body>
 
-    <c:import url="/WEB-INF/jsp/home/cabecalho.jsp" />
-
+   <c:import url="/WEB-INF/jsp/home/header.jsp" />
+        
     <div class="modal-dialog" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

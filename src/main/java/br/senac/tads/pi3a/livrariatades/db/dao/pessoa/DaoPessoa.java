@@ -207,7 +207,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "WHERE (F.DISPONIVEL=?)";
+                + "ORDER BY F.disponivel DESC";
 
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
         Connection connection = null;
@@ -217,7 +217,6 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, true);
             result = preparedStatement.executeQuery();
 
             while (result.next()) {

@@ -183,7 +183,7 @@ public class DaoFuncionario {
             preparedStatement.setString(1, nomeUsuario);
 
             result = preparedStatement.executeQuery();
-
+            
             if (result.next()) {
                 
                 funcionario.setNome(result.getString("P.nome"));
@@ -227,7 +227,6 @@ public class DaoFuncionario {
                 connection.close();
             }
         }
-        return funcionario;
-        
+        return null;
     }
 }
