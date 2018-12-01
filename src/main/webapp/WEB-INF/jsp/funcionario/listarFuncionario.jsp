@@ -20,11 +20,11 @@
                     <thead>
 
                         <tr>
-                            <th scope="col">CPF</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Status</th>
+                            <th scope="col"><a href="">CPF <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="">Nome <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="">Telefone <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="">E-mail <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="">Status <i class="fa fa-angle-down"></i></a></th>
                         </tr>
 
                     </thead>

@@ -4,11 +4,12 @@
 <html lang="pt">
 
     <head>
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/img/favicon.png" rel="icon">
-
+        
         <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!--external css-->
         <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -28,6 +29,7 @@
                 <!--logo start-->
                 <a class="logo" href="${pageContext.request.contextPath}/home"><b><span>L</span>ivraria<span>S</span>enac</b></a>
                 <!--logo end-->
+                
                 <div class="nav notify-row" id="top_menu">
                     <!--  notification start -->
                     <ul class="nav top-menu">

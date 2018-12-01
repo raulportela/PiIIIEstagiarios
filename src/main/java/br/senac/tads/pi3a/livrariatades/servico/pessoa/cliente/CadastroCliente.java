@@ -10,6 +10,8 @@ import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,23 +42,22 @@ public class CadastroCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cliente cliente = new Cliente();
-
+        
+        cliente.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         cliente.setDisponivel(true);
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
         cliente.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
-        
-        
-            //PRECISA CONFIGURAR A DATA QUE ESTE VINDO COMO STRING DA PAGINA JSP, PARA ENTRAR NO BANCO DE DADOS
-            
-//        SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
-//        Date data = null;
-//        try {
-//            data = formato.parse(datajsp);
-//        } catch (ParseException ex) {
-//            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        Date data = null;
+
+        try {
+            data = formato.parse(request.getParameter("nasc"));
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Date dateTeste = new Date();
 
@@ -82,8 +83,7 @@ public class CadastroCliente extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-     
+
         response.sendRedirect(request.getContextPath() + "/cliente/listar");
     }
 

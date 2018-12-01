@@ -17,7 +17,9 @@
         <div class="modal-body">
 
             <form action="${pageContext.request.contextPath}/cliente/cadastrar" method="post" class="form-group">
-
+                
+                <input type="text" style="display: none" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
+                
                 <label>Nome:</label><input type="text" class="form-control" id="nome" name="nome">
 
                 <label>Sobrenome:</label><input type="text" class="form-control" id="sobrenome" name="sobrenome">
@@ -47,7 +49,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </a>
 
-                    <button type="submit" class="btn btn-primary" >Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
 
                 </div>
             </form>
