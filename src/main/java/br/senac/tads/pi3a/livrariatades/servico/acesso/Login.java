@@ -28,6 +28,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String code = request.getParameter("code");
+        if("99".equals(code)){
+            request.setAttribute("mensagemErro", "Você saiu do sistema");
+        }
+        
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
                         "/WEB-INF/jsp/acesso/login.jsp");
