@@ -145,7 +145,7 @@ public class Funcionario extends Pessoa {
     public boolean validarSenha(String senhaAberta) {
         return BCrypt.checkpw(senhaAberta, hashSenha);
     }
-
+    
     @Override
     public int getCodFilial() {
         return codFilial;
