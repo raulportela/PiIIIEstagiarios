@@ -4,16 +4,24 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel" >Nome da Filial</h5>
+                <h5 class="modal-title" id="exampleModalLabel" >Nome da Filial - XX/XX/XXXX</h5>
                 </a>
             </div>
             <div class="modal-body">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Data da venda</th>
-                            <th scope="col">Preço da venda</th>
-                            <th scope="col">Valor total</th>
+                            <th scope="col">Cod</th>
+                            <th scope="col">Nome do produto</th>
+                            
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                            <th scope="col">Número nota</th>
+                            <th scope="col">Funcionario</th>
+                            <th scope="col">Preço unitário</th>
+                            <th scope="col">Quantidade</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,7 +45,7 @@
                         </c:forEach>
                     </tbody>
                     <tfoot>
-                        <th scope="col">Total mensal: </th>
+                        <th scope="col">Total diário: </th>
                     </tfoot>
                 </table>
             </div>
