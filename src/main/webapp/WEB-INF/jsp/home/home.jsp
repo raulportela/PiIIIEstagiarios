@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="col-md-2"></div>
-                                <c:if test="${sessioScope.funcionario.getNivelFuncao()==4}">
+                                <c:if test="${sessioScope.funcionario.getNivelFuncao().equals('root')}">
                                     <div class="col-md-2 card-item list-group list-group-flush">
                                         <center><a href="${pageContext.request.contextPath}/cliente/listar"><img src="img/Cliente.png" width="100" height="100"></a></center>
                                         <center><h1>Cliente</h1></center>
@@ -66,7 +66,7 @@
                                     </div>
                                 </c:if>         
                                 <div class="col-md-1"></div>
-                                <c:if test="${sessioScope.funcionario.getNivelFuncao()==1}">
+                                <c:if test="${sessioScope.funcionario.getNivelFuncao().equals('root')}">
                                     <div class="col-md-2 card-item list-group list-group-flush">
                                         <center><a href="${pageContext.request.contextPath}/funcionario/listar"><img src="img/Funcionario.png" width="100" height="100"></a></center>
                                         <center><h1>Funcionario</h1></center>
@@ -75,7 +75,7 @@
                                 </c:if>    
 
                                 <div class="col-md-1"></div>
-                                <c:if test="${sessioScope.funcionario.getNivelFuncao()==4}">
+                                <c:if test="${sessioScope.funcionario.getNivelFuncao().equals('root')}">
                                     <div class="col-md-2 card-item list-group list-group-flush">
                                         <center><a href="${pageContext.request.contextPath}/produto/listar"><img src="img/Produto.png" width="100" height="100"></a></center>
                                         <center><h1>Produtos</h1></center>
@@ -91,14 +91,14 @@
 
                                 <div class="col-md-2"></div>
 
-                                <c:if test="${sessioScope.funcionario.getNivelFuncao()==1}">
+                                <c:if test="${sessioScope.funcionario.getNivelFuncao() eq 'root'}">
                                     <div class="col-md-2 card-item list-group list-group-flush" >
                                         <center><a href="${pageContext.request.contextPath}/venda/efetuar"><img src="img/Venda.png" width="100" height="100"></a></center>
                                         <center><h1>Venda</h1></center>
                                     </div>
                                 </c:if> 
                                 <div class="col-md-1"></div>
-                                <c:if test="${sessioScope.funcionario.getNivelFuncao()==1}">
+                                <c:if test="${sessioScope.funcionario.getNivelFuncao().equals('root')}">
                                     <div class="col-md-2 card-item list-group list-group-flush">
                                         <center><a href="${pageContext.request.contextPath}/suporte/listar"><img src="img/Suporte.png" width="100" height="100"></a></center>
                                         <center><h1>Suporte</h1></center>
@@ -107,11 +107,13 @@
 
                                 <div class="col-md-1"></div>
 
-                                <div class="col-md-2 card-item list-group list-group-flush">
-                                    <center><a href="${pageContext.request.contextPath}/relatorio/listar"><img src="img/Relatorio.png" width="100" height="100"></a></center>
-                                    <center><h1>Relatorio</h1></center>
+                                <c:if test="${sessioScope.funcionario.getNivelFuncao().equals('root')}">
+                                    <div class="col-md-2 card-item list-group list-group-flush">
+                                        <center><a href="${pageContext.request.contextPath}/relatorio/listar"><img src="img/Relatorio.png" width="100" height="100"></a></center>
+                                        <center><h1>Relatorio</h1></center>
 
-                                </div>
+                                    </div>
+                                </c:if>
 
                             </div>
 

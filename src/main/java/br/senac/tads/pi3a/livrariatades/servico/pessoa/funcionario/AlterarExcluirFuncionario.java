@@ -87,7 +87,7 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
         funcionario.setSenha(request.getParameter("senha"));
-        funcionario.setNivelFuncao(Integer.parseInt(request.getParameter("nivelfuncao")));
+        funcionario.setNivelFuncao("nivelfuncao");
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));

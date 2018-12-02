@@ -21,7 +21,7 @@ public class Funcionario extends Pessoa {
     private boolean disponivel;
     private String nomeUsuario;
     private String hashSenha;
-    private int nivelFuncao;
+    private String nivelFuncao;
     private int idPessoa;
 
     public int getIdPessoa() {
@@ -78,11 +78,11 @@ public class Funcionario extends Pessoa {
 
    
 
-    public int getNivelFuncao() {
+    public String getNivelFuncao() {
         return nivelFuncao;
     }
 
-    public void setNivelFuncao(int nivelFuncao) {
+    public void setNivelFuncao(String nivelFuncao) {
         this.nivelFuncao = nivelFuncao;
     }
 
