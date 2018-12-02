@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
-        if (sessao.getAttribute("usuario") == null) {
+        if (sessao.getAttribute("usuario") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
             return;
         }
