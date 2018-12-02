@@ -16,6 +16,9 @@ import java.sql.SQLException;
  *
  * @author Raul de Paula
  */
+
+// teste 
+
 public class DaoContato {
 
     public static void inserirContato(Contato contato, int ultimaChavePessoa)
