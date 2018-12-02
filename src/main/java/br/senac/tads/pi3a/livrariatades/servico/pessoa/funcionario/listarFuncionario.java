@@ -18,7 +18,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,7 +41,11 @@ public class listarFuncionario extends HttpServlet {
         List<Funcionario> listaFuncionarios;
         listaFuncionarios = AtulizarLista(ordem);
         request.setAttribute("funcionarios", listaFuncionarios);
-
+        
+        if(ordem != null){
+            response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+            return;
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/funcionario/listarFuncionario.jsp");
         dispatcher.forward(request, response);

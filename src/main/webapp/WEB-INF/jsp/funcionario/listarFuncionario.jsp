@@ -40,22 +40,35 @@
                                       <td><c:out value="${funcionario.getNome()} ${funcionario.getSobrenome()} " /></td>
                                       <td><c:out value="${funcionario.getContato().getTelefone()}" /></td>
                                       <td><c:out value="${funcionario.getContato().getEmail()}" /></td>
-                                      
+
                                       <c:if test="${funcionario.isDisponivel() == true }">
                                           <td style="color: #0AC740"><c:out value="Ativo" /></td>
-                                            
+
                                       </c:if> 
                                       <c:if test="${funcionario.isDisponivel() == false}">
-                                        <td style="color: red"><c:out value="Desativado" /></td>
+                                          <td style="color: red"><c:out value="Desativado" /></td>
                                       </c:if>    
-                                                                              <td>
+                                      <td>
                                           <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=1&cpf=${funcionario.getCpf()}">
                                               <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                           </a>
                                       </td>
-
-                                      </tr>
-                                  </c:if>
+                                      <c:if test="${funcionario.isDisponivel() == true }">
+                                          <td>
+                                              <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=2&cpf=${funcionario.getCpf()}">
+                                                  <button type="button" class="btn btn-primary" data-dismiss="modal" >Desativar</button>
+                                              </a>
+                                          </td>
+                                      </c:if> 
+                                      <c:if test="${funcionario.isDisponivel() == false}">
+                                          <td>
+                                              <a href="${pageContext.request.contextPath}/funcionario/alterar?opcao=3&cpf=${funcionario.getCpf()}">
+                                                  <button type="button" class="btn btn-primary" data-dismiss="modal" >Reativar</button>
+                                              </a>
+                                          </td>
+                                      </c:if>
+                                  </tr>
+                            </c:if>
 
                         </c:forEach>
 
@@ -64,6 +77,9 @@
             </div>
 
             <div class="modal-footer">
+                <a href="${pageContext.request.contextPath}/funcionario/cadastrar">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Novo funcionario</button>
+                </a>
                 <a href="${pageContext.request.contextPath}/home">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                 </a>
