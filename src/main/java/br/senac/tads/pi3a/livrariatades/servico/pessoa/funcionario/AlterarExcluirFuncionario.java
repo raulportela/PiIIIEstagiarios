@@ -36,7 +36,7 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         Funcionario funcionario = null;
 
         if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {
-
+            String ordem = request.getParameter("opcao");
             String opcao = request.getParameter("opcao");
             String cpf = request.getParameter("cpf");
 
@@ -46,8 +46,6 @@ public class AlterarExcluirFuncionario extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-
                 request.setAttribute("funcionario", funcionario);
                 RequestDispatcher dispatcher = request.getRequestDispatcher(
                         "/WEB-INF/jsp/funcionario/alterarFuncionario.jsp");
