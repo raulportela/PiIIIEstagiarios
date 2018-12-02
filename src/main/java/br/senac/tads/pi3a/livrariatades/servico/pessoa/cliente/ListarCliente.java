@@ -49,7 +49,7 @@ public class ListarCliente extends HttpServlet {
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/backupTela.jsp");
+                        "/WEB-INF/jsp/cliente/backupTela.jsp");//
 
         dispatcher.forward(request, response);
 
