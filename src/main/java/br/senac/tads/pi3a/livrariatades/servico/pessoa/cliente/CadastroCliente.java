@@ -10,7 +10,6 @@ import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -49,19 +48,8 @@ public class CadastroCliente extends HttpServlet {
         cliente.setSobrenome(request.getParameter("sobrenome"));
         cliente.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
-
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-        Date data = null;
-
-        try {
-            data = formato.parse(request.getParameter("nasc"));
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        Date dateTeste = new Date();
-
-        cliente.setDataNascimento(dateTeste);
+        cliente.setDataNascimento(new Date());
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));

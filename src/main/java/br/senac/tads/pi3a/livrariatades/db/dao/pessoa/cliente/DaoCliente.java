@@ -83,11 +83,11 @@ public class DaoCliente {
         }
     }
 
-    public static void excluir(String cpf)
+    public static void mudarStatus(String cpf, String status)
             throws SQLException, Exception {
 
         String sql = "UPDATE CLIENTE C\n"
-                + "SET C.DISPONIVEL = 0\n"
+                + "SET C.DISPONIVEL = "+status+"\n"
                 + "WHERE C.IDPESSOA = (SELECT ID FROM PESSOA p\n"
                 + "							WHERE P.CPF=?);";
 

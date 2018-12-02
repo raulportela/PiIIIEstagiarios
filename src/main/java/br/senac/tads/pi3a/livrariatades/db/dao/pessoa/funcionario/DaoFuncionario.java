@@ -93,11 +93,11 @@ public class DaoFuncionario {
         }
     }
 
-    public static void excluir(String cpf)
+    public static void mudarStatus(String cpf, String status)
             throws SQLException, Exception {
 
         String sql = "UPDATE FUNCIONARIO F\n"
-                + "SET F.DISPONIVEL = 0\n"
+                + "SET F.DISPONIVEL = "+status+"\n"
                 + "WHERE F.IDPESSOA = (SELECT ID FROM PESSOA p\n"
                 + "							WHERE P.CPF=?);";
 

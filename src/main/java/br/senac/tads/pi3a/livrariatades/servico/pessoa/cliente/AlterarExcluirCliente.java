@@ -37,6 +37,7 @@ public class AlterarExcluirCliente extends HttpServlet {
 
             String opcao = request.getParameter("opcao");
             String cpf = request.getParameter("cpf");
+            
 
             if (opcao.equals("1")) {
                 try {
@@ -52,7 +53,14 @@ public class AlterarExcluirCliente extends HttpServlet {
                 dispatcher.forward(request, response);
             } else if (opcao.equals("2")) {
                 try {
-                    DaoCliente.excluir(cpf);
+                    DaoCliente.mudarStatus(cpf, "0");
+                    response.sendRedirect(request.getContextPath() + "/cliente/listar");
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (opcao.equals("3")) {
+                try {
+                    DaoCliente.mudarStatus(cpf, "1");
                     response.sendRedirect(request.getContextPath() + "/cliente/listar");
                 } catch (Exception ex) {
                     Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);

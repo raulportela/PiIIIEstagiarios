@@ -57,7 +57,7 @@ public class DaoPessoa {
             preparedStatement.setString(3, pessoa.getCpf());
             Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
             preparedStatement.setTimestamp(4, t);
-            preparedStatement.setInt(5, 1);
+            preparedStatement.setInt(5, pessoa.getCodFilial());
 
             preparedStatement.execute();
             int ultimaChave = 0;
@@ -127,8 +127,11 @@ public class DaoPessoa {
         }
     }
 
-    public static List<Cliente> listarCliente()
+    public static List<Cliente> listarCliente(String ordem)
             throws SQLException, Exception {
+        if (ordem == null) {
+            ordem = "nome";
+        }
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
                 + "ON P.ID = C.IDPESSOA\n"
@@ -136,7 +139,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "WHERE (C.DISPONIVEL=?)";
+                + "ORDER BY C." + ordem + " DESC";
 
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
@@ -146,7 +149,6 @@ public class DaoPessoa {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setBoolean(1, true);
 
             result = preparedStatement.executeQuery();
 
@@ -158,6 +160,7 @@ public class DaoPessoa {
                 cliente.setNome(result.getString("nome"));
                 cliente.setSobrenome(result.getString("sobrenome"));
                 cliente.setCpf(result.getString("cpf"));
+                cliente.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 cliente.setDataNascimento(datanasc);
@@ -198,8 +201,11 @@ public class DaoPessoa {
 
     }
 
-    public static List<Funcionario> listarFuncionario()
+    public static List<Funcionario> listarFuncionario(String ordem)
             throws SQLException, Exception {
+        if (ordem == null) {
+            ordem = "P.nome";
+        }
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN FUNCIONARIO F\n"
                 + "ON P.ID = F.IDPESSOA\n"
@@ -207,7 +213,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "ORDER BY F.disponivel DESC";
+                + "ORDER BY " + ordem + " DESC";
 
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
         Connection connection = null;
@@ -227,6 +233,7 @@ public class DaoPessoa {
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
                 funcionario.setCpf(result.getString("cpf"));
+                funcionario.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 funcionario.setDataNascimento(datanasc);
@@ -300,6 +307,7 @@ public class DaoPessoa {
                 cliente.setNome(result.getString("nome"));
                 cliente.setSobrenome(result.getString("sobrenome"));
                 cliente.setCpf(result.getString("cpf"));
+                cliente.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 cliente.setDataNascimento(datanasc);
@@ -366,6 +374,7 @@ public class DaoPessoa {
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
                 funcionario.setCpf(result.getString("cpf"));
+                funcionario.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
                 Date datanasc = t;
                 funcionario.setDataNascimento(datanasc);

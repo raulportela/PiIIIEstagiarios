@@ -20,13 +20,12 @@
                     <thead>
 
                         <tr>
-                            <th scope="col"><a href="">CPF <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="">Nome <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="">Telefone <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="">E-mail <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="">Status <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/alterar?ordem=P.cpf">CPF <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/alterar?ordem=P.nome">Nome <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/alterar?ordem=CT.telefone">Telefone <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/alterar?ordem=CT.email">E-mail <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/alterar?ordem=F.disponivel">Status <i class="fa fa-angle-down"></i></a></th>
                         </tr>
-
                     </thead>
                     <tbody>
 

@@ -30,8 +30,10 @@ public class ListarCliente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String ordem = request.getParameter("ordem");
+        
         List<Cliente> listaClientes = new ArrayList<>();
-        listaClientes = AtulizarLista();
+        listaClientes = AtulizarLista(ordem);
         request.setAttribute("clientes", listaClientes);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
@@ -47,17 +49,17 @@ public class ListarCliente extends HttpServlet {
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
                         "/WEB-INF/jsp/cliente/backupTela.jsp");
-        
+
         dispatcher.forward(request, response);
 
     }
 
-    public List AtulizarLista() {
+    public List AtulizarLista(String ordem) {
 
         List<Cliente> listaClientes = null;
         try {
 
-            listaClientes = DaoPessoa.listarCliente();
+            listaClientes = DaoPessoa.listarCliente(ordem);
 
         } catch (Exception ex) {
             Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);

@@ -31,6 +31,7 @@ public class listarFuncionario extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String ordem = request.getParameter("ordem");
         
 //        HttpSession sessao = request.getSession();
 //        if (sessao.getAttribute("usuario") == null) {
@@ -39,7 +40,7 @@ public class listarFuncionario extends HttpServlet {
 //        }
 
         List<Funcionario> listaFuncionarios;
-        listaFuncionarios = AtulizarLista();
+        listaFuncionarios = AtulizarLista(ordem);
         request.setAttribute("funcionarios", listaFuncionarios);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
@@ -53,13 +54,13 @@ public class listarFuncionario extends HttpServlet {
 
     }
 
-    public List AtulizarLista() {
+    public List AtulizarLista(String ordem) {
 
         List<Funcionario> listaClientes = null;
         
         try {
 
-            listaClientes = DaoPessoa.listarFuncionario();
+            listaClientes = DaoPessoa.listarFuncionario(ordem);
 
         } catch (Exception ex) {
             Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);

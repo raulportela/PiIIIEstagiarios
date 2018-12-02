@@ -52,7 +52,15 @@ public class AlterarExcluirFuncionario extends HttpServlet {
                 dispatcher.forward(request, response);
             } else if (opcao.equals("2")) {
                 try {
-                    DaoFuncionario.excluir(cpf);
+                    DaoFuncionario.mudarStatus(cpf, "0");
+                } catch (Exception ex) {
+                    Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+                
+            }else if (opcao.equals("3")) {
+                try {
+                    DaoFuncionario.mudarStatus(cpf, "1");
                 } catch (Exception ex) {
                     Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
                 }
