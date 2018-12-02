@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Leonardo Maia
  */
-@WebServlet(name = "GerarRelatorioDetalhado", urlPatterns = {"/gerarRelatorioDetalhado"})
+@WebServlet(name = "GerarRelatorioDetalhado", urlPatterns = {"/relatorioDetalhado"})
 public class GerarRelatorioDetalhado extends HttpServlet {
 
     
