@@ -32,11 +32,11 @@
             <!--header start-->
             <header class="header black-bg">
                 <!--logo start-->
-                <c:if test="${sessioScope.funcionario.getCodFuncao()==1}">
+                                
+                <c:if test="${sessioScope.funcionario == null}">
                     <a class="logo"><b><span>L</span>ivraria<span>S</span>enac </b></a>
-                    <a class="logo"><b>Unidade - <span>São paulo</span></b></a>
-                </c:if>
-                <a class="logo"><b><span>L</span>ivraria<span>S</span>enac</b></a>
+                </c:if>                
+                    
                 <!--logo end-->
                 <div class="nav notify-row" id="top_menu">
                     <!--  notification start -->

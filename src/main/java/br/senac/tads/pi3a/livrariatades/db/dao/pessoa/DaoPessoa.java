@@ -228,7 +228,7 @@ public class DaoPessoa {
             while (result.next()) {
 
                 funcionario = new Funcionario();
-
+                
                 funcionario.setIdPessoa(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setSobrenome(result.getString("sobrenome"));
