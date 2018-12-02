@@ -4,12 +4,12 @@
 <html lang="pt">
 
     <head>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/img/favicon.png" rel="icon">
-        
+
         <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!--external css-->
         <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
                 <!--logo start-->
                 <a class="logo" href="${pageContext.request.contextPath}/home"><b><span>L</span>ivraria<span>S</span>enac</b></a>
                 <!--logo end-->
-                
+
                 <div class="nav notify-row" id="top_menu">
                     <!--  notification start -->
                     <ul class="nav top-menu">
@@ -47,79 +47,102 @@
                     </div>
                 </c:if>
 
-                
+
             </header>
             <c:if test="${sessionScope.funcionario != null}">
                 <aside>
-                <div id="sidebar" class="nav-collapse ">
-                    <!-- sidebar menu start-->
-                    <ul class="sidebar-menu" id="nav-accordion">
-                        <h5 class="centered">${sessionScope.funcionario.getNome()} ${funcionario.getSobrenome()}</h5> <!-- Nome do Usuario -->
-                        <!-- Item sem SubMenu -->
+                    <div id="sidebar" class="nav-collapse ">
+                        <!-- sidebar menu start-->
+                        <ul class="sidebar-menu" id="nav-accordion">
+                            <h5 class="centered">${sessionScope.funcionario.getNome()} ${funcionario.getSobrenome()}</h5> <!-- Nome do Usuario -->
+                            
+                            <c:if test="${sessioScope.funcionario.getCodFilial() == 1}">
+                                
+                                <h5 class="centered">Matriz - São Paulo</h5> <!-- Nome do Usuario -->
+                                
+                            </c:if>
+                                
+                            <c:if test="${sessioScope.funcionario.getCodFilial() == 2}">
+                                
+                                <h5 class="centered">Brasilia</h5> <!-- Nome do Usuario -->
+                                
+                            </c:if>
+                                
+                            <c:if test="${sessioScope.funcionario.getCodFilial() == 3}">
+                                
+                                <h5 class="centered">Campina Grande</h5> <!-- Nome do Usuario -->
+                                
+                            </c:if>
+                                
+                            <c:if test="${sessioScope.funcionario.getCodFilial()== 4}">
+                                
+                                <h5 class="centered">Joinville</h5> <!-- Nome do Usuario -->
+                                
+                            </c:if>
+                            <!-- Item sem SubMenu -->
 
 
-                        <li>
-                            <a href="${pageContext.request.contextPath}/home">
-                                <i class="fa fa-home"></i>
-                                <span>Home</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li> 
+                            <li>
+                                <a href="${pageContext.request.contextPath}/home">
+                                    <i class="fa fa-home"></i>
+                                    <span>Home</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li> 
 
-                        <li>
-                            <a href="${pageContext.request.contextPath}/funcionario/listar">
-                                <i class="fa fa-user"></i>
-                                <span>Funcionario</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li> 
-                        <li>
-                            <a href="${pageContext.request.contextPath}/produto/listar">
-                                <i class="fa fa-archive"></i>
-                                <span>Produtos</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li>  
-                        <li>
-                            <a href="${pageContext.request.contextPath}/venda/efetuar/listar">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Venda</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/filiais/listar">
-                                <i class="fa fa-building-o"></i>
-                                <span>Filiais</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li> 
-                        <li>
-                            <a href="${pageContext.request.contextPath}/cliente/listar">
-                                <i class="fa fa-users"></i>
-                                <span>Clientes</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li> 
-                        <li>
-                            <a href="${pageContext.request.contextPath}/relatorio">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>Relatórios</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li> 
-                        <li>
-                            <a href="${pageContext.request.contextPath}/suporte">
-                                <i class="fa fa-info"></i>
-                                <span>Suporte</span>  <!-- Item Principal (Resumo Geral) -->
-                            </a>
-                        </li> 
-                    </ul>
-                    <!-- sidebar menu end-->
-                </div>
-            </aside>
-            <!--sidebar end-->
-            <!-- **********************************************************************************************************************************************************
-                MAIN CONTENT
-                *********************************************************************************************************************************************************** -->
-            <!--main content start-->
-            <section id="main-content">
-                <section class="wrapper site-min-height">
-                    <div class="row mt">
-                        <div class="col-lg-12">
-                    
-            </c:if>       
-            
+                            <li>
+                                <a href="${pageContext.request.contextPath}/funcionario/listar">
+                                    <i class="fa fa-user"></i>
+                                    <span>Funcionario</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li> 
+                            <li>
+                                <a href="${pageContext.request.contextPath}/produto/listar">
+                                    <i class="fa fa-archive"></i>
+                                    <span>Produtos</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li>  
+                            <li>
+                                <a href="${pageContext.request.contextPath}/venda/efetuar/listar">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Venda</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/filiais/listar">
+                                    <i class="fa fa-building-o"></i>
+                                    <span>Filiais</span> <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li> 
+                            <li>
+                                <a href="${pageContext.request.contextPath}/cliente/listar">
+                                    <i class="fa fa-users"></i>
+                                    <span>Clientes</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li> 
+                            <li>
+                                <a href="${pageContext.request.contextPath}/relatorio">
+                                    <i class="fa fa-bar-chart-o"></i>
+                                    <span>Relatórios</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li> 
+                            <li>
+                                <a href="${pageContext.request.contextPath}/suporte">
+                                    <i class="fa fa-info"></i>
+                                    <span>Suporte</span>  <!-- Item Principal (Resumo Geral) -->
+                                </a>
+                            </li> 
+                        </ul>
+                        <!-- sidebar menu end-->
+                    </div>
+                </aside>
+                <!--sidebar end-->
+                <!-- **********************************************************************************************************************************************************
+                    MAIN CONTENT
+                    *********************************************************************************************************************************************************** -->
+                <!--main content start-->
+                <section id="main-content">
+                    <section class="wrapper site-min-height">
+                        <div class="row mt">
+                            <div class="col-lg-12">
+
+                            </c:if>       

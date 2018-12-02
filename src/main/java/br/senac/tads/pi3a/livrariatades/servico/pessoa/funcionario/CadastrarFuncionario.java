@@ -40,20 +40,20 @@ public class CadastrarFuncionario extends HttpServlet {
             throws ServletException, IOException {
 
         Funcionario funcionario = new Funcionario();
-
+        funcionario.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         funcionario.setDisponivel(true);
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setSobrenome(request.getParameter("sobrenome"));
         funcionario.setCpf(request.getParameter("cpf"));
         String datajsp = request.getParameter("nasc");
-       
+
         Date dateTeste = new Date();
         funcionario.setDataNascimento(dateTeste);
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
         funcionario.setSenha(request.getParameter("senha"));
         funcionario.setNivelFuncao("funcao");
-        
+
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
         contato.setTelefone(Long.parseLong(request.getParameter("tel")));
@@ -74,7 +74,7 @@ public class CadastrarFuncionario extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
         response.sendRedirect(request.getContextPath() + "/funcionario/listar");
     }
 

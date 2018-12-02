@@ -18,6 +18,8 @@
 
             <form action="${pageContext.request.contextPath}/funcionario/cadastrar" method="post" class="form-group">
 
+                <input type="text" style="" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
+                
                 <label>Nome:</label><input type="text" class="form-control" id="nome" name="nome">
 
                 <label>Sobrenome:</label><input type="text" class="form-control" id="sobrenome" name="sobrenome">
