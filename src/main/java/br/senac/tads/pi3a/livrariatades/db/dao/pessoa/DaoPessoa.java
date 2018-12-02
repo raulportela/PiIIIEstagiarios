@@ -242,7 +242,7 @@ public class DaoPessoa {
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
                 funcionario.setHashSenha(result.getString("senha"));
-                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setNivelFuncao("nivelFuncao");
                 funcionario.setRg(result.getString("rg"));
 
                 Contato contato = new Contato();
@@ -383,7 +383,7 @@ public class DaoPessoa {
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
                 funcionario.setHashSenha(result.getString("senha"));
-                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setNivelFuncao("nivelFuncao");
                 funcionario.setRg(result.getString("rg"));
 
                 Contato contato = new Contato();

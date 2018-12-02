@@ -43,15 +43,15 @@ codFuncionario INT,
 disponivel boolean,
 nomeUsuario VARCHAR (20),
 senha VARCHAR (500),
-nivelFuncao INT NOT NULL,
+nivelFuncao VARCHAR (20),
 rg VARCHAR (18),
 PRIMARY KEY (id),
 FOREIGN KEY (idPessoa) REFERENCES Pessoa (id));
 
-INSERT INTO Funcionario VALUES (1, 1, 1, 1, 'adminsp', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 4, '1111111111' );  
-INSERT INTO Funcionario VALUES (2, 2, 2, 1, 'adminbr', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 4, '2222222222' );   
-INSERT INTO Funcionario VALUES (3, 3, 3, 1, 'admincg', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 4, '3333333333' );   
-INSERT INTO Funcionario VALUES (4, 4, 4, 1, 'adminjv', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 4, '4444444444' );   
+INSERT INTO Funcionario VALUES (1, 1, 1, 1, 'adminsp', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 'root', '1111111111' );  
+INSERT INTO Funcionario VALUES (2, 2, 2, 1, 'adminbr', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 'root', '2222222222' );   
+INSERT INTO Funcionario VALUES (3, 3, 3, 1, 'admincg', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 'root', '3333333333' );   
+INSERT INTO Funcionario VALUES (4, 4, 4, 1, 'adminjv', '$2a$10$96I1zNKS57CYDRMIUhsk1ehuVwHUwq9IOUT5/yCOHztiuaquEnrNa', 'root', '4444444444' );   
 
 CREATE TABLE Contato(
 id INT AUTO_INCREMENT,

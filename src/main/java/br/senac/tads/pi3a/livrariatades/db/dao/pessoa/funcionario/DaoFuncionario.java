@@ -37,7 +37,7 @@ public class DaoFuncionario {
             preparedStatement.setBoolean(3, funcionario.isDisponivel());
             preparedStatement.setString(4, funcionario.getNomeUsuario());
             preparedStatement.setString(5, funcionario.getHashSenha());
-            preparedStatement.setInt(6, funcionario.getNivelFuncao());
+            preparedStatement.setString(6, funcionario.getNivelFuncao());
             preparedStatement.setString(7, funcionario.getRg());
 
             DaoContato.inserirContato(funcionario.getContato(), ultimaChavePessoa);
@@ -73,7 +73,7 @@ public class DaoFuncionario {
             preparedStatement.setBoolean(2, funcionario.isDisponivel());
             preparedStatement.setString(3, funcionario.getNomeUsuario());
             preparedStatement.setString(4, funcionario.getHashSenha());
-            preparedStatement.setInt(5, funcionario.getNivelFuncao());
+            preparedStatement.setString(5, funcionario.getNivelFuncao());
             preparedStatement.setString(6, funcionario.getRg());
             preparedStatement.setString(7, cpf);
 
@@ -140,7 +140,7 @@ public class DaoFuncionario {
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
                 funcionario.setHashSenha(result.getString("senha"));
-                funcionario.setNivelFuncao(result.getInt("nivelFuncao"));
+                funcionario.setNivelFuncao("nivelFuncao");
                 funcionario.setRg(result.getString("rg"));
                 
                 funcionario.setContato(DaoContato.procurar(funcionario.getIdPessoa()));
@@ -197,7 +197,7 @@ public class DaoFuncionario {
                 funcionario.setDisponivel(result.getBoolean("F.disponivel"));
                 funcionario.setNomeUsuario(result.getString("F.nomeUsuario"));
                 funcionario.setHashSenha(result.getString("F.senha"));
-                funcionario.setNivelFuncao(result.getInt("F.nivelFuncao"));
+                funcionario.setNivelFuncao("F.nivelFuncao");
                 funcionario.setRg(result.getString("F.rg"));
                 
                 Contato contato = new Contato();
