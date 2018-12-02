@@ -19,7 +19,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,11 +38,7 @@ public class CadastrarFuncionario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
-        if (sessao.getAttribute("usuario") == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
+        
         
         Funcionario funcionario = new Funcionario();
         funcionario.setCodFilial(Integer.parseInt(request.getParameter("filial")));

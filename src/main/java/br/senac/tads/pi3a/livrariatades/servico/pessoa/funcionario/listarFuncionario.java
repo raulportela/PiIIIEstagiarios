@@ -33,11 +33,11 @@ public class listarFuncionario extends HttpServlet {
             throws ServletException, IOException {
         String ordem = request.getParameter("ordem");
         
-        HttpSession sessao = request.getSession();
-        if (sessao.getAttribute("usuario") == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
+//        HttpSession sessao = request.getSession();
+//        if (sessao.getAttribute("usuario") == null) {
+//            response.sendRedirect(request.getContextPath() + "/login");
+//            return;
+//        }
 
         List<Funcionario> listaFuncionarios;
         listaFuncionarios = AtulizarLista(ordem);

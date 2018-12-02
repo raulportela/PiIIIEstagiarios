@@ -44,11 +44,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
-        if (sessao.getAttribute("usuario") != null) {
-            response.sendRedirect(request.getContextPath() + "/home");
-            return;
-        }
+        
         String nomeUsuario = request.getParameter("nomeUsuario");
         String senhaAberta = request.getParameter("senhaAberta");
         
@@ -62,7 +58,7 @@ public class Login extends HttpServlet {
         if (funcionario != null) {
             boolean senhaValida = funcionario.validarSenha(senhaAberta);
             if (senhaValida) {
-                sessao = request.getSession();
+                HttpSession sessao = request.getSession();
                 sessao.setAttribute("funcionario", funcionario);
                 response.sendRedirect(request.getContextPath() + "/home");
                 return;
