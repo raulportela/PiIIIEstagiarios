@@ -38,7 +38,8 @@ public class CadastrarFuncionario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        
         Funcionario funcionario = new Funcionario();
         funcionario.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         funcionario.setDisponivel(true);

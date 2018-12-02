@@ -28,6 +28,7 @@ public class ListarProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         List<Produto> listaProdutos;
         listaProdutos = AtulizarLista();
         request.setAttribute("produtos", listaProdutos);

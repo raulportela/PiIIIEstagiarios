@@ -31,6 +31,8 @@ public class AlterarExcluirFuncionario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
         Funcionario funcionario = null;
 
         if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {

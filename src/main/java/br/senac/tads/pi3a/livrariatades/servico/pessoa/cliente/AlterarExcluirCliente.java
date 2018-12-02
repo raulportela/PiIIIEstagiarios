@@ -31,6 +31,7 @@ public class AlterarExcluirCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         Cliente cliente = null;
 
         if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {

@@ -6,7 +6,6 @@
 package br.senac.tads.pi3a.livrariatades.servico.suporte;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.suporte.DaoSuporte;
-import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import br.senac.tads.pi3a.livrariatades.model.suporte.Suporte;
 import br.senac.tads.pi3a.livrariatades.servico.produto.ListarProduto;
 import java.io.IOException;

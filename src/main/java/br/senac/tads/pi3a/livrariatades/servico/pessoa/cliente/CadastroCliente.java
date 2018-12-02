@@ -40,6 +40,7 @@ public class CadastroCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         Cliente cliente = new Cliente();
         
         cliente.setCodFilial(Integer.parseInt(request.getParameter("filial")));

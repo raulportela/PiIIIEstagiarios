@@ -27,8 +27,9 @@ public class AlterarOS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         Suporte suporte = null;
-
+        
         if (request.getParameter("opcao") != null & request.getParameter("id") != null) {
 
             String opcao = request.getParameter("opcao");
