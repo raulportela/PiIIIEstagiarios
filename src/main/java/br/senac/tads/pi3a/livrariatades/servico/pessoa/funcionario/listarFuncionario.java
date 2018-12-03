@@ -41,11 +41,6 @@ public class listarFuncionario extends HttpServlet {
         List<Funcionario> listaFuncionarios;
         listaFuncionarios = AtulizarLista(ordem);
         request.setAttribute("funcionarios", listaFuncionarios);
-        
-        if(ordem != null){
-            response.sendRedirect(request.getContextPath() + "/funcionario/listar");
-            return;
-        }
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/funcionario/listarFuncionario.jsp");
         dispatcher.forward(request, response);

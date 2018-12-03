@@ -130,7 +130,7 @@ public class DaoPessoa {
     public static List<Cliente> listarCliente(String ordem)
             throws SQLException, Exception {
         if (ordem == null) {
-            ordem = "nome";
+            ordem = "P.nome";
         }
         String sql = "SELECT * FROM PESSOA P\n"
                 + "JOIN CLIENTE C\n"
@@ -139,7 +139,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "ORDER BY C." + ordem + " DESC";
+                + "ORDER BY " + ordem;
 
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         Connection connection = null;
@@ -213,7 +213,7 @@ public class DaoPessoa {
                 + "ON P.ID = CT.IDPESSOA\n"
                 + "JOIN ENDERECO E\n"
                 + "ON P.ID = E.IDPESSOA\n"
-                + "ORDER BY " + ordem + " DESC";
+                + "ORDER BY " + ordem;
 
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
         Connection connection = null;

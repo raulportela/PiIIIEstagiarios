@@ -54,7 +54,7 @@
                     <div id="sidebar" class="nav-collapse ">
                         <!-- sidebar menu start-->
                         <ul class="sidebar-menu" id="nav-accordion">
-                            <h5 class="centered">${sessionScope.funcionario.getNome()} ${funcionario.getSobrenome()}</h5> <!-- Nome do Usuario -->
+                            <h5 class="centered">${sessionScope.funcionario.getNome()} ${sessionScope.funcionario.getSobrenome()}</h5> <!-- Nome do Usuario -->
                             
                             <c:if test="${sessioScope.funcionario.getCodFilial() == 1}">
                                 

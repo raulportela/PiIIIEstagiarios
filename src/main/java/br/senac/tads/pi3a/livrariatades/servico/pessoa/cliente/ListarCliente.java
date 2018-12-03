@@ -40,7 +40,7 @@ public class ListarCliente extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/listarCliente.jsp");
         dispatcher.forward(request, response);
-
+        
     }
 
     @Override
