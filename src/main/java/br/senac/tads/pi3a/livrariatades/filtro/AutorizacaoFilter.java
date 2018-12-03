@@ -37,14 +37,14 @@ public class AutorizacaoFilter implements Filter {
 
         // Verifica se usuario ja esta logado
         HttpSession sessao = httpRequest.getSession();
-        if (sessao.getAttribute("usuario") == null) {
+        if (sessao.getAttribute("funcionario") == null) {
             // Redirecionar para tela de login
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
             return;
         }
 
         // Verifica se o usuário possui o papel para acessar funcionalidade.
-        Funcionario funcionario = (Funcionario) sessao.getAttribute("usuario");
+        Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
                 
                 
 //        UsuarioSistema usuario = (UsuarioSistema) sessao.getAttribute("usuario");
@@ -63,11 +63,11 @@ public class AutorizacaoFilter implements Filter {
         String pagina = request.getRequestURI();
         if (pagina.endsWith("/home")) {
             return true;
-        } else if (pagina.endsWith("/peao-page") && funcinario.getNivelFuncao().equals("PEAO")) {
+        } else if (pagina.endsWith("/cliente/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
-        } else if (pagina.endsWith("/fodon-page") && funcinario.getNivelFuncao().equals("FODON")) {
+        } else if (pagina.endsWith("/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
-        }  else if (pagina.endsWith("/god-page") && funcinario.getNivelFuncao().equals("GOD")) {
+        }  else if (pagina.endsWith("/god-page") && funcinario.getNivelFuncao().equals("root")) {
             return true;
         }
         return false;
