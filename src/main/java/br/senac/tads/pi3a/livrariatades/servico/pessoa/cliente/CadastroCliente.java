@@ -40,9 +40,7 @@ public class CadastroCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         Cliente cliente = new Cliente();
-        
         cliente.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         cliente.setDisponivel(true);
         cliente.setNome(request.getParameter("nome"));
@@ -54,8 +52,12 @@ public class CadastroCliente extends HttpServlet {
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
-        contato.setTelefone(Long.parseLong(request.getParameter("tel")));
-        contato.setCelular(Long.parseLong(request.getParameter("cel")));
+        if (request.getParameter("tel") != null & !request.getParameter("tel").equals("")) {
+            contato.setTelefone(Long.parseLong(request.getParameter("tel")));
+        }
+        if (request.getParameter("cel") != null & !request.getParameter("cel").equals("")) {
+            contato.setCelular(Long.parseLong(request.getParameter("cel")));
+        }
 
         Endereco endereco = new Endereco();
         endereco.setRua(request.getParameter("rua"));

@@ -18,12 +18,12 @@
             <div class="modal-body">
                 <table class="table table-hover">
                     <thead>
-                        <tr>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/alterar?ordem=cpf">CPF <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/alterar?ordem=nome">Nome <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/alterar?ordem=telefone">Telefone <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/alterar?ordem=email">E-mail <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/alterar?ordem=disponivel">Status <i class="fa fa-angle-down"></i></a></th>
+                                                <tr>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.cpf ASC">CPF <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=C.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>
                         </tr>
 
                     </thead>

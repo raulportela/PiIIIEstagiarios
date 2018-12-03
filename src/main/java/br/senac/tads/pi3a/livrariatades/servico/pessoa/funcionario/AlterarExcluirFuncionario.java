@@ -34,38 +34,38 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         
         
         Funcionario funcionario = null;
-
+        
         if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {
-            String ordem = request.getParameter("opcao");
             String opcao = request.getParameter("opcao");
             String cpf = request.getParameter("cpf");
 
-            if (opcao.equals("1")) {
-                try {
-                    funcionario = DaoPessoa.procurarFuncionario(cpf);
-                } catch (Exception ex) {
-                    Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                request.setAttribute("funcionario", funcionario);
-                RequestDispatcher dispatcher = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/funcionario/alterarFuncionario.jsp");
-                dispatcher.forward(request, response);
-            } else if (opcao.equals("2")) {
-                try {
-                    DaoFuncionario.mudarStatus(cpf, "0");
-                } catch (Exception ex) {
-                    Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    response.sendRedirect(request.getContextPath() + "/funcionario/listar");
-                
-            }else if (opcao.equals("3")) {
-                try {
-                    DaoFuncionario.mudarStatus(cpf, "1");
-                } catch (Exception ex) {
-                    Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                    response.sendRedirect(request.getContextPath() + "/funcionario/listar");
-                
+            switch (opcao) {
+                case "1":
+                    try {
+                        funcionario = DaoPessoa.procurarFuncionario(cpf);
+                    } catch (Exception ex) {
+                        Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                    }   request.setAttribute("funcionario", funcionario);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(
+                            "/WEB-INF/jsp/funcionario/alterarFuncionario.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                case "2":
+                    try {
+                        DaoFuncionario.mudarStatus(cpf, "0");
+                    } catch (Exception ex) {
+                        Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                    }   response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+                    break;
+                case "3":
+                    try {
+                        DaoFuncionario.mudarStatus(cpf, "1");
+                    } catch (Exception ex) {
+                        Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+                    }   response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -73,10 +73,15 @@ public class AlterarExcluirFuncionario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        Funcionario funcionario2 = null;
+        try {
+            funcionario2 = DaoPessoa.procurarFuncionario(request.getParameter("cpf"));
+        } catch (Exception ex) {
+            Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Funcionario funcionario = new Funcionario();
-
-        funcionario.setDisponivel(true);
+        funcionario.setCodFilial(Integer.parseInt(request.getParameter("filial")));
+        funcionario.setDisponivel(funcionario2.isDisponivel());
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setSobrenome(request.getParameter("sobrenome"));
         funcionario.setCpf(request.getParameter("cpf"));
