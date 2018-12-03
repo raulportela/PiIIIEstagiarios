@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @author Maia's
  */
 @WebFilter(filterName = "AutorizacaoFilter", servletNames = { "HomeServlet" }, 
-        urlPatterns = { "/protegido/*" })
+        urlPatterns = { "/proteger/*" })
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -47,8 +47,7 @@ public class AutorizacaoFilter implements Filter {
         Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
                 
                 
-//        UsuarioSistema usuario = (UsuarioSistema) sessao.getAttribute("usuario");
-//        
+       
         if (verificarAcesso(funcionario, httpRequest, httpResponse)) {
             // Requisicao pode seguir para o Servlet
             chain.doFilter(request, response);
@@ -67,7 +66,7 @@ public class AutorizacaoFilter implements Filter {
             return true;
         } else if (pagina.endsWith("/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
-        }  else if (pagina.endsWith("/god-page") && funcinario.getNivelFuncao().equals("root")) {
+        }  else if (pagina.endsWith("/produto/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
         }
         return false;
