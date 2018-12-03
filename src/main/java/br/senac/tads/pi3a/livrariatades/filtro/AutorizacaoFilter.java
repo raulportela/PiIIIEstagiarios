@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @author Maia's
  */
 @WebFilter(filterName = "AutorizacaoFilter", servletNames = { "HomeServlet" }, 
-        urlPatterns = { "/proteger/*" })
+        urlPatterns = { "/protegido/*" })
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -62,7 +62,7 @@ public class AutorizacaoFilter implements Filter {
         String pagina = request.getRequestURI();
         if (pagina.endsWith("/home")) {
             return true;
-        } else if (pagina.endsWith("/cliente/listar") && funcinario.getNivelFuncao().equals("root")) {
+        } else if (pagina.endsWith("/protegido/cliente/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
         } else if (pagina.endsWith("/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;

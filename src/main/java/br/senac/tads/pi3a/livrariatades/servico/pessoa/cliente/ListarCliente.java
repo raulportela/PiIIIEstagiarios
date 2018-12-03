@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "ListarCliente", urlPatterns = {"/cliente/listar"})
+@WebServlet(name = "ListarCliente", urlPatterns = {"/protegido/cliente/listar"})
 public class ListarCliente extends HttpServlet {
 
     @Override

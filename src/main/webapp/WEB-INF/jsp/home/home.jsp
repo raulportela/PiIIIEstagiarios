@@ -65,7 +65,7 @@
                                 <div class="col-md-2"></div>
                                 <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
                                     <div class="col-md-2 card-item list-group list-group-flush">
-                                        <center><a href="${pageContext.request.contextPath}/cliente/listar"><img src="img/Cliente.png" width="100" height="100"></a></center>
+                                        <center><a href="${pageContext.request.contextPath}/protegido/cliente/listar"><img src="img/Cliente.png" width="100" height="100"></a></center>
                                         <center><h1>Cliente</h1></center>
 
                                     </div>

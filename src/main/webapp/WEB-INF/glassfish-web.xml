@@ -17,7 +17,7 @@
     </filter>
     <filter-mapping>
         <filter-name>AutorizacaoFilter</filter-name>
-        <url-pattern>/proteger/*</url-pattern>
+        <url-pattern>/protegido/*</url-pattern>
     </filter-mapping>
   
 </glassfish-web-app>
