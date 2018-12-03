@@ -52,7 +52,7 @@ public class AutorizacaoFilter implements Filter {
             // Requisicao pode seguir para o Servlet
             chain.doFilter(request, response);
         } else {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/erro-nao-autorizado.jsp");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/erro/erro-nao-autorizado.jsp");
         }
     }
 
@@ -64,9 +64,9 @@ public class AutorizacaoFilter implements Filter {
             return true;
         } else if (pagina.endsWith("/protegido/cliente/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
-        } else if (pagina.endsWith("/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
+        } else if (pagina.endsWith("/protegido/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
-        }  else if (pagina.endsWith("/produto/listar") && funcinario.getNivelFuncao().equals("root")) {
+        }  else if (pagina.endsWith("/protegido/produto/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
         }
         return false;

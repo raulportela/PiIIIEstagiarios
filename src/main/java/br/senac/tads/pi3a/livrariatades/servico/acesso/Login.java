@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
         String code = request.getParameter("code");
         if("99".equals(code)){
             request.setAttribute("mensagemErro", "Você saiu do sistema");
-            return;
+            
         }
         
         RequestDispatcher dispatcher

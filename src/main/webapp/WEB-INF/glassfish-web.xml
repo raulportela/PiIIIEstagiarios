@@ -11,13 +11,4 @@
             <description>Keep a copy of the generated servlet class' java code.</description>
         </property>
     </jsp-config>
-    <filter>
-        <filter-name>AutorizacaoFilter</filter-name>
-        <filter-class>br.senac.tads.pi3a.livrariatades.filtro</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>AutorizacaoFilter</filter-name>
-        <url-pattern>/protegido/*</url-pattern>
-    </filter-mapping>
-  
 </glassfish-web-app>
