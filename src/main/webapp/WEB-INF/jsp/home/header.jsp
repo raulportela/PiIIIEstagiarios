@@ -102,7 +102,7 @@
                                 </a>
                             </li>  
                             <li>
-                                <a href="${pageContext.request.contextPath}/venda/efetuar/listar">
+                                <a href="${pageContext.request.contextPath}/venda/efetuar">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Venda</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>

@@ -29,10 +29,24 @@ public class ListarCliente extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         String ordem = request.getParameter("ordem");
-        
+        String vender = request.getParameter("vender");
+        String cpf = request.getParameter("cpf");
+        if (vender != null && cpf != null) {
+            if (vender.equals("1")) {
+                Cliente cliente = null;
+                try {
+                    cliente = DaoPessoa.procurarCliente(cpf);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                request.setAttribute("clienteVenda", cliente);
+                response.sendRedirect(request.getContextPath() + "/venda/efetuar");
+            }
+            return;
+        }
+
         List<Cliente> listaClientes = new ArrayList<>();
         listaClientes = AtulizarLista(ordem);
         request.setAttribute("clientes", listaClientes);
@@ -40,7 +54,7 @@ public class ListarCliente extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/cliente/listarCliente.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
     @Override
@@ -49,7 +63,7 @@ public class ListarCliente extends HttpServlet {
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher(
-                        "/WEB-INF/jsp/cliente/backupTela.jsp");//
+                        "/WEB-INF/jsp/cliente/listar.jsp");//
 
         dispatcher.forward(request, response);
 

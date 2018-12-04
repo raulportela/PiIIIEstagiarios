@@ -6,7 +6,6 @@
 package br.senac.tads.pi3a.livrariatades.servico.venda;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +27,7 @@ public class EfetuarVenda extends HttpServlet {
         
         
         RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/jsp/venda/EfetuarVenda.jsp");
+                "/WEB-INF/jsp/venda/efetuar.jsp");
         dispatcher.forward(request, response);
         
     }
