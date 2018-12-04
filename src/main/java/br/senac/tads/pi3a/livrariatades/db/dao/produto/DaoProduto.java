@@ -24,7 +24,7 @@ public class DaoProduto {
 
         String sql = "INSERT INTO Editora VALUES (0, ?)";
         String sql2 = "INSERT INTO Autor VALUES (0, ?)";
-        String sql3 = "INSERT INTO Livro VALUES (0, ?, ?, ?, ?, ?, ?, ?)";
+        String sql3 = "INSERT INTO Livro VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -62,11 +62,12 @@ public class DaoProduto {
             preparedStatement = connection.prepareStatement(sql3);
             preparedStatement.setInt(1, chaveEditora);
             preparedStatement.setInt(2, chaveAutor);
-            preparedStatement.setBoolean(3, produto.isDisponivel());
-            preparedStatement.setString(4, produto.getTitulo());
-            preparedStatement.setString(5, produto.getDescricao());
-            preparedStatement.setInt(6, produto.getQuantidade());
-            preparedStatement.setFloat(7, produto.getValor());
+            preparedStatement.setInt(3, produto.getCodFilial());
+            preparedStatement.setBoolean(4, produto.isDisponivel());
+            preparedStatement.setString(5, produto.getTitulo());
+            preparedStatement.setString(6, produto.getDescricao());
+            preparedStatement.setInt(7, produto.getQuantidade());
+            preparedStatement.setFloat(8, produto.getValor());
             preparedStatement.execute();
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {

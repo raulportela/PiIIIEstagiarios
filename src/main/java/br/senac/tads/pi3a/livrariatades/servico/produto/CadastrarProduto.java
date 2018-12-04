@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "CadastrarProduto", urlPatterns = {"/produto/cadastrar"})
+@WebServlet(name = "CadastrarProduto", urlPatterns = {"/protegido/produto/cadastrar"})
 public class CadastrarProduto extends HttpServlet {
 
     @Override

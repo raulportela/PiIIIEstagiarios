@@ -10,6 +10,8 @@
                     <div class="modal-body">
 
                         <form action="${pageContext.request.contextPath}/produto/cadastrar" method="post" class="form-group">
+                            
+                            <input type="text" style="display: none" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
 
                             <label>Editora:</label><input type="text" class="form-control" id="editora" name="editora">
 

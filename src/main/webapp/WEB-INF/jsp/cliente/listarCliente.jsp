@@ -18,9 +18,10 @@
             <div class="modal-body">
                 <table class="table table-hover">
                     <thead>
-                                                <tr>
+                        <tr>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.cpf ASC">CPF <i class="fa fa-angle-down"></i></a></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col" style="color: #449DD5">(Vender)</th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=C.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>
@@ -31,7 +32,8 @@
                         <c:forEach items="${clientes}" var="cliente"> 
                             <tr data-toggle="modal" data-target="#modelClient">
                                 <th><c:out value="${cliente.getCpf()}" /></th>
-                                <td><c:out value="${cliente.getNome()} ${cliente.getSobrenome()}"/> <a href="${pageContext.request.contextPath}/venda/efetuar?vender=1&cpf=${cliente.getCpf()}" <i class="fa fa-shopping-cart"></a></i></td>
+                                <td><c:out value="${cliente.getNome()} ${cliente.getSobrenome()}"/> </td>
+                                <td><center><a href="${pageContext.request.contextPath}/venda/efetuar?vender=1&cpf=${cliente.getCpf()}"> <i class="fa fa-shopping-cart"></i></a></center></td>
                                 <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
                                 <td><c:out value="${cliente.getContato().getEmail()}" /></td>
 

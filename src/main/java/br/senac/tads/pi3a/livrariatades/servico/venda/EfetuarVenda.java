@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "EfetuarVenda", urlPatterns = {"/venda/efetuar"})
+@WebServlet(name = "EfetuarVenda", urlPatterns = {"/protegido/venda/efetuar"})
 public class EfetuarVenda extends HttpServlet {
 
     @Override

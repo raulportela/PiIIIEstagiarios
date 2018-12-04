@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "CadastrarOS", urlPatterns = {"/suporte/cadastrar"})
+@WebServlet(name = "CadastrarOS", urlPatterns = {"/protegido/suporte/cadastrar"})
 public class CadastrarOS extends HttpServlet {
 
     @Override

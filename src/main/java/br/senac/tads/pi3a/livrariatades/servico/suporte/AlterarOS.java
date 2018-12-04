@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "AlterarOS", urlPatterns = {"/suporte/alterar"})
+@WebServlet(name = "AlterarOS", urlPatterns = {"/protegido/suporte/alterar"})
 public class AlterarOS extends HttpServlet {
 
     @Override

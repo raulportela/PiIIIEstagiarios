@@ -19,6 +19,7 @@ public class Produto {
     private Integer quantidade;
     private boolean disponivel;
     private Float valor;
+    private int codFilial;
 
     public int getIdEditora() {
         return idEditora;
@@ -100,6 +101,14 @@ public class Produto {
 
     public void setId(int l) {
         this.id = l;
+    }
+
+    public int getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(int codFilial) {
+        this.codFilial = codFilial;
     }
     
 }

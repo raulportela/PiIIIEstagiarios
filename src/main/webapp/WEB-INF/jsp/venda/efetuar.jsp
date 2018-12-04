@@ -33,14 +33,15 @@
                 <div class="modal-body">
 
                     <form class="form-group">
-                        <c:if test="${clienteVenda != null}">
-                            <label>CPF:</label> <input type="text" value="${clienteVenda.getCpf()}" class="form-control" id="cpf" size="10">
-                            <label>Cliente:</label><input type="text" value="${clienteVenda.getNome()} ${clienteVenda.getSobrenome()}" class="form-control" id="cliente" readonly="">
+                        <c:if test="${sessionScope.clienteVenda != null}">
+                            <label>CPF:</label> <input type="text" readonly="" value="${sessionScope.clienteVenda.getCpf()}" class="form-control" id="cpf" size="10">
+                            <label>Cliente:</label><input type="text" value="${sessionScope.clienteVenda.getNome()} ${clienteVenda.getSobrenome()}" class="form-control" id="cliente" readonly="">
 
                         </c:if>
-                        <c:if test="${clienteVenda == null}">
-                            <label>CPF:</label> <input type="text" class="form-control" id="cpf" size="10">
-                            <label>Cliente:</label><input type="text"  class="form-control" id="cliente" readonly="">
+                        <c:if test="${sessionScope.clienteVenda == null}">
+                            <a href="${pageContext.request.contextPath}/protegido/cliente/listar" >
+                                <input type="button" value="Selecionar cliente" class="btn btn-primary" data-dismiss="modal"><br><br>
+                            </a>
 
                         </c:if>
 

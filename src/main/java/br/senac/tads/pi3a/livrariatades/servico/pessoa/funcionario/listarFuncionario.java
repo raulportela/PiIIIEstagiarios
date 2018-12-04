@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "PesquisarFuncionario", urlPatterns = {"/funcionario/listar"})
+@WebServlet(name = "PesquisarFuncionario", urlPatterns = {"/protegido/funcionario/listar"})
 public class listarFuncionario extends HttpServlet {
 
     @Override
