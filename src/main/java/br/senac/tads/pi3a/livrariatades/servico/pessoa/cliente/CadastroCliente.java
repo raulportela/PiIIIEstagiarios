@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/cliente/cadastrar"})
+@WebServlet(name = "InclusaoClienteServlet", urlPatterns = {"/protegido/cliente/cadastrar"})
 public class CadastroCliente extends HttpServlet {
 
     @Override

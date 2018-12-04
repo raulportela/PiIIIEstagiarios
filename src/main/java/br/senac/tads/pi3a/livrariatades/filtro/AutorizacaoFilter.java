@@ -59,10 +59,15 @@ public class AutorizacaoFilter implements Filter {
     private boolean verificarAcesso(Funcionario funcinario, 
             HttpServletRequest request,
             HttpServletResponse response) {
+        String funcao = funcinario.getNivelFuncao();
         String pagina = request.getRequestURI();
+        
+       
+        
+        
         if (pagina.endsWith("/home")) {
             return true;
-        } else if (pagina.endsWith("/protegido/cliente/listar") && funcinario.getNivelFuncao().equals("root")) {
+        } else if (pagina.endsWith("/protegido/cliente/listar") && funcao.equals("root")) {
             return true;
         } else if (pagina.endsWith("/protegido/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
