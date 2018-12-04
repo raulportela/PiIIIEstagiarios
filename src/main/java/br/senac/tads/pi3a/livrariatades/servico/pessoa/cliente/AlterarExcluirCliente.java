@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "AlterarCliente", urlPatterns = {"/cliente/alterar"})
+@WebServlet(name = "AlterarCliente", urlPatterns = {"/protegido/cliente/alterar"})
 public class AlterarExcluirCliente extends HttpServlet {
 
     @Override
