@@ -31,7 +31,7 @@
                         <c:forEach items="${clientes}" var="cliente"> 
                             <tr data-toggle="modal" data-target="#modelClient">
                                 <th><c:out value="${cliente.getCpf()}" /></th>
-                                <td><c:out value="${cliente.getNome()} ${cliente.getSobrenome()}"/> <a href="$${pageContext.request.contextPath}/cliente/listar?vender=1&cpf=${cliente.getCpf()}" <i class="fa fa-shopping-cart"></a></i></td>
+                                <td><c:out value="${cliente.getNome()} ${cliente.getSobrenome()}"/> <a href="${pageContext.request.contextPath}/venda/efetuar?vender=1&cpf=${cliente.getCpf()}" <i class="fa fa-shopping-cart"></a></i></td>
                                 <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
                                 <td><c:out value="${cliente.getContato().getEmail()}" /></td>
 

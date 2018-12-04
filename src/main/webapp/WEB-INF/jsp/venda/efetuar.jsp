@@ -39,8 +39,8 @@
 
                         </c:if>
                         <c:if test="${clienteVenda == null}">
-                            <label>CPF:</label> <input type="text" value="${clienteVenda.getCpf()}" class="form-control" id="cpf" size="10">
-                            <label>Cliente:</label><input type="text" value="${clienteVenda.getNome()} ${clienteVenda.getSobrenome()}" class="form-control" id="cliente" readonly="">
+                            <label>CPF:</label> <input type="text" class="form-control" id="cpf" size="10">
+                            <label>Cliente:</label><input type="text"  class="form-control" id="cliente" readonly="">
 
                         </c:if>
 

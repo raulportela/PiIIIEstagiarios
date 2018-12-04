@@ -31,21 +31,6 @@ public class ListarCliente extends HttpServlet {
             throws ServletException, IOException {
 
         String ordem = request.getParameter("ordem");
-        String vender = request.getParameter("vender");
-        String cpf = request.getParameter("cpf");
-        if (vender != null && cpf != null) {
-            if (vender.equals("1")) {
-                Cliente cliente = null;
-                try {
-                    cliente = DaoPessoa.procurarCliente(cpf);
-                } catch (Exception ex) {
-                    Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                request.setAttribute("clienteVenda", cliente);
-                response.sendRedirect(request.getContextPath() + "/venda/efetuar");
-            }
-            return;
-        }
 
         List<Cliente> listaClientes = new ArrayList<>();
         listaClientes = AtulizarLista(ordem);
