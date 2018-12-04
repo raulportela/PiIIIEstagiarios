@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "InclusaoFilial", urlPatterns = {"/filial/cadastrar"})
+@WebServlet(name = "InclusaoFilial", urlPatterns = {"/protegido/filial/cadastrar"})
 public class CadastroFilial extends HttpServlet {
 
     @Override

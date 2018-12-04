@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author merlucci
  */
-@WebServlet(name = "ProdutosDash", urlPatterns = {"/produto"})
+@WebServlet(name = "ProdutosDash", urlPatterns = {"/protegido/produto"})
 public class ProdutosDash extends HttpServlet {
 
     @Override

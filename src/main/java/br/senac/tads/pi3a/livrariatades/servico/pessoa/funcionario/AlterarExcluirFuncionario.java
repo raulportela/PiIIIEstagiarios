@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Jeferson Nolasco
  */
-@WebServlet(name = "Alterarfuncinario", urlPatterns = {"/funcionario/alterar"})
+@WebServlet(name = "Alterarfuncinario", urlPatterns = {"/protegido/funcionario/alterar"})
 public class AlterarExcluirFuncionario extends HttpServlet {
 
     @Override

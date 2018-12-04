@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "ListarOS", urlPatterns = {"/suporte/listar"})
+@WebServlet(name = "ListarOS", urlPatterns = {"/protegido/suporte/listar"})
 public class ListarOS extends HttpServlet {
 
     

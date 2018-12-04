@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "AlterarExcluirProduto", urlPatterns = {"/produto/alterar"})
+@WebServlet(name = "AlterarExcluirProduto", urlPatterns = {"/protegido/produto/alterar"})
 public class AlterarExcluirProduto extends HttpServlet {
 
     @Override

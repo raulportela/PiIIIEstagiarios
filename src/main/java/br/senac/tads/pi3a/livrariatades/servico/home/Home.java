@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Raul de Paula
  */
-@WebServlet(name = "Home", urlPatterns = {"/home"})
+@WebServlet(name = "Home", urlPatterns = {"/protegido/home"})
 public class Home extends HttpServlet {
 
     @Override
