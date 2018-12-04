@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,12 +26,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "EfetuarVenda", urlPatterns = {"/venda/efetuar"})
 public class EfetuarVenda extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                String vender = request.getParameter("vender");
+
+        String vender = request.getParameter("vender");
         String cpf = request.getParameter("cpf");
         if (vender != null && cpf != null) {
             if (vender.equals("1")) {
@@ -40,23 +40,21 @@ public class EfetuarVenda extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                request.setAttribute("clienteVenda", cliente);
-                response.sendRedirect(request.getContextPath() + "/venda/efetuar");
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("clienteVenda", cliente);
             }
-            return;
         }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/venda/efetuar.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-    }
 
+    }
 
 }
