@@ -40,6 +40,7 @@ public class CadastrarProduto extends HttpServlet {
         Produto produto = new Produto();
 
         produto.setDisponivel(true);
+        produto.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         produto.setEditora(request.getParameter("editora"));
         produto.setAutor(request.getParameter("autor"));
         produto.setTitulo(request.getParameter("titulo"));
