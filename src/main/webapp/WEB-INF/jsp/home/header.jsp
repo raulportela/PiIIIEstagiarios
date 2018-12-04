@@ -27,7 +27,7 @@
             <!--header start-->
             <header class="header black-bg">
                 <!--logo start-->
-                <a class="logo" href="${pageContext.request.contextPath}/home"><b><span>L</span>ivraria<span>S</span>enac</b></a>
+                <a class="logo" href="${pageContext.request.contextPath}/protegido/home"><b><span>L</span>ivraria<span>S</span>enac</b></a>
                 <!--logo end-->
 
                 <div class="nav notify-row" id="top_menu">
@@ -83,50 +83,50 @@
 
 
                             <li>
-                                <a href="${pageContext.request.contextPath}/home">
+                                <a href="${pageContext.request.contextPath}/protegido/home">
                                     <i class="fa fa-home"></i>
                                     <span>Home</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li> 
 
                             <li>
-                                <a href="${pageContext.request.contextPath}/funcionario/listar">
+                                <a href="${pageContext.request.contextPath}/protegido/funcionario/listar">
                                     <i class="fa fa-user"></i>
                                     <span>Funcionario</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li> 
                             <li>
-                                <a href="${pageContext.request.contextPath}/produto/listar">
+                                <a href="${pageContext.request.contextPath}/protegido/produto/listar">
                                     <i class="fa fa-archive"></i>
                                     <span>Produtos</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li>  
                             <li>
-                                <a href="${pageContext.request.contextPath}/venda/efetuar">
+                                <a href="${pageContext.request.contextPath}/protegido/venda/efetuar">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span>Venda</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/filiais/listar">
+                                <a href="${pageContext.request.contextPath}/protegido/filiais/listar">
                                     <i class="fa fa-building-o"></i>
                                     <span>Filiais</span> <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li> 
                             <li>
-                                <a href="${pageContext.request.contextPath}/cliente/listar">
+                                <a href="${pageContext.request.contextPath}/protegido/cliente/listar">
                                     <i class="fa fa-users"></i>
                                     <span>Clientes</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li> 
                             <li>
-                                <a href="${pageContext.request.contextPath}/relatorio">
+                                <a href="${pageContext.request.contextPath}/protegido/relatorio">
                                     <i class="fa fa-bar-chart-o"></i>
                                     <span>Relatórios</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>
                             </li> 
                             <li>
-                                <a href="${pageContext.request.contextPath}/suporte">
+                                <a href="${pageContext.request.contextPath}/protegido/suporte">
                                     <i class="fa fa-info"></i>
                                     <span>Suporte</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>

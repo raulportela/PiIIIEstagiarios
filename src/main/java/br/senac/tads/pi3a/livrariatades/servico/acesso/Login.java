@@ -60,7 +60,7 @@ public class Login extends HttpServlet {
             if (senhaValida) {
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("funcionario", funcionario);
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "/protegido/home");
                 return;
             }
         }
