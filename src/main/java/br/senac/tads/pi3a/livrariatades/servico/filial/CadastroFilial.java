@@ -45,7 +45,7 @@ public class CadastroFilial extends HttpServlet {
             Logger.getLogger(CadastroFilial.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        response.sendRedirect(request.getContextPath() + "/filial/listar");
+        response.sendRedirect(request.getContextPath() + "/protegido/filial/listar");
     }
 
 }

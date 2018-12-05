@@ -14,7 +14,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-group" items="${cliente}" var="cliente" action="${pageContext.request.contextPath}/cliente/alterar" method="post">
+                        <form class="form-group" items="${cliente}" var="cliente" action="${pageContext.request.contextPath}/protegido/cliente/alterar" method="post">
 
                             <label>Nome:<label style = "color: red">*</label></label><input value="${cliente.getNome()}" type="text" class="form-control" id="nome" name="nome">
 
@@ -42,7 +42,7 @@
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary" onclick="">Alterar</button>
-                                <a href="${pageContext.request.contextPath}/home">
+                                <a href="${pageContext.request.contextPath}/protegido/home">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                                 </a>
                             </div>

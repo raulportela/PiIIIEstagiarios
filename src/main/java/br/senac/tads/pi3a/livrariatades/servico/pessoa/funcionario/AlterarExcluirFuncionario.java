@@ -55,14 +55,14 @@ public class AlterarExcluirFuncionario extends HttpServlet {
                         DaoFuncionario.mudarStatus(cpf, "0");
                     } catch (Exception ex) {
                         Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                    }   response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+                    }   response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
                     break;
                 case "3":
                     try {
                         DaoFuncionario.mudarStatus(cpf, "1");
                     } catch (Exception ex) {
                         Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                    }   response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+                    }   response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
                     break;
                 default:
                     break;
@@ -116,7 +116,7 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         }
         
 
-        response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+        response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
 
     }
 

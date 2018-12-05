@@ -10,7 +10,7 @@
 
                     <div class="modal-body">
 
-                        <form items="${produto}" var="produto" action="${pageContext.request.contextPath}/produto/alterar" method="post" class="form-group">
+                        <form items="${produto}" var="produto" action="${pageContext.request.contextPath}/protegido/produto/alterar" method="post" class="form-group">
 
                             <label>Cod:</label><input value="${produto.getId()}" type="text" class="form-control" id="cod" name="cod" readonly>
 
@@ -29,7 +29,7 @@
                             <label>Valor Unitário:</label><input value="${produto.getValor()}" type="text" class="form-control" id="valorunitario" name="valorunitario" >
 
                             <div class="modal-footer">
-                                <a href="${pageContext.request.contextPath}/home">   
+                                <a href="${pageContext.request.contextPath}/protegido/home">   
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 </a>
                                 <button type="submit" class="btn btn-primary" >Alterar</button>

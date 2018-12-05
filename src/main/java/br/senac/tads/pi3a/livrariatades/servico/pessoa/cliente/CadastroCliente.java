@@ -75,7 +75,7 @@ public class CadastroCliente extends HttpServlet {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        response.sendRedirect(request.getContextPath() + "/cliente/listar");
+        response.sendRedirect(request.getContextPath() + "/protegido/cliente/listar");
     }
 
 }

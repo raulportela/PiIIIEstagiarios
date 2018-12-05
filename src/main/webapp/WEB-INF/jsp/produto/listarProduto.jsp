@@ -26,7 +26,7 @@
                                     <tr data-toggle="modal" data-target="#modelProduto">
                                         <th><c:out value="${produto.getId()}" /></th>
                                         <td><c:out value="${produto.getTitulo()}" /></td>
-                                        <td><center><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?produtovenda=id=${produto.getId()}"><i class="fa fa-shopping-cart"></i></a></center></td>
+                                        <td><center><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=1&produtovenda=id=${produto.getId()}"><i class="fa fa-shopping-cart"></i></a></center></td>
                                         <td><c:out value="${produto.getAutor()}" /></td>
                                         <td><c:out value="${produto.getQuantidade()}" /></td>
                                         <td><c:out value="${produto.getValor()}" /></td>
@@ -46,7 +46,7 @@
                 <a href="${pageContext.request.contextPath}/protegido/produto/cadastrar">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Novo produto</button>
                 </a>
-                <a href="${pageContext.request.contextPath}/home">
+                <a href="${pageContext.request.contextPath}/protegido/home">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                 </a>
             </div>

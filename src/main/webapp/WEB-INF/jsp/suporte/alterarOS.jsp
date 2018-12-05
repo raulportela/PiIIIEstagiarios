@@ -19,7 +19,7 @@
 
         <div class="modal-body">
 
-            <form items="${suporte}" var="suporte" action="${pageContext.request.contextPath}/suporte/alterar" method="post" class="form-group" readonly>
+            <form items="${suporte}" var="suporte" action="${pageContext.request.contextPath}/protegido/suporte/alterar" method="post" class="form-group" readonly>
 
                 <label>Codigo OS:</label> <input type="text" value="${suporte.getId()}" class="form-control" id="id" name="id" readonly>
 
@@ -32,7 +32,7 @@
                 <label>Data de abertura:</label><input type="text" value="${suporte.getDataAbertura()}" class="form-control" id="dataabertura" name="dataabertura" readonly>
 
                 <div class="modal-footer">
-                    <a href="${pageContext.request.contextPath}/home">   
+                    <a href="${pageContext.request.contextPath}/protegido/home">   
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </a>
 

@@ -51,7 +51,7 @@ public class AlterarExcluirProduto extends HttpServlet {
             } else if (opcao.equals("2")) {
                 try {
                     DaoProduto.excluir(id);
-                    response.sendRedirect(request.getContextPath() + "/produto/listar");
+                    response.sendRedirect(request.getContextPath() + "/produto/produto/listar");
                 } catch (Exception ex) {
                     Logger.getLogger(AlterarExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
                 }

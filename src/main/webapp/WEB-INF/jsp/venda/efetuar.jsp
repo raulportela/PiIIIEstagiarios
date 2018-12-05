@@ -57,19 +57,18 @@
                                     <th scope="col">Estoque</th>
                                     <th scope="col">Quantidade</th>
                                     <th scope="col">Valor Unitário</th>
-                                    <th scope="col">Remover</th>
 
                                 </tr>
 
                             </thead>
                             <tbody>
-                                <c:forEach items="${sessionScope.listaProduto}" var="produto">
+                                <c:forEach items="${sessionScope.listaVenda}" var="itemVenda">
                                 <tr data-toggle="modal">
-                                    <th><c:out value="${produto.getId()}" /></th>
-                                    <td><c:out value="${produto.getTitulo()}" /></td>
-                                    <td><c:out value="${produto.getEstoque()}" /></td>
-                                    <td><c:out value="${produto.getQuantidade()}" /></td>
-                                    <td><c:out value="${produto.getValorUnitario()}" /></td>
+                                    <th><c:out value="${itemVenda.getProduto().getId()}" /></th>
+                                    <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
+                                    <td><c:out value="${itemVenda.getProduto().getEstoque()}" /></td>
+                                    <td><c:out value="${itemVenda.getQuantidade()}" /></td>
+                                    <td><c:out value="${itemVenda.getProduto().getValorUnitario()}" /></td>
                                     <td><button type="button" class="btn btn-primary" data-dismiss="modal">Remover</button></td>
                                     
 

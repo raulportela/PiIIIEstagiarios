@@ -16,7 +16,7 @@
 
         <div class="modal-body">
 
-            <form action="${pageContext.request.contextPath}/suporte/cadastrar" method="post" class="form-group">
+            <form action="${pageContext.request.contextPath}/protegido/suporte/cadastrar" method="post" class="form-group">
 
                 <label>Codigo Funcionario:</label><input type="text" value="1" class="form-control" id="codfuncionario" name="codfuncionario" readonly>
 
@@ -25,7 +25,7 @@
                 <label>Detalhe:</label><input type="text" class="form-control" id="detalhe" name="detalhe">
 
                 <div class="modal-footer">
-                    <a href="${pageContext.request.contextPath}/home">   
+                    <a href="${pageContext.request.contextPath}/protegido/home">   
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </a>
 

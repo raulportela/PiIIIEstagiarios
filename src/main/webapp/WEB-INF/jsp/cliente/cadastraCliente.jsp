@@ -16,7 +16,7 @@
 
         <div class="modal-body">
 
-            <form action="${pageContext.request.contextPath}/cliente/cadastrar" method="post" class="form-group">
+            <form action="${pageContext.request.contextPath}/protegido/cliente/cadastrar" method="post" class="form-group">
                 
                 <input type="text" style="display: none" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
                 
@@ -51,7 +51,7 @@
                 <label>Complemento:<label style = "color: red">*</label></label><input type="text" class="form-control"  id="complemento" name="complemento">
 
                 <div class="modal-footer">
-                    <a href="${pageContext.request.contextPath}/home">   
+                    <a href="${pageContext.request.contextPath}/protegido/home">   
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     </a>
 

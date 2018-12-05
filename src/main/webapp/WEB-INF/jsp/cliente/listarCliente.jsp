@@ -19,12 +19,12 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.cpf ASC">CPF <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col" style="color: #449DD5">Vender <i class="fa fa-shopping-cart"></i></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=C.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/cliente/listar?ordem=P.cpf ASC">CPF <i class="fa fa-"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/cliente/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col" style="color: #449DD5">Vender</th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/cliente/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/cliente/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/cliente/listar?ordem=C.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>
                         </tr>
 
                     </thead>
@@ -33,7 +33,7 @@
                             <tr data-toggle="modal" data-target="#modelClient">
                                 <th><c:out value="${cliente.getCpf()}" /></th>
                                 <td><c:out value="${cliente.getNome()} ${cliente.getSobrenome()}"/> </td>
-                                <td><center><a href="${pageContext.request.contextPath}/venda/efetuar?vender=1&cpf=${cliente.getCpf()}"> <i class="fa fa-shopping-cart"></i></a></center></td>
+                                <td><center><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=2&vender=1&cpf=${cliente.getCpf()}"> <i class="fa fa-shopping-cart"></i></a></center></td>
                                 <td><c:out value="${cliente.getContato().getTelefone()}" /></td>
                                 <td><c:out value="${cliente.getContato().getEmail()}" /></td>
 
@@ -44,20 +44,20 @@
                                     <td style="color: red"><c:out value="Desativo" /></td>
                                 </c:if>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=1&cpf=${cliente.getCpf()}">
+                                    <a href="${pageContext.request.contextPath}/protegido/cliente/alterar?opcao=1&cpf=${cliente.getCpf()}">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                     </a>
                                 </td>
                                 <c:if test="${cliente.isDisponivel() == true }">
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=2&cpf=${cliente.getCpf()}">
+                                        <a href="${pageContext.request.contextPath}/protegido/cliente/alterar?opcao=2&cpf=${cliente.getCpf()}">
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Desativar</button>
                                         </a>
                                     </td>
                                 </c:if>
                                 <c:if test="${cliente.isDisponivel() == false }">
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=3&cpf=${cliente.getCpf()}">
+                                        <a href="${pageContext.request.contextPath}/protegido/cliente/alterar?opcao=3&cpf=${cliente.getCpf()}">
                                             <button type="button" class="btn btn-primary" data-dismiss="modal">Reativar</button>
                                         </a>
                                     </td>
@@ -69,10 +69,10 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="${pageContext.request.contextPath}/cliente/cadastrar">
+                <a href="${pageContext.request.contextPath}/protegido/cliente/cadastrar">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Novo cliente</button>
                 </a>
-                <a href="${pageContext.request.contextPath}/home">
+                <a href="${pageContext.request.contextPath}/protegido/home">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                 </a>
             </div>

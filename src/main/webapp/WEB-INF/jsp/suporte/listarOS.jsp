@@ -37,12 +37,12 @@
                                         <td><c:out value="${suporte.getDataAbertura()}" /></td>
                                         <td><c:out value="${suporte.getDataFechamento()}" /></td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/suporte/alterar?opcao=1&id=${suporte.getId()}">
+                                            <a href="${pageContext.request.contextPath}/protegido/suporte/alterar?opcao=1&id=${suporte.getId()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/suporte/alterar?opcao=2&id=${suporte.getId()}">
+                                            <a href="${pageContext.request.contextPath}/protegido/suporte/alterar?opcao=2&id=${suporte.getId()}">
                                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar OS</button>
                                             </a>
                                         </td>
@@ -52,7 +52,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <a href="${pageContext.request.contextPath}/home">
+                        <a href="${pageContext.request.contextPath}/protegido/home">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                         </a>
                     </div>

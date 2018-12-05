@@ -46,7 +46,7 @@ public class CadastrarOS extends HttpServlet {
         
         try {
             DaoSuporte.inserir(suporte);
-            response.sendRedirect(request.getContextPath() + "/suporte/listar");
+            response.sendRedirect(request.getContextPath() + "/protegido/suporte/listar");
         } catch (Exception ex) {
             Logger.getLogger(CadastrarOS.class.getName()).log(Level.SEVERE, null, ex);
         }

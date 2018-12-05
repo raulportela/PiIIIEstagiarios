@@ -29,7 +29,7 @@
 
 
                             <div class="modal-footer">
-                                <a href="${pageContext.request.contextPath}/home">   
+                                <a href="${pageContext.request.contextPath}/protegido/home">   
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 </a>
 

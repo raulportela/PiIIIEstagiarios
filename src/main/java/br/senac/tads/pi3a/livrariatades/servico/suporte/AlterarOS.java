@@ -47,7 +47,7 @@ public class AlterarOS extends HttpServlet {
             } else if (opcao.equals("2")) {
                 try {
                     DaoSuporte.finalizar(id);
-                    response.sendRedirect(request.getContextPath() + "/suporte/listar");
+                    response.sendRedirect(request.getContextPath() + "/protegido/suporte/listar");
                 } catch (Exception ex) {
                     Logger.getLogger(AlterarOS.class.getName()).log(Level.SEVERE, null, ex);
                     

@@ -76,7 +76,7 @@ public class CadastrarFuncionario extends HttpServlet {
             Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        response.sendRedirect(request.getContextPath() + "/funcionario/listar");
+        response.sendRedirect(request.getContextPath() + "/produto/funcionario/listar");
     }
 
 }
