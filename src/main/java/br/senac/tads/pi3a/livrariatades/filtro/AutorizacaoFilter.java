@@ -7,6 +7,8 @@ package br.senac.tads.pi3a.livrariatades.filtro;
 
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -22,8 +24,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Maia's
  */
-@WebFilter(filterName = "AutorizacaoFilter", servletNames = { "HomeServlet" }, 
-        urlPatterns = { "/protegido/*" })
+@WebFilter(filterName = "AutorizacaoFilter", servletNames = {"HomeServlet"},
+        urlPatterns = {"/protegido/*"})
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -45,10 +47,8 @@ public class AutorizacaoFilter implements Filter {
 
         // Verifica se o usuário possui o papel para acessar funcionalidade.
         Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
-                
-                
-       
-        if (verificarAcesso(funcionario, httpRequest, httpResponse)) {
+
+        if (listaDeAcesso (funcionario, httpRequest, httpResponse)) {
             // Requisicao pode seguir para o Servlet
             chain.doFilter(request, response);
         } else {
@@ -56,25 +56,71 @@ public class AutorizacaoFilter implements Filter {
         }
     }
 
-    private boolean verificarAcesso(Funcionario funcinario, 
+    private boolean listaDeAcesso(Funcionario funcinario,
             HttpServletRequest request,
             HttpServletResponse response) {
+
         String funcao = funcinario.getNivelFuncao();
         String pagina = request.getRequestURI();
-        
-       
-        
-        
-        if (pagina.endsWith("/home")) {
+//              TODAS PAGINAS
+//            "/protegido/home"
+//            "/protegido/funcionario/listar"
+//            "/protegido/produto/listar"
+//            "/protegido/venda/efetuar"
+//            "/protegido/filiais/listar"
+//            "/protegido/cliente/listar"
+//            "/protegido/relatorio"
+//            "/protegido/suporte"
+
+        if (funcao.equals("root")) {
             return true;
-        } else if (pagina.endsWith("/protegido/cliente/listar") && funcao.equals("root")) {
-            return true;
-        } else if (pagina.endsWith("/protegido/funcionario/listar") && funcinario.getNivelFuncao().equals("root")) {
-            return true;
-        }  else if (pagina.endsWith("/protegido/produto/listar") && funcinario.getNivelFuncao().equals("root")) {
-            return true;
-        }  else if (pagina.endsWith("/protegido/produto/cadastrar") && funcinario.getNivelFuncao().equals("root")) {
-            return true;
+        }
+        if (funcao.equals("TI")) {
+            List<String> listaPaginasRoot = new ArrayList();
+            listaPaginasRoot.add("/protegido/home");
+            listaPaginasRoot.add("/protegido/funcionario/listar");
+            listaPaginasRoot.add("/protegido/suporte");
+
+            for (int i = 0; i < listaPaginasRoot.size(); i++) {
+                if (pagina.endsWith(listaPaginasRoot.get(i))) {
+                    return true;
+                }
+            }
+        }
+        if (funcao.equals("VENDAS")) {
+            List<String> listaPaginasRoot = new ArrayList();
+            listaPaginasRoot.add("/protegido/home");
+            listaPaginasRoot.add("/protegido/produto/listar");
+            listaPaginasRoot.add("/protegido/venda/efetuar");
+            listaPaginasRoot.add("/protegido/cliente/listar");
+
+            for (int i = 0; i < listaPaginasRoot.size(); i++) {
+                if (pagina.endsWith(listaPaginasRoot.get(i))) {
+                    return true;
+                }
+            }
+        }
+        if (funcao.equals("ADMINISTRATIVO")) {
+            List<String> listaPaginasRoot = new ArrayList();
+            listaPaginasRoot.add("/protegido/home");
+            listaPaginasRoot.add("/protegido/funcionario/listar");
+
+            for (int i = 0; i < listaPaginasRoot.size(); i++) {
+                if (pagina.endsWith(listaPaginasRoot.get(i))) {
+                    return true;
+                }
+            }
+        }
+        if (funcao.equals("PRODUTO")) {
+            List<String> listaPaginasRoot = new ArrayList();
+            listaPaginasRoot.add("/protegido/home");
+            listaPaginasRoot.add("/protegido/produto/listar");
+
+            for (int i = 0; i < listaPaginasRoot.size(); i++) {
+                if (pagina.endsWith(listaPaginasRoot.get(i))) {
+                    return true;
+                }
+            }
         }
         return false;
     }
