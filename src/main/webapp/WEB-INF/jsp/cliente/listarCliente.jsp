@@ -21,7 +21,7 @@
                         <tr>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.cpf ASC">CPF <i class="fa fa-angle-down"></i></a></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col" style="color: #449DD5">(Vender)</th>
+                            <th scope="col" style="color: #449DD5">Vender <i class="fa fa-shopping-cart"></i></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
                             <th scope="col"><a href="${pageContext.request.contextPath}/cliente/listar?ordem=C.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>

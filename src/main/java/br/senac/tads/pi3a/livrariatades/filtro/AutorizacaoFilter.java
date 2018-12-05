@@ -73,6 +73,8 @@ public class AutorizacaoFilter implements Filter {
             return true;
         }  else if (pagina.endsWith("/protegido/produto/listar") && funcinario.getNivelFuncao().equals("root")) {
             return true;
+        }  else if (pagina.endsWith("/protegido/produto/cadastrar") && funcinario.getNivelFuncao().equals("root")) {
+            return true;
         }
         return false;
     }

@@ -55,33 +55,8 @@
                         <!-- sidebar menu start-->
                         <ul class="sidebar-menu" id="nav-accordion">
                             <h5 class="centered">${sessionScope.funcionario.getNome()} ${sessionScope.funcionario.getSobrenome()}</h5> <!-- Nome do Usuario -->
-                            
-                            <c:if test="${sessioScope.funcionario.getCodFilial() == 1}">
-                                
-                                <h5 class="centered">Matriz - São Paulo</h5> <!-- Nome do Usuario -->
-                                
-                            </c:if>
-                                
-                            <c:if test="${sessioScope.funcionario.getCodFilial() == 2}">
-                                
-                                <h5 class="centered">Brasilia</h5> <!-- Nome do Usuario -->
-                                
-                            </c:if>
-                                
-                            <c:if test="${sessioScope.funcionario.getCodFilial() == 3}">
-                                
-                                <h5 class="centered">Campina Grande</h5> <!-- Nome do Usuario -->
-                                
-                            </c:if>
-                                
-                            <c:if test="${sessioScope.funcionario.getCodFilial()== 4}">
-                                
-                                <h5 class="centered">Joinville</h5> <!-- Nome do Usuario -->
-                                
-                            </c:if>
+
                             <!-- Item sem SubMenu -->
-
-
                             <li>
                                 <a href="${pageContext.request.contextPath}/protegido/home">
                                     <i class="fa fa-home"></i>

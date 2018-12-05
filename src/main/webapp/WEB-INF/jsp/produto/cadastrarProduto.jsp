@@ -9,7 +9,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="${pageContext.request.contextPath}/produto/cadastrar" method="post" class="form-group">
+                        <form action="${pageContext.request.contextPath}/protegido/produto/cadastrar" method="post" class="form-group">
                             
                             <input type="text" style="display: none" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
 

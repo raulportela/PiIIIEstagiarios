@@ -27,7 +27,7 @@ public class CadastrarProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/produto/cadastrarProduto.jsp");
         dispatcher.forward(request, response);
@@ -45,7 +45,15 @@ public class CadastrarProduto extends HttpServlet {
         produto.setAutor(request.getParameter("autor"));
         produto.setTitulo(request.getParameter("titulo"));
         produto.setDescricao(request.getParameter("descricao"));
-        produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+        int quantidade = 0;
+        if (request.getParameter("quantidade") != null) {
+            quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        }
+        produto.setQuantidade(quantidade);
+        float valor = 0;
+        if (request.getParameter("valorunitario") != null) {
+            valor = Float.parseFloat(request.getParameter("quantidade"));
+        }
         produto.setValor(Float.parseFloat(request.getParameter("valorunitario")));
 
         try {
@@ -53,7 +61,7 @@ public class CadastrarProduto extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect(request.getContextPath() + "/produto/listar");
+        response.sendRedirect(request.getContextPath() + "/protegido/produto/listar");
     }
 
 }

@@ -24,7 +24,8 @@ public class DaoProduto {
 
         String sql = "INSERT INTO Editora VALUES (0, ?)";
         String sql2 = "INSERT INTO Autor VALUES (0, ?)";
-        String sql3 = "INSERT INTO Livro VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql3 = "INSERT INTO Livro VALUES (0, ?, ?, ?, ?, ?, ?)";
+        String sql4 = "INSERT INTO FilialTemLivro VALUES (0, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -59,16 +60,32 @@ public class DaoProduto {
             }
 
             // execução da terceira inserção
-            preparedStatement = connection.prepareStatement(sql3);
+            preparedStatement = connection.prepareStatement(sql3, preparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, chaveEditora);
             preparedStatement.setInt(2, chaveAutor);
             preparedStatement.setInt(3, produto.getCodFilial());
             preparedStatement.setBoolean(4, produto.isDisponivel());
             preparedStatement.setString(5, produto.getTitulo());
             preparedStatement.setString(6, produto.getDescricao());
-            preparedStatement.setInt(7, produto.getQuantidade());
-            preparedStatement.setFloat(8, produto.getValor());
             preparedStatement.execute();
+
+            int chaveLivro = 0;
+            ResultSet chaveGeradaLivro = preparedStatement.getGeneratedKeys();
+            if (chaveGeradaLivro.next()) {
+                chaveLivro = chaveGeradaLivro.getInt(1);
+            }
+
+            if (!preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+
+            preparedStatement = connection.prepareStatement(sql4);
+            preparedStatement.setInt(1, produto.getCodFilial());
+            preparedStatement.setInt(2, chaveLivro);
+            preparedStatement.setInt(3, produto.getQuantidade());
+            preparedStatement.setFloat(4, produto.getValor());
+            preparedStatement.execute();
+
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -152,14 +169,19 @@ public class DaoProduto {
         }
     }
 
-    public static List<Produto> listar() throws SQLException, Exception {
-
+    public static List<Produto> listar(String ordem) throws SQLException, Exception {
+        
+        if(ordem == null){
+            ordem = "L.titulo ASC";
+        }
         String sql = "SELECT * FROM LIVRO L \n"
                 + "JOIN EDITORA E\n"
                 + "ON L.IDEDITORA = E.ID\n"
                 + "JOIN AUTOR A\n"
                 + "ON L.IDAUTOR = A.ID\n"
-                + "WHERE (L.DISPONIVEL=1)";
+                + "JOIN FilialTemLivro FT\n"
+                + "ON L.CODFILIAL = FT.ID\n"
+                + "ORDER BY " +ordem;
         List<Produto> listaProdutos = new ArrayList<>();
 
         Connection connection = null;
@@ -174,17 +196,17 @@ public class DaoProduto {
             while (result.next()) {
                 Produto produto = new Produto();
 
-                produto.setId(result.getInt("id"));
-                produto.setTitulo(result.getString("titulo"));
-                produto.setDescricao(result.getString("descricao"));
-                produto.setDisponivel(result.getBoolean("disponivel"));
-                produto.setQuantidade(result.getInt("quantidade"));
-                produto.setValor(result.getFloat("valor"));
+                produto.setId(result.getInt("L.id"));
+                produto.setTitulo(result.getString("L.titulo"));
+                produto.setDescricao(result.getString("L.descricao"));
+                produto.setDisponivel(result.getBoolean("L.disponivel"));
+                produto.setQuantidade(result.getInt("FT.quantidade"));
+                produto.setValor(result.getFloat("FT.valor"));
 
-                produto.setIdEditora(result.getInt("idEditora"));
-                produto.setEditora(result.getString("nome"));
-                produto.setIdAutor(result.getInt("idAutor"));
-                produto.setAutor(result.getString("nomeCompleto"));
+                produto.setIdEditora(result.getInt("L.idEditora"));
+                produto.setEditora(result.getString("E.nome"));
+                produto.setIdAutor(result.getInt("L.idAutor"));
+                produto.setAutor(result.getString("A.nomeCompleto"));
 
                 listaProdutos.add(produto);
             }
@@ -224,23 +246,23 @@ public class DaoProduto {
 
             result = preparedStatement.executeQuery();
 
-                if (result.next()) {
-                    Produto produto = new Produto();
+            if (result.next()) {
+                Produto produto = new Produto();
 
-                    produto.setId(result.getInt("L.id"));
-                    produto.setTitulo(result.getString("titulo"));
-                    produto.setDescricao(result.getString("descricao"));
-                    produto.setDisponivel(result.getBoolean("disponivel"));
-                    produto.setQuantidade(result.getInt("quantidade"));
-                    produto.setValor(result.getFloat("valor"));
+                produto.setId(result.getInt("L.id"));
+                produto.setTitulo(result.getString("titulo"));
+                produto.setDescricao(result.getString("descricao"));
+                produto.setDisponivel(result.getBoolean("disponivel"));
+                produto.setQuantidade(result.getInt("quantidade"));
+                produto.setValor(result.getFloat("valor"));
 
-                    produto.setIdEditora(result.getInt("idEditora"));
-                    produto.setEditora(result.getString("nome"));
-                    produto.setIdAutor(result.getInt("idAutor"));
-                    produto.setAutor(result.getString("nomeCompleto"));
+                produto.setIdEditora(result.getInt("idEditora"));
+                produto.setEditora(result.getString("nome"));
+                produto.setIdAutor(result.getInt("idAutor"));
+                produto.setAutor(result.getString("nomeCompleto"));
 
-                    return produto;
-                }
+                return produto;
+            }
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();

@@ -63,21 +63,18 @@
 
                             </thead>
                             <tbody>
-
+                                <c:forEach items="${sessionScope.listaProduto}" var="produto">
                                 <tr data-toggle="modal">
-                                    <th></th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <a>
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal" >Remover</button>
-                                        </a>
-                                    </td>
+                                    <th><c:out value="${produto.getId()}" /></th>
+                                    <td><c:out value="${produto.getTitulo()}" /></td>
+                                    <td><c:out value="${produto.getEstoque()}" /></td>
+                                    <td><c:out value="${produto.getQuantidade()}" /></td>
+                                    <td><c:out value="${produto.getValorUnitario()}" /></td>
+                                    <td><button type="button" class="btn btn-primary" data-dismiss="modal">Remover</button></td>
+                                    
 
                                 </tr>
-
+                            </c:forEach>
                             </tbody>
                         </table>
 

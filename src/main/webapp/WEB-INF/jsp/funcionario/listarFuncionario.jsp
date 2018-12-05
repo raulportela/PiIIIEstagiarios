@@ -20,11 +20,11 @@
                     <thead>
 
                         <tr>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/listar?ordem=P.cpf ASC">CPF <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
-                            <th scope="col"><a href="${pageContext.request.contextPath}/funcionario/listar?ordem=F.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/funcionario/listar?ordem=P.cpf ASC">CPF <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/funcionario/listar?ordem=P.nome ASC">Nome <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/funcionario/listar?ordem=CT.telefone ASC">Telefone <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/funcionario/listar?ordem=CT.email ASC">E-mail <i class="fa fa-angle-down"></i></a></th>
+                            <th scope="col"><a href="${pageContext.request.contextPath}/protegido/funcionario/listar?ordem=F.disponivel DESC">Status <i class="fa fa-angle-down"></i></a></th>
                         </tr>
                     </thead>
                     <tbody>

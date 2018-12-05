@@ -28,9 +28,9 @@ public class ListarProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String ordem = request.getParameter("ordem");
         List<Produto> listaProdutos;
-        listaProdutos = AtulizarLista();
+        listaProdutos = AtulizarLista(ordem);
         request.setAttribute("produtos", listaProdutos);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(
@@ -42,13 +42,18 @@ public class ListarProduto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         String ordem = request.getParameter("ordem");
+         
+         AtulizarLista(ordem);
+         
     }
+    
 
-    public List<Produto> AtulizarLista() {
+    public List<Produto> AtulizarLista(String ordem) {
         List<Produto> listaProduto = null;
         try {
 
-            listaProduto = DaoProduto.listar();
+            listaProduto = DaoProduto.listar(ordem);
         } catch (Exception ex) {
             Logger.getLogger(ListarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
