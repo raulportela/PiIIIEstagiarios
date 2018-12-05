@@ -6,6 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:import url="/WEB-INF/jsp/home/header.jsp" />
 <html lang="pt">
 
     <head>
@@ -27,28 +28,7 @@
     <body>
         <section id="container">
             <!-- **********************************************************************************************************************************************************
-                TOP BAR CONTENT & NOTIFICATIONS
-                *********************************************************************************************************************************************************** -->
-            <!--header start-->
-            <header class="header black-bg">
-                <!--logo start-->
-                                
-                <c:if test="${sessioScope.funcionario == null}">
-                    <a class="logo"><b><span>L</span>ivraria<span>S</span>enac </b></a>
-                </c:if>                
-                    
-                <!--logo end-->
-                <div class="nav notify-row" id="top_menu">
-                    <!--  notification start -->
-                    <!--  notification end -->
-                </div>
-                <div class="top-menu">
-
-                    <ul class="nav pull-right top-menu">
-                        <li><a class="logout" href="${pageContext.request.contextPath}/logout">Logout</a></li>  <!-- Botao de Logout -->
-                    </ul>
-                </div>
-            </header>
+           
 
             <!--sidebar end-->
             <!-- **********************************************************************************************************************************************************
@@ -61,66 +41,10 @@
                         <div class="col-lg-12">
 
 
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
-                                    <div class="col-md-2 card-item list-group list-group-flush">
-                                        <center><a href="${pageContext.request.contextPath}/protegido/cliente/listar"><img src="img/Cliente.png" width="100" height="100"></a></center>
-                                        <center><h1>Cliente</h1></center>
-
-                                    </div>
-                                </c:if> 
-                                <div class="col-md-1"></div>
-                                <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
-                                    <div class="col-md-2 card-item list-group list-group-flush">
-                                        <center><a href="${pageContext.request.contextPath}/protegido/funcionario/listar"><img src="img/Funcionario.png" width="100" height="100"></a></center>
-                                        <center><h1>Funcionario</h1></center>
-
-                                    </div>
-                                </c:if>
-
-                                <div class="col-md-1"></div>
-                                <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
-                                    <div class="col-md-2 card-item list-group list-group-flush">
-                                        <center><a href="${pageContext.request.contextPath}/protegido/produto/listar"><img src="img/Produto.png" width="100" height="100"></a></center>
-                                        <center><h1>Produtos</h1></center>
-
-                                    </div>
-                                </c:if>
-
-                            </div>
+                            
 
 
 
-                            <div class="row">
-
-                                <div class="col-md-2"></div>
-
-                                <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
-                                    <div class="col-md-2 card-item list-group list-group-flush" >
-                                        <center><a href="${pageContext.request.contextPath}/protegido/venda/efetuar"><img src="img/Venda.png" width="100" height="100"></a></center>
-                                        <center><h1>Venda</h1></center>
-                                    </div>
-                                </c:if>
-                                <div class="col-md-1"></div>
-                                <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
-                                    <div class="col-md-2 card-item list-group list-group-flush">
-                                        <center><a href="${pageContext.request.contextPath}/protegido/suporte/listar"><img src="img/Suporte.png" width="100" height="100"></a></center>
-                                        <center><h1>Suporte</h1></center>
-                                    </div>
-                                </c:if>
-
-                                <div class="col-md-1"></div>
-
-                                <c:if test="${sessionScope.funcionario.getNivelFuncao()=='root'}">
-                                    <div class="col-md-2 card-item list-group list-group-flush">
-                                        <center><a href="${pageContext.request.contextPath}/protegido/relatorio/listar"><img src="img/Relatorio.png" width="100" height="100"></a></center>
-                                        <center><h1>Relatorio</h1></center>
-
-                                    </div>
-                                </c:if>
-
-                            </div>
 
                         </div>
                     </div>
