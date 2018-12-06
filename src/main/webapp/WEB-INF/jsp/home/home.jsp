@@ -42,7 +42,7 @@
 
                     <div class="modal-footer" >
                         <label>Tenha um ótimo dia de trabalho!</label> <br><br><br>
-                        <i><label>${sessionScope.frase.getFrase()}</label><br>
+                        <i><label><i class="fa fa-spinner"></i> ${sessionScope.frase.getFrase()} <i class="fa fa-spinner"></i></label><br>
                             <label>${sessionScope.frase.getAutor()}</label><br><br><br><br><br><br><br></i>
                     </div>
                     <form style="size: 20px"> 
@@ -51,7 +51,6 @@
                         </center>
                     </form>
                 </div>
-
 
             </div>
 
