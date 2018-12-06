@@ -261,7 +261,7 @@ public class DaoProduto {
                 produto.setTitulo(result.getString("titulo"));
                 produto.setDescricao(result.getString("descricao"));
                 produto.setDisponivel(result.getBoolean("disponivel"));
-                //produto.setQuantidade(result.getInt("quantidade"));
+                produto.setQuantidade(result.getInt("quantidade"));
                 produto.setValor(result.getFloat("valor"));
 
                 produto.setIdEditora(result.getInt("idEditora"));

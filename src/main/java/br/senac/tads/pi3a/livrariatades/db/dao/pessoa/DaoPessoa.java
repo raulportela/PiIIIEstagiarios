@@ -383,7 +383,7 @@ public class DaoPessoa {
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));
                 funcionario.setHashSenha(result.getString("senha"));
-                funcionario.setNivelFuncao("nivelFuncao");
+                funcionario.setNivelFuncao(result.getString("nivelFuncao"));
                 funcionario.setRg(result.getString("rg"));
 
                 Contato contato = new Contato();

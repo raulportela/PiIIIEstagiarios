@@ -53,7 +53,7 @@ public class CadastrarFuncionario extends HttpServlet {
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
         funcionario.setSenha(request.getParameter("senha"));
-        funcionario.setNivelFuncao("funcao");
+        funcionario.setNivelFuncao(request.getParameter("funcao"));
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
@@ -76,7 +76,7 @@ public class CadastrarFuncionario extends HttpServlet {
             Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        response.sendRedirect(request.getContextPath() + "/produto/funcionario/listar");
+        response.sendRedirect(request.getContextPath() + "/protegido/produto/funcionario/listar");
     }
 
 }

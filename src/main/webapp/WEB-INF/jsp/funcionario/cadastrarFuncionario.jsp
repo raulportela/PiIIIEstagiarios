@@ -16,7 +16,7 @@
 
         <div class="modal-body">
 
-            <form action="${pageContext.request.contextPath}/funcionario/cadastrar" method="post" class="form-group">
+            <form action="${pageContext.request.contextPath}/protegido/funcionario/cadastrar" method="post" class="form-group">
 
                 <input type="text" style="display: none" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
                 

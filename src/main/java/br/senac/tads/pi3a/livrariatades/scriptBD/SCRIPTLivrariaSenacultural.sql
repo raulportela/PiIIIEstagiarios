@@ -131,8 +131,6 @@ codFilial INT,
 disponivel boolean,
 titulo VARCHAR (60) NOT NULL,
 descricao VARCHAR (300) NOT NULL,
-quantidade INT NOT NULL,
-valor FLOAT NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY(idAutor) REFERENCES Autor(id),
 FOREIGN KEY(idEditora) REFERENCES Editora(id));

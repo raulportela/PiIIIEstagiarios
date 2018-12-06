@@ -15,7 +15,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <form class="form-group" items="${funcionario}" var="funcionario" action="${pageContext.request.contextPath}/funcionario/alterar" method="post">
+                        <form class="form-group" items="${funcionario}" var="funcionario" action="${pageContext.request.contextPath}/protegido/funcionario/alterar" method="post">
                             
                             <input type="text" style="display: none" value="${funcionario.getCodFilial()}" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
                             
@@ -53,7 +53,7 @@
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary" onclick="">Alterar</button>
-                                <a href="${pageContext.request.contextPath}/home">
+                                <a href="${pageContext.request.contextPath}/protegido/home">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                                 </a>
                             </div>

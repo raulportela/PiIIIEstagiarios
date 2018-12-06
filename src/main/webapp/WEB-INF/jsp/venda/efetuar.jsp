@@ -63,20 +63,21 @@
                             </thead>
                             <tbody>
                                 <c:forEach items="${sessionScope.listaVenda}" var="itemVenda">
-                            
-                                    <tr data-toggle="modal">
-                                        
-                                            <th><center><c:out value="${itemVenda.getProduto().getId()}" /></center></th>
-                                            <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
-                                            <td><center><c:out value="${itemVenda.getProduto().getQuantidade()}" /></center></td>
-                                            <td><c:out value="${itemVenda.getQuantidade()}" /></td>
-                                            <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
-                                            <a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&idProdutoVenda=${itemVenda.getProduto().getId()}">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
-                                            </a>
 
-                                    </tr>
-                                </c:forEach>
+                                    <tr data-toggle="modal">
+                                <center>
+                                    <th><c:out value="${itemVenda.getProduto().getId()}" /></th>
+                                    <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
+                                    <td><c:out value="${itemVenda.getProduto().getQuantidade()}" /></td>
+                                    <td><c:out value="${itemVenda.getQuantidade()}" /></td>
+                                    <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
+                                    <td><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&idProdutoVenda=${itemVenda.getProduto().getId()}">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
+                                    </a></td>
+                                </center>
+
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                         <div>
@@ -86,7 +87,7 @@
                     </form>
 
                     <div class="modal-footer" >
-                        <a href="${pageContext.request.contextPath}/home">
+                        <a href="${pageContext.request.contextPath}/protegido/home">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
                         </a>
 
