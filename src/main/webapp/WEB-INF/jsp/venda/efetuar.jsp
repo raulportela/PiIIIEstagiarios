@@ -52,32 +52,36 @@
                             <thead>
 
                                 <tr>
-                                    <th scope="col">Cod produto</th>
+                                    <th scope="col">Cod</th>
                                     <th scope="col">Titulo</th>
                                     <th scope="col">Estoque</th>
-                                    <th scope="col">Quantidade</th>
-                                    <th scope="col">Valor Unitário</th>
+                                    <th scope="col">Qtd</th>
+                                    <th scope="col">Valor Uni</th>
 
                                 </tr>
 
                             </thead>
                             <tbody>
                                 <c:forEach items="${sessionScope.listaVenda}" var="itemVenda">
-                                <tr data-toggle="modal">
-                                    <th><c:out value="${itemVenda.getProduto().getId()}" /></th>
-                                    <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
-                                    <td><c:out value="${itemVenda.getProduto().getEstoque()}" /></td>
-                                    <td><c:out value="${itemVenda.getQuantidade()}" /></td>
-                                    <td><c:out value="${itemVenda.getProduto().getValorUnitario()}" /></td>
-                                    <td><button type="button" class="btn btn-primary" data-dismiss="modal">Remover</button></td>
-                                    
+                            
+                                    <tr data-toggle="modal">
+                                        
+                                            <th><center><c:out value="${itemVenda.getProduto().getId()}" /></center></th>
+                                            <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
+                                            <td><center><c:out value="${itemVenda.getProduto().getQuantidade()}" /></center></td>
+                                            <td><c:out value="${itemVenda.getQuantidade()}" /></td>
+                                            <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
+                                            <a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&idProdutoVenda=${itemVenda.getProduto().getId()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
+                                            </a>
 
-                                </tr>
-                            </c:forEach>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
-
-                        <label>ValorTotal:</label><input type="text" class="form-control" id="valor" >
+                        <div>
+                            <label>Total $:</label>${sessionScope.valorTotal}
+                        </div>
 
                     </form>
 

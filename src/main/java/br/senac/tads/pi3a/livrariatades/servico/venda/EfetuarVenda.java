@@ -8,6 +8,7 @@ package br.senac.tads.pi3a.livrariatades.servico.venda;
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
+import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import br.senac.tads.pi3a.livrariatades.model.venda.ItemVendido;
 import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.ListarCliente;
@@ -39,26 +40,32 @@ public class EfetuarVenda extends HttpServlet {
         String produtoId = request.getParameter("produtovenda");
         String vender = request.getParameter("vender");
         String cpf = request.getParameter("cpf");
+        HttpSession sessao = request.getSession();
+        Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
+        List<ItemVendido> listaVenda = new ArrayList();
+
         if (request.getParameter("opcao") != null) {
             switch (opcao) {
                 case "1":
                     if (produtoId != null) {
                         try {
-                            HttpSession sessao = request.getSession();
-                            Produto produto = DaoProduto.procurar(Integer.parseInt(produtoId));
+                            Produto produto = DaoProduto.procurar(Integer.parseInt(produtoId), funcionario.getCodFilial());
                             ItemVendido itemVenda = new ItemVendido();
                             itemVenda.setProduto(produto);
                             itemVenda.setQuantidade(1);
-                            List<ItemVendido> listaVenda = new ArrayList();
-                            
+
                             if (sessao.getAttribute("listaProduto") != null) {
                                 listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
+                                float valorTotal = Float.parseFloat((String) sessao.getAttribute("valorTotal"));
+                                valorTotal += (itemVenda.getProduto().getValor()*itemVenda.getQuantidade());
                                 sessao = request.getSession();
                                 sessao.setAttribute("listaProduto", listaVenda);
+                                
                             } else {
                                 listaVenda.add(itemVenda);
                                 sessao = request.getSession();
                                 sessao.setAttribute("listaVenda", listaVenda);
+                                sessao.setAttribute("valorTotal", (itemVenda.getProduto().getValor()*itemVenda.getQuantidade()));
                             }
 
                         } catch (ClassNotFoundException ex) {
@@ -78,11 +85,20 @@ public class EfetuarVenda extends HttpServlet {
                             } catch (Exception ex) {
                                 Logger.getLogger(ListarCliente.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            HttpSession sessao = request.getSession();
                             sessao.setAttribute("clienteVenda", cliente);
                         }
                     }
                     break;
+                case "3":
+                    listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
+                    produtoId = request.getParameter("idProdutoVenda");
+                    int contador = 0;
+                    for (int i = 0; i < listaVenda.size(); i++) {
+                        ItemVendido itemVendido = listaVenda.get(contador);
+                        if (itemVendido.getProduto().getCodFilial() == Integer.parseInt(produtoId)) {
+                            listaVenda.remove(contador);
+                        }
+                    }
                 case "":
                 default:
                     response.sendRedirect(request.getContextPath() + "/protegido/venda/efetuar");

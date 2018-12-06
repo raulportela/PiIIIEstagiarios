@@ -6,6 +6,7 @@
 package br.senac.tads.pi3a.livrariatades.servico.produto;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
+import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,9 +30,9 @@ public class AlterarExcluirProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         Produto produto = new Produto();
-        
+
         if (request.getParameter("opcao") != null & request.getParameter("id") != null) {
 
             String opcao = request.getParameter("opcao");
@@ -38,7 +40,9 @@ public class AlterarExcluirProduto extends HttpServlet {
 
             if (opcao.equals("1")) {
                 try {
-                    produto = DaoProduto.procurar(id);
+                    HttpSession sessao = request.getSession();
+                    Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
+                    produto = DaoProduto.procurar(id, funcionario.getCodFilial());
                 } catch (ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(AlterarExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -73,10 +77,10 @@ public class AlterarExcluirProduto extends HttpServlet {
         produto.setDescricao(request.getParameter("descricao"));
         produto.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
         produto.setValor(Float.parseFloat(request.getParameter("valorunitario")));
-        
+
         try {
             DaoProduto.atualizar(produto);
-            
+
         } catch (Exception ex) {
             Logger.getLogger(AlterarExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
         }

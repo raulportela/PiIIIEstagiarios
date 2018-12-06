@@ -1,77 +1,60 @@
 <%-- 
-    Document   : home
-    Created on : 25/10/2018, 13:46:35
+    Document   : EfetuarVenda
+    Created on : 08/11/2018, 12:48:39
     Author     : Jeferson Nolasco
 --%>
+
+
+<script language="javascript">
+    var meses = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+    var diasSemana = new Array('domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado');
+    var modificacao = new Date(document.lastModified);
+    var dia = modificacao.getDate();
+    var mes = meses [modificacao.getMonth()];
+    var ano = modificacao.getFullYear();
+    var semana = diasSemana[modificacao.getDay()];
+    var dataFinal = dia + "/" + mes + "/" + ano;
+</script>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="/WEB-INF/jsp/home/header.jsp" />
-<html lang="pt">
+<div id="modelLista" role="dialog" >
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Home - <script> document.write(dataFinal)</script></h5>
+                </a>
+            </div>
+            <div>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/img/favicon.png" rel="icon">
+                <div class="modal-body">
 
-        <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <!--external css-->
-        <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-        <!-- Custom styles for this template -->
-        <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/css/style.css" rel="stylesheet">
-        <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/css/style-responsive.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/css/style2.css">
-
-    </head>
-
-    <body>
-        <section id="container">
-            <!-- **********************************************************************************************************************************************************
-           
-
-            <!--sidebar end-->
-            <!-- **********************************************************************************************************************************************************
-                MAIN CONTENT
-                *********************************************************************************************************************************************************** -->
-            <!--main content start-->
-            <section id="">
-                <section class="wrapper site-min-height">
-                    <div class="row mt">
-                        <div class="col-lg-12">
-
-
+                    <form class="form-group">
+                        <center> 
+                            <label>Bem vindo </label> <i><label> ${sessionScope.funcionario.getNome()} ${sessionScope.funcionario.getSobrenome()}</label></i>
+                        <center>
                             
+                        
+                    </form>
 
-
-
-
-                        </div>
+                    <div class="modal-footer" >
+                        <label>Tenha um ótimo dia de trabalho!</label> <br><br><br>
+                        <i><label>${sessionScope.frase.getFrase()}</label><br>
+                            <label>${sessionScope.frase.getAutor()}</label><br><br><br><br><br><br><br></i>
                     </div>
-                </section>
-                <!-- /wrapper -->
-            </section>
-            <!-- /MAIN CONTENT -->
-            <!--main content end-->
-            <!--footer start-->
-            <footer class="site-footer">
-                <div class="text-center"> 
+                    <form style="size: 20px"> 
+                        <center>
+                            <b> Livraria Senac</b> 
+                        </center>
+                    </form>
                 </div>
-            </footer>
-            <!--footer end-->
-        </section>
-        <!-- js placed at the end of the document so the pages load faster -->
-        <script src="../externo/lib/jquery/jquery.min.js"></script>
-        <script src="../externo/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../externo/lib/jquery-ui-1.9.2.custom.min.js"></script>
-        <script src="../externo/lib/jquery.ui.touch-punch.min.js"></script>
-        <script class="include" type="text/javascript" src="../externo/lib/jquery.dcjqaccordion.2.7.js"></script>
-        <script src="../externo/lib/jquery.scrollTo.min.js"></script>
-        <script src="../externo/lib/jquery.nicescroll.js" type="text/javascript"></script>
-        <!--common script for all pages-->
-        <script src="../externo/lib/common-scripts.js"></script>
-        <!--script for this page-->
 
-    </body>
 
-</html>
+            </div>
+
+        </div>
+    </div>	
+    <c:import url="/WEB-INF/jsp/home/footer.jsp" />

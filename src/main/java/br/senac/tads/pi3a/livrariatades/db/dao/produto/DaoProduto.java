@@ -169,19 +169,20 @@ public class DaoProduto {
         }
     }
 
-    public static List<Produto> listar(String ordem) throws SQLException, Exception {
-        
-        if(ordem == null){
+    public static List<Produto> listar(String ordem, int codFilial) throws SQLException, Exception {
+
+        if (ordem == null) {
             ordem = "L.titulo ASC";
         }
-        String sql = "SELECT * FROM LIVRO L \n"
+        String sql = "SELECT * FROM LIVRO L\n"
                 + "JOIN EDITORA E\n"
                 + "ON L.IDEDITORA = E.ID\n"
                 + "JOIN AUTOR A\n"
                 + "ON L.IDAUTOR = A.ID\n"
-                + "JOIN FilialTemLivro FT\n"
-                + "ON L.CODFILIAL = FT.ID\n"
-                + "ORDER BY " +ordem;
+                + "JOIN FILIALTEMLIVRO FT\n"
+                + "ON FT.IDLIVRO = L.ID\n"
+                + "WHERE L.CODFILIAL = ? \n"
+                + "ORDER BY " + ordem;
         List<Produto> listaProdutos = new ArrayList<>();
 
         Connection connection = null;
@@ -191,6 +192,9 @@ public class DaoProduto {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
+            
+            preparedStatement.setInt(1, codFilial);
+            
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
@@ -228,13 +232,16 @@ public class DaoProduto {
         return listaProdutos;
     }
 
-    public static Produto procurar(int id) throws ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM LIVRO L \n"
+    public static Produto procurar(int id, int codFilial) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT * FROM LIVRO L\n"
                 + "JOIN EDITORA E\n"
                 + "ON L.IDEDITORA = E.ID\n"
                 + "JOIN AUTOR A\n"
                 + "ON L.IDAUTOR = A.ID\n"
-                + "WHERE (L.ID = ?)";
+                + "JOIN FILIALTEMLIVRO FT\n"
+                + "ON FT.IDLIVRO = L.ID\n"
+                + "WHERE L.CODFILIAL = ? \n"
+                + "AND L.ID = ?";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -242,7 +249,8 @@ public class DaoProduto {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, codFilial);
+            preparedStatement.setInt(2, id);
 
             result = preparedStatement.executeQuery();
 
@@ -253,7 +261,7 @@ public class DaoProduto {
                 produto.setTitulo(result.getString("titulo"));
                 produto.setDescricao(result.getString("descricao"));
                 produto.setDisponivel(result.getBoolean("disponivel"));
-                produto.setQuantidade(result.getInt("quantidade"));
+                //produto.setQuantidade(result.getInt("quantidade"));
                 produto.setValor(result.getFloat("valor"));
 
                 produto.setIdEditora(result.getInt("idEditora"));

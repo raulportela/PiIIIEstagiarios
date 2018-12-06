@@ -21,6 +21,36 @@ dataNascimento DATE NOT NULL,
 codFilial INT,
 PRIMARY KEY (id),
 FOREIGN KEY (codFilial) REFERENCES Filial (id)); 	
+CREATE TABLE Frases(
+id INT AUTO_INCREMENT,
+frase VARCHAR (400) NOT NULL,
+autor VARCHAR (70),
+PRIMARY KEY (id)); 
+
+INSERT INTO FRASES VALUES (default, 'Se você traçar metas absurdamente altas e falhar, seu fracasso será muito melhor que o sucesso de todos', 'James Cameron, cineasta');
+INSERT INTO FRASES VALUES (default, 'O sucesso normalmente vem para quem está ocupado demais para procurar por ele', 'Henry David Thoreau,');
+INSERT INTO FRASES VALUES (default, 'A vida é melhor para aqueles que fazem o possível para ter o melhor', 'John Wooden, jogador e treinador de basquete');
+INSERT INTO FRASES VALUES (default, 'Os empreendedores falham, em média, 3,8 vezes antes do sucesso final. O que separa os bem-sucedidos dos outros é a persistência', ' Lisa M. Amos, executiva');
+INSERT INTO FRASES VALUES (default, 'Se você não está disposto a arriscar, esteja disposto a uma vida comum', ' Jim Rohn, empreendedor');
+INSERT INTO FRASES VALUES (default, 'Escolha uma ideia. Faça dessa ideia a sua vida. Pense nela, sonhe com ela, viva pensando nela. Deixe cérebro, músculos, nervos, todas as partes do seu corpo serem preenchidas com essa ideia. Esse é o caminho para o sucesso', 'Swami Vivekananda');
+INSERT INTO FRASES VALUES (default, 'Para de perseguir o dinheiro e comece a perseguir o sucesso', 'Tony Hsieh, empreendedor');
+INSERT INTO FRASES VALUES (default, 'Todos os seus sonhos podem se tornar realidade se você tem coragem para persegui-los', 'Walt Disney, desenhista e empreendedor');
+INSERT INTO FRASES VALUES (default, 'Ter sucesso é falhar repetidamente, mas sem perder o entusiasmo', 'Winston Churchill, político');
+INSERT INTO FRASES VALUES (default, 'Sempre que você vir uma pessoa de sucesso, você sempre verá as glórias, nunca os sacrifícios que a levaram até ali', 'Vaibhav Shah, pensador');
+INSERT INTO FRASES VALUES (default, 'Sucesso? Eu não sei o que isso significa. Eu sou feliz. A definição de sucesso varia de pessoa para pessoa. Para mim, sucesso é paz anterior', 'Denzel Washington, ator');
+INSERT INTO FRASES VALUES (default, 'Oportunidades não surgem. É você que as cria', 'Chris Grosser, fotógrafo');
+INSERT INTO FRASES VALUES (default, 'Não tente ser uma pessoa de sucesso. Em vez disso, seja uma pessoa de valor', 'Albert Einstein, físico');
+INSERT INTO FRASES VALUES (default, 'Não é o mais forte que sobrevive, nem o mais inteligente. Quem sobrevive é o mais disposto à mudança', 'Charles Darwin, biólogo');
+INSERT INTO FRASES VALUES (default, 'Ninguém pode fazer você se sentir inferior sem o seu consentimento"', 'Eleanor Roosevelt, primeira-dama dos EUA');
+INSERT INTO FRASES VALUES (default, 'O que nos parece uma provação amarga pode ser uma bênção disfarçada', ' Oscar Wilde, escritor');
+INSERT INTO FRASES VALUES (default, 'Há dois tipos de pessoa que vão te dizer que você não pode fazer a diferença neste mundo: as que têm medo de tentar e as que têm medo de que você se dê bem', 'Ray Goforth, executivo');
+INSERT INTO FRASES VALUES (default, 'Comece de onde você está. Use o que você tiver. Faça o que você puder', 'Arthur Ashe, tenista');
+INSERT INTO FRASES VALUES (default, 'O sucesso é a soma de pequenos esforços repetidos dia após dia', 'Robert Collier, escritor');
+INSERT INTO FRASES VALUES (default, 'Sonhar grande e sonhar pequeno dá o mesmo trabalho. Sonhe grande!!', 'Jorge Paulo Lemann, empreendedor');
+INSERT INTO FRASES VALUES (default, 'Muitas das falhas da vida ocorrem quando não percebemos o quão próximos estávamos do sucesso na hora em que desistimos', 'Edson August');
+INSERT INTO FRASES VALUES (default, 'Ser feliz é encontrar força no perdão, esperanças nas batalhas, segurança no palco do medo, amor nos desencontros. É agradecer a Deus a cada minuto pelo milagre da vida.
+', 'Augusto Cury');
+INSERT INTO FRASES VALUES (default, 'O bom humor é um dos melhores artigos de vestuário que se deve usar em sociedade.', 'William Makepeace Thackeray');
 
 INSERT INTO Pessoa VALUES (default, 'Administrador', 'São Paulo', 11111111111, '2000-1-1', 1);
 INSERT INTO Pessoa VALUES (default, 'Administrador', 'Brasília', 22222222222, '2000-1-1', 2);
