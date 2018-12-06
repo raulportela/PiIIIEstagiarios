@@ -53,8 +53,11 @@ public class EfetuarVenda extends HttpServlet {
                             ItemVendido itemVenda = new ItemVendido();
                             itemVenda.setProduto(produto);
                             itemVenda.setQuantidade(1);
-
-                            if (sessao.getAttribute("listaProduto") != null) {
+                            
+                              
+                            List <ItemVendido> lisaProduto = (List <ItemVendido>) request.getSession().getAttribute("listaVenda");
+                                  
+                            if (lisaProduto != null) {
                                 listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
                                 float valorTotal = Float.parseFloat((String) sessao.getAttribute("valorTotal"));
                                 valorTotal += (itemVenda.getProduto().getValor()*itemVenda.getQuantidade());
@@ -91,14 +94,15 @@ public class EfetuarVenda extends HttpServlet {
                     break;
                 case "3":
                     listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
-                    produtoId = request.getParameter("idProdutoVenda");
+                    
                     int contador = 0;
                     for (int i = 0; i < listaVenda.size(); i++) {
                         ItemVendido itemVendido = listaVenda.get(contador);
-                        if (itemVendido.getProduto().getCodFilial() == Integer.parseInt(produtoId)) {
+                        if (itemVendido.getProduto().getId() == Integer.parseInt(produtoId)) {
                             listaVenda.remove(contador);
                         }
                     }
+                    break;
                 case "":
                 default:
                     response.sendRedirect(request.getContextPath() + "/protegido/venda/efetuar");

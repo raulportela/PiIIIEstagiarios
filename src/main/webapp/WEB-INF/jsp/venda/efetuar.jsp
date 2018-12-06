@@ -71,7 +71,7 @@
                                     <td><c:out value="${itemVenda.getProduto().getQuantidade()}" /></td>
                                     <td><c:out value="${itemVenda.getQuantidade()}" /></td>
                                     <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
-                                    <td><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&idProdutoVenda=${itemVenda.getProduto().getId()}">
+                                    <td><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&produtovenda=${itemVenda.getProduto().getId()}">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
                                     </a></td>
                                 </center>
