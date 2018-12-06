@@ -80,8 +80,8 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <div>
-                            <label>Total $:</label>${sessionScope.valorTotal}
+                        <div class="modal-footer">
+                            <label style="color: red">Total R$: ${sessionScope.valorTotal}</label>
                         </div>
 
                     </form>
