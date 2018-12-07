@@ -32,7 +32,10 @@ public class Home extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         Random r = new Random();
-        int numero = numero = r.nextInt(23);
+        int numero = r.nextInt(23);
+        if(numero == 0){
+            numero = 1;
+        }
         Frase frase = null;
         try {
             frase = DaoFrase.procurar(numero);

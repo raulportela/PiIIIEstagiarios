@@ -29,6 +29,7 @@
 
                     </thead>
                     <tbody>
+                        
                         <c:forEach items="${clientes}" var="cliente"> 
                             <tr data-toggle="modal" data-target="#modelClient">
                                 <th><c:out value="${cliente.getCpf()}" /></th>

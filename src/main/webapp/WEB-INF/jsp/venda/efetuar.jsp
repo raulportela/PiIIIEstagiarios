@@ -83,7 +83,6 @@
                         <div class="modal-footer">
                             <label style="color: red">Total R$: ${sessionScope.valorTotal}</label>
                         </div>
-
                     </form>
 
                     <div class="modal-footer" >
