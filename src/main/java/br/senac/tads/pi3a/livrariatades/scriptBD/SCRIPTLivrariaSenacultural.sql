@@ -141,8 +141,10 @@ idPessoa INT,
 notaFiscal VARCHAR(10) NOT NULL,
 dtCompra DATE NOT NULL,
 valorTotal FLOAT NOT NULL,
+codFilial INT NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY(idPessoa) REFERENCES Pessoa(id));
+FOREIGN KEY(idPessoa) REFERENCES Pessoa(id)),
+FOREIGN KEY(codFilial) REFERENCES Filial(id);
 
 CREATE TABLE ItemVenda(
 id INT AUTO_INCREMENT,
