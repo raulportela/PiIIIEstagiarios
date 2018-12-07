@@ -29,22 +29,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listaVenda}" var="relatorio"> 
+                        <c:forEach items="${listaRelatorio}" var="relatorio"> 
                             <tr data-toggle="modal" data-target="#modelClient">
-                                <th><c:out value="${relatorio.getCpf()}" /></th>
-                                <td><c:out value="${relatorio.getNome()}" /></td>
-                                <td><c:out value="${relatorio.getContato()}" /></td>
-                                <td><c:out value="${relatorio.getContato()}" /></td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=1&cpf=${cliente.getCpf()}">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" >Detalhes</button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/cliente/alterar?opcao=2&cpf=${cliente.getCpf()}">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" alert="Desa realmente excluir ${cliente.getNome()}">Excluir</button>
-                                    </a>
-                                </td>
+                                <th><c:out value="${relatorio.getDia()}" /></th>
+                                <td><c:out value="${relatorio.getQtdProdutos()}" /></td>
+                                <td><c:out value="${relatorio.getTotalDia()}" /></td>
                             </tr>
                         </c:forEach>
                     </tbody>

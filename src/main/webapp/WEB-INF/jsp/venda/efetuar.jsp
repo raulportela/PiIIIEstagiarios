@@ -65,21 +65,28 @@
                                 <c:forEach items="${sessionScope.listaVenda}" var="itemVenda">
 
                                     <tr data-toggle="modal">
-                                <center>
-                                    <th><c:out value="${itemVenda.getProduto().getId()}" /></th>
-                                    <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
-                                    <td><c:out value="${itemVenda.getProduto().getQuantidade()}" /></td>
-                                    <td><c:out value="${itemVenda.getQuantidade()}" /></td>
-                                    <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
-                                    <td><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&produtovenda=${itemVenda.getProduto().getId()}">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
-                                        </a></td>
-                                </center>
+                                        <th><c:out value="${itemVenda.getProduto().getId()}" /></th>
+                                        <td><c:out value="${itemVenda.getProduto().getTitulo()}" /></td>
+                                        <td><c:out value="${itemVenda.getProduto().getQuantidade()}" /></td>
+                                        <td><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=5&produtovenda=${itemVenda.getProduto().getId()}"><i class="fa fa-arrow-circle-down"></i></a> <c:out value="${itemVenda.getQuantidade()}" /> <a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=6&produtovenda=${itemVenda.getProduto().getId()}"><i class="fa fa-arrow-circle-up"></i></a></td>
+                                        <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&produtovenda=${itemVenda.getProduto().getId()}">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
+                                            </a>
+                                        </td>
 
-                                </tr>
-                            </c:forEach>
+                                    </tr>
+                                </c:forEach>
+
                             </tbody>
                         </table>
+                            <div class="modal-footer">
+                                <a href="${pageContext.request.contextPath}/protegido/produto/listar">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" >Selecionar produtos</button>
+                                </a>
+                            </div>
+
                         <div class="modal-footer">
                             <label style="color: red">Total R$: ${sessionScope.valorTotal}</label>
                         </div>

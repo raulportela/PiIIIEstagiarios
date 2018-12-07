@@ -17,7 +17,6 @@ import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.ListarCliente;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,6 +41,8 @@ public class EfetuarVenda extends HttpServlet {
         String opcao = request.getParameter("opcao");
         String produtoId = request.getParameter("produtovenda");
         String vender = request.getParameter("vender");
+        float valorTotal;
+        int contador;
         String cpf = request.getParameter("cpf");
         HttpSession sessao = request.getSession();
         Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
@@ -64,7 +65,7 @@ public class EfetuarVenda extends HttpServlet {
                             Logger.getLogger(EfetuarVenda.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         if (listaVenda != null) {
-                            float valorTotal = (Float) sessao.getAttribute("valorTotal");
+                            valorTotal = (Float) sessao.getAttribute("valorTotal");
                             valorTotal += (itemVenda.getProduto().getValor() * itemVenda.getQuantidade());
                             listaVenda.add(itemVenda);
                             sessao.setAttribute("listaProduto", listaVenda);
@@ -94,8 +95,8 @@ public class EfetuarVenda extends HttpServlet {
                     break;
                 case "3":
                     listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
-                    float valorTotal = (Float) sessao.getAttribute("valorTotal");
-                    int contador = 0;
+                    valorTotal = (Float) sessao.getAttribute("valorTotal");
+                    contador = 0;
                     for (int i = 0; i < listaVenda.size(); i++) {
                         ItemVendido itemVendido = listaVenda.get(contador);
                         if (itemVendido.getProduto().getId() == Integer.parseInt(produtoId)) {
@@ -110,9 +111,46 @@ public class EfetuarVenda extends HttpServlet {
                 case "4":
                     sessao.setAttribute("clienteVenda", null);
                     break;
+                case "5":
+                    listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
+                    valorTotal = (Float) sessao.getAttribute("valorTotal");
+                    produtoId = request.getParameter("produtovenda");
+                    contador = 0;
+                    for (int i = 0; i < listaVenda.size(); i++) {
+                        ItemVendido itemVendido = listaVenda.get(contador);
+                        if (itemVendido.getProduto().getId() == Integer.parseInt(produtoId)) {
+                            valorTotal -= (itemVendido.getProduto().getValor() * itemVendido.getQuantidade());
+                            itemVendido.setQuantidade(itemVendido.getQuantidade()-1);
+                            if(itemVendido.getQuantidade() == 0){
+                                listaVenda.remove(contador);
+                            }else {
+                                valorTotal += (itemVendido.getProduto().getValor() * itemVendido.getQuantidade());
+                            }
+                        }
+                        contador++;
+                    }
+                    sessao.setAttribute("valorTotal", valorTotal);
+                    sessao.setAttribute("listaVenda", listaVenda);
+                    break;
+                case "6":
+                    listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
+                    valorTotal = (Float) sessao.getAttribute("valorTotal");
+                    produtoId = request.getParameter("produtovenda");
+                    contador = 0;
+                    for (int i = 0; i < listaVenda.size(); i++) {
+                        ItemVendido itemVendido = listaVenda.get(contador);
+                        if (itemVendido.getProduto().getId() == Integer.parseInt(produtoId)) {
+                            valorTotal -= (itemVendido.getProduto().getValor() * itemVendido.getQuantidade());
+                            itemVendido.setQuantidade(itemVendido.getQuantidade()+1);
+                            valorTotal += (itemVendido.getProduto().getValor() * itemVendido.getQuantidade());
+                        }
+                        contador++;
+                    }
+                    sessao.setAttribute("valorTotal", valorTotal);
+                    sessao.setAttribute("listaVenda", listaVenda);
                 case "":
                 default:
-                    response.sendRedirect(request.getContextPath() + "/protegido/venda/efetuar");
+                    request.setAttribute("opcao", null);
                     break;
             }
         }

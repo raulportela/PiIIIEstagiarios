@@ -14,7 +14,7 @@ import java.time.LocalDate;
  */
 public class Relatorio {
     private LocalDate dia;
-    private Venda venda[];
+    private Venda venda;
     private float totalDia;
     private float totalMes;
     private int qtdProdutos;
@@ -35,11 +35,11 @@ public class Relatorio {
         this.dia = dia;
     }
 
-    public Venda[] getVenda() {
+    public Venda getVenda() {
         return venda;
     }
 
-    public void setVenda(Venda[] venda) {
+    public void setVenda(Venda venda) {
         this.venda = venda;
     }
 

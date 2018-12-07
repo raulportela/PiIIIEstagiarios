@@ -48,15 +48,16 @@
                         </td>
                         </tr>
                     </c:forEach>
-                    <div class="modal-footer">
-                        <a href="${pageContext.request.contextPath}/protegido/produto/cadastrar">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Novo produto</button>
-                        </a>
-                        <a href="${pageContext.request.contextPath}/protegido/home">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                        </a>
-                    </div>
+
                     </tbody>
                 </table>
+                <div class="modal-footer">
+                    <a href="${pageContext.request.contextPath}/protegido/produto/cadastrar">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Novo produto</button>
+                    </a>
+                    <a href="${pageContext.request.contextPath}/protegido/home">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                    </a>
+                </div>
             </div>
             <c:import url="/WEB-INF/jsp/home/footer.jsp" />
