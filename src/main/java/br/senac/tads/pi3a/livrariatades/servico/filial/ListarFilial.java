@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
 
 /**
  *
@@ -29,18 +30,19 @@ public class ListarFilial extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        String ordem = request.getParameter("ordem");
-        
-        List<Filial> listaFiliais = new ArrayList<>();
-        listaFiliais = AtulizarLista(ordem);
-        request.setAttribute("filiais", listaFiliais);
 
+        String ordem = request.getParameter("ordem");
+
+        if (ordem != null) {
+
+            List<Filial> listaFiliais = new ArrayList<>();
+            listaFiliais = AtulizarLista(ordem);
+            request.setAttribute("filiais", listaFiliais);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher(
                 "/WEB-INF/jsp/filial/listarFilial.jsp");
         dispatcher.forward(request, response);
-        
+
     }
 
     @Override

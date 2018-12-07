@@ -24,26 +24,21 @@ public class DaoVenda {
 
     public static void inserir(Venda venda) throws SQLException, Exception {
         String sql = "INSERT INTO Venda VALUES (0, ?, ?, ?, ?)";
+        String sql2 = "INSERT INTO itemVenda VALUES (0, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         try {
             connection = ConnectionUtils.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql, preparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setString(1, venda.getNotaFiscal());
-            if (venda.getData() == null) {
-                Calendar hoje = Calendar.getInstance();
-                Date dataHoje = hoje.getTime();
-                Timestamp t = new Timestamp(dataHoje.getTime());
-                preparedStatement.setTimestamp(2, t);
-            } else {
-                Timestamp t = new Timestamp(venda.getData().getTime());
-                preparedStatement.setTimestamp(2, t);
-            }
+            preparedStatement.setInt(1, venda.getIdPessoa());
+            preparedStatement.setString(2, ""+venda.getNotaFiscal());
+           
+            //PRECISA CONVERTER
+            preparedStatement.setDate(3, (java.sql.Date) new Date());
             preparedStatement.setFloat(3, venda.getValorTotal());
-
             preparedStatement.execute();
 
             int ultimaChave = 0;
