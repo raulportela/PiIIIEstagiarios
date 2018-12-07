@@ -13,6 +13,9 @@
     </head>
     <body>
         <h1>Usuário não tem permissão para acessar a página.</h1>
+        <a href="${pageContext.request.contextPath}/protegido/home">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar para Home</button>
+        </a>
     </body>
 </html>
 
