@@ -22,7 +22,7 @@ import java.util.Date;
 public class DaoVenda {
 
     public static void inserir(Venda venda) throws SQLException, Exception {
-        String sql = "INSERT INTO Venda VALUES (0, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Venda VALUES (0, ?, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -35,8 +35,9 @@ public class DaoVenda {
             preparedStatement.setString(2, "" + venda.getNotaFiscal());
             Date data = new Date();
             Timestamp t = new Timestamp(data.getTime());
-            preparedStatement.setTimestamp(3,  t);
+            preparedStatement.setTimestamp(3, t);
             preparedStatement.setFloat(4, venda.getValorTotal());
+            preparedStatement.setInt(5, venda.getCodFilial());
             preparedStatement.execute();
 
             int ultimaChave = 0;
@@ -83,9 +84,9 @@ public class DaoVenda {
     }
 
     public static void decrementarEstoque(ItemVendido item) throws SQLException, Exception {
-        String sql = "UPDATE FilialTemLivro SET quantidade=?"
-                + "WHERE (id=?)";
-        String sql2 = "UPDATE Livro SET disponivel=?"
+        String sql = "UPDATE FilialTemLivro SET quantidade= ?\n"
+                + "WHERE idLivro=?";
+        String sql2 = "UPDATE Livro SET disponivel=?\n"
                 + "WHERE (id=?)";
         boolean disponivel = false;
 
@@ -96,15 +97,16 @@ public class DaoVenda {
             preparedStatement = connection.prepareStatement(sql);
 
             if (item.getProduto().getQuantidade() == 0) {
-                preparedStatement.setInt(1, item.getProduto().getQuantidade());
+                int qtd = (item.getProduto().getQuantidade() - item.getQuantidade());
+                preparedStatement.setInt(1, qtd);
                 preparedStatement.setInt(2, item.getProduto().getId());
                 disponivel = false;
             } else if (item.getProduto().getQuantidade() > 0) {
-                preparedStatement.setInt(1, item.getProduto().getQuantidade());
+                int qtd = (item.getProduto().getQuantidade() - item.getQuantidade());
+                preparedStatement.setInt(1, qtd);
                 preparedStatement.setInt(2, item.getProduto().getId());
                 disponivel = true;
             }
-
             preparedStatement.execute();
 
             if (!preparedStatement.isClosed()) {
@@ -119,6 +121,7 @@ public class DaoVenda {
             }
             preparedStatement.setInt(2, item.getProduto().getId());
 
+            preparedStatement.execute();
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.isClosed();
