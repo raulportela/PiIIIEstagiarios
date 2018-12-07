@@ -199,15 +199,15 @@ FOREIGN KEY (idFilial) REFERENCES Filial(id),
 FOREIGN KEY (idLivro) REFERENCES Livro(id));
 
 INSERT INTO FilialTemLivro VALUES (default, 1, 1, 50, 40.60);
-INSERT INTO FilialTemLivro VALUES (default, 1, 1, 10, 22.35);
-INSERT INTO FilialTemLivro VALUES (default, 1, 1, 05, 30);
-INSERT INTO FilialTemLivro VALUES (default, 2, 1, 08, 6.50);
-INSERT INTO FilialTemLivro VALUES (default, 2, 1, 16, 16.00);
-INSERT INTO FilialTemLivro VALUES (default, 3, 1, 30, 25.30);
-INSERT INTO FilialTemLivro VALUES (default, 3, 1, 22, 11.45);
-INSERT INTO FilialTemLivro VALUES (default, 3, 1, 14, 8.60);
-INSERT INTO FilialTemLivro VALUES (default, 4, 1, 16, 16.80);
-INSERT INTO FilialTemLivro VALUES (default, 4, 1, 07, 23.30);
+INSERT INTO FilialTemLivro VALUES (default, 1, 2, 10, 22.35);
+INSERT INTO FilialTemLivro VALUES (default, 1, 3, 05, 30);
+INSERT INTO FilialTemLivro VALUES (default, 2, 4, 08, 6.50);
+INSERT INTO FilialTemLivro VALUES (default, 2, 5, 16, 16.00);
+INSERT INTO FilialTemLivro VALUES (default, 3, 6, 30, 25.30);
+INSERT INTO FilialTemLivro VALUES (default, 3, 7, 22, 11.45);
+INSERT INTO FilialTemLivro VALUES (default, 3, 8, 14, 8.60);
+INSERT INTO FilialTemLivro VALUES (default, 4, 9, 16, 16.80);
+INSERT INTO FilialTemLivro VALUES (default, 4, 10, 07, 23.30);
 
 CREATE TABLE Suporte(
 id INT AUTO_INCREMENT,
@@ -220,12 +220,17 @@ detalhe VARCHAR(300),
 PRIMARY KEY (id),
 FOREIGN KEY (codFuncionario) REFERENCES Funcionario(id));
 
--- Selecionar Livro
-SELECT * FROM LIVRO L 
+SELECT * FROM LIVRO L
 JOIN EDITORA E
 ON L.IDEDITORA = E.ID
 JOIN AUTOR A
-ON L.IDAUTOR = A.ID;
+ON L.IDAUTOR = A.ID
+JOIN FILIALTEMLIVRO FT
+ON FT.IDLIVRO = L.ID
+WHERE L.CODFILIAL = 1
+ORDER BY l.titulo;
+
+select * from livro;
 
 -- Selecionar Cliente
 SELECT * FROM PESSOA P
