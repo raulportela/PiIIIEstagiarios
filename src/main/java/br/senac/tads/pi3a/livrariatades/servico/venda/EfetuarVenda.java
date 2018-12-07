@@ -94,15 +94,21 @@ public class EfetuarVenda extends HttpServlet {
                     break;
                 case "3":
                     listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
-
+                    float valorTotal = (Float) sessao.getAttribute("valorTotal");
                     int contador = 0;
                     for (int i = 0; i < listaVenda.size(); i++) {
                         ItemVendido itemVendido = listaVenda.get(contador);
                         if (itemVendido.getProduto().getId() == Integer.parseInt(produtoId)) {
+                            valorTotal -= (itemVendido.getProduto().getValor() * itemVendido.getQuantidade());
                             listaVenda.remove(contador);
-                            response.sendRedirect(request.getContextPath() + "/protegido/venda/efetuar");
                         }
+                        contador++;
                     }
+                    sessao.setAttribute("valorTotal", valorTotal);
+                    sessao.setAttribute("listaVenda", listaVenda);
+                    break;
+                case "4":
+                    sessao.setAttribute("clienteVenda", null);
                     break;
                 case "":
                 default:
@@ -145,7 +151,7 @@ public class EfetuarVenda extends HttpServlet {
                 } catch (Exception ex) {
                     Logger.getLogger(EfetuarVenda.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }else {
+            } else {
                 sessao.setAttribute("msgErroVenda", "Selecione ao menos um produto.");
                 return;
             }

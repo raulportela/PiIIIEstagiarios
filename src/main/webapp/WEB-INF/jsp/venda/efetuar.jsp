@@ -34,7 +34,7 @@
 
                     <form class="form-group">
                         <c:if test="${sessionScope.clienteVenda != null}">
-                            <label>CPF:</label> <input type="text" readonly="" value="${sessionScope.clienteVenda.getCpf()}" class="form-control" id="cpf" size="10">
+                            <label>CPF: <a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=4"><i style="color: red" class="fa fa-remove"><b>remover</b></i></a></label> <input type="text" readonly="" value="${sessionScope.clienteVenda.getCpf()}" class="form-control" id="cpf" size="10">
                             <label>Cliente:</label><input type="text" value="${sessionScope.clienteVenda.getNome()} ${clienteVenda.getSobrenome()}" class="form-control" id="cliente" readonly="">
 
                         </c:if>
@@ -44,7 +44,7 @@
                             </a>
 
                         </c:if>
-
+                        <hr>
                         <label>Nota Fiscal:</label><input type="text" class="form-control" id="notafiscal" >
 
                         <table class="table table-hover">
@@ -72,8 +72,8 @@
                                     <td><c:out value="${itemVenda.getQuantidade()}" /></td>
                                     <td><c:out value="${itemVenda.getProduto().getValor()}" /></td>
                                     <td><a href="${pageContext.request.contextPath}/protegido/venda/efetuar?opcao=3&produtovenda=${itemVenda.getProduto().getId()}">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
-                                    </a></td>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" >Excluir</button>
+                                        </a></td>
                                 </center>
 
                                 </tr>
@@ -87,11 +87,10 @@
 
                     <div class="modal-footer" >
                         <form action="${pageContext.request.contextPath}/protegido/venda/efetuar" method="post">
-                        <a href="${pageContext.request.contextPath}/protegido/home">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
-                        </a>
-                        
-                        <button type="submit" class="btn btn-primary" onclick="">Concluir Venda</button>
+                            <a href="${pageContext.request.contextPath}/protegido/home">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
+                            </a>
+                            <button type="submit" class="btn btn-primary" onclick="">Concluir Venda</button>
                         </form>
                     </div>
                 </div>
