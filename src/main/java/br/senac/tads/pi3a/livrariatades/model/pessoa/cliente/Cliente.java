@@ -8,6 +8,7 @@ package br.senac.tads.pi3a.livrariatades.model.pessoa.cliente;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -98,15 +99,14 @@ public class Cliente extends Pessoa {
         this.cpf = cpf;
     }
 
-    @Override
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
+
   @Override
     public int getCodFilial() {
         return codFilial;

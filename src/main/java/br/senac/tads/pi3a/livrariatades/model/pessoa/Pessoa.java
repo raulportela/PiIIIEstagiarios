@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi3a.livrariatades.model.pessoa;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ public abstract class Pessoa {
     protected String nome;
     protected String sobrenome;
     protected String cpf;
-    protected Date dataNascimento;
+    protected LocalDate dataNascimento;
     protected int codFilial; 
 
     public String getNome() {
@@ -31,10 +32,14 @@ public abstract class Pessoa {
         return cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
-    
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
      public int getCodFilial() {
         return codFilial;
     }

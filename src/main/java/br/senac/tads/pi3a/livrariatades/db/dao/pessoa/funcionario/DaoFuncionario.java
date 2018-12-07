@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -189,7 +190,8 @@ public class DaoFuncionario {
                 funcionario.setNome(result.getString("P.nome"));
                 funcionario.setSobrenome(result.getString("P.sobrenome"));
                 funcionario.setCpf(result.getString("P.cpf"));
-                funcionario.setDataNascimento(new Date());
+                Timestamp t = result.getTimestamp("dataNascimento");
+                funcionario.setDataNascimento(t.toLocalDateTime().toLocalDate());
                 funcionario.setCodFilial(result.getInt("P.codFilial"));
                 
                 funcionario.setCodFuncionario(result.getInt("F.codFuncionario"));

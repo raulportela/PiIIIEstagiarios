@@ -55,7 +55,8 @@ public class DaoPessoa {
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
             preparedStatement.setString(3, pessoa.getCpf());
-            Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
+            java.util.Date date = java.sql.Date.valueOf(pessoa.getDataNascimento());
+            Timestamp t = new Timestamp(date.getTime());
             preparedStatement.setTimestamp(4, t);
             preparedStatement.setInt(5, pessoa.getCodFilial());
 
@@ -105,7 +106,8 @@ public class DaoPessoa {
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getSobrenome());
             preparedStatement.setString(3, pessoa.getCpf());
-            Timestamp t = new Timestamp(pessoa.getDataNascimento().getTime());
+            java.util.Date date = java.sql.Date.valueOf(pessoa.getDataNascimento());
+            Timestamp t = new Timestamp(date.getTime());
             preparedStatement.setTimestamp(4, t);
             preparedStatement.setString(5, pessoa.getCpf());
             preparedStatement.execute();
@@ -162,8 +164,7 @@ public class DaoPessoa {
                 cliente.setCpf(result.getString("cpf"));
                 cliente.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
-                Date datanasc = t;
-                cliente.setDataNascimento(datanasc);
+                cliente.setDataNascimento(t.toLocalDateTime().toLocalDate());
 
                 cliente.setCodCliente(result.getInt("codCliente"));
                 cliente.setDisponivel(result.getBoolean("disponivel"));
@@ -235,8 +236,7 @@ public class DaoPessoa {
                 funcionario.setCpf(result.getString("cpf"));
                 funcionario.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
-                Date datanasc = t;
-                funcionario.setDataNascimento(datanasc);
+                funcionario.setDataNascimento(t.toLocalDateTime().toLocalDate());
 
                 funcionario.setCodFuncionario(result.getInt("codFuncionario"));
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
@@ -309,8 +309,7 @@ public class DaoPessoa {
                 cliente.setCpf(result.getString("cpf"));
                 cliente.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
-                Date datanasc = t;
-                cliente.setDataNascimento(datanasc);
+                cliente.setDataNascimento(t.toLocalDateTime().toLocalDate());
 
                 cliente.setCodCliente(result.getInt("codCliente"));
                 cliente.setDisponivel(result.getBoolean("disponivel"));
@@ -376,9 +375,7 @@ public class DaoPessoa {
                 funcionario.setCpf(result.getString("cpf"));
                 funcionario.setCodFilial(result.getInt("codFilial"));
                 Timestamp t = result.getTimestamp("dataNascimento");
-                Date datanasc = t;
-                funcionario.setDataNascimento(datanasc);
-
+                funcionario.setDataNascimento(t.toLocalDateTime().toLocalDate());
                 funcionario.setCodFuncionario(result.getInt("codFuncionario"));
                 funcionario.setDisponivel(result.getBoolean("disponivel"));
                 funcionario.setNomeUsuario(result.getString("nomeUsuario"));

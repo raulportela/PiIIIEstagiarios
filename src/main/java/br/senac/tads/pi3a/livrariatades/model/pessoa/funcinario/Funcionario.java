@@ -8,6 +8,7 @@ package br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario;
 import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.Pessoa;
+import java.time.LocalDate;
 import java.util.Date;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -121,15 +122,14 @@ public class Funcionario extends Pessoa {
         this.cpf = cpf;
     }
 
-    @Override
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
+
     public String getHashSenha() {
         return hashSenha;
     }

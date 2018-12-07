@@ -11,6 +11,7 @@ import br.senac.tads.pi3a.livrariatades.model.contato.Contato;
 import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,10 +86,13 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setSobrenome(request.getParameter("sobrenome"));
         funcionario.setCpf(request.getParameter("cpf"));
-        String datajsp = request.getParameter("nasc");
-
-        Date dateTeste = new Date();
-        funcionario.setDataNascimento(dateTeste);
+        String data = request.getParameter("nasc");
+        String dataS[] = data.split("/");
+        System.out.println(dataS[0]);
+        System.out.println(dataS[1]);
+        System.out.println(dataS[2]);
+        LocalDate lData = LocalDate.of(Integer.parseInt(dataS[2]), Integer.parseInt(dataS[1]), Integer.parseInt(dataS[0]));
+        funcionario.setDataNascimento(lData);
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));
         funcionario.setSenha(request.getParameter("senha"));

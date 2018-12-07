@@ -11,6 +11,7 @@ import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,9 +47,13 @@ public class CadastroCliente extends HttpServlet {
         cliente.setNome(request.getParameter("nome"));
         cliente.setSobrenome(request.getParameter("sobrenome"));
         cliente.setCpf(request.getParameter("cpf"));
-        String datajsp = request.getParameter("nasc");
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-        cliente.setDataNascimento(new Date());
+        String data = request.getParameter("nasc");
+        String dataS[] = data.split("-");
+        System.out.println(dataS[0]);
+        System.out.println(dataS[1]);
+        System.out.println(dataS[2]);
+        LocalDate lData = LocalDate.of(Integer.parseInt(dataS[0]), Integer.parseInt(dataS[1]), Integer.parseInt(dataS[2]));
+        cliente.setDataNascimento(lData);
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
