@@ -31,7 +31,7 @@ public class DaoVenda {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql, preparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setInt(1, venda.getIdPessoa());
+            preparedStatement.setInt(1, venda.getCliente().getIdPessoa());
             preparedStatement.setString(2, "" + venda.getNotaFiscal());
             Date data = new Date();
             Timestamp t = new Timestamp(data.getTime());
