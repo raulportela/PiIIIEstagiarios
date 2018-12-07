@@ -80,6 +80,8 @@ public class AutorizacaoFilter implements Filter {
             List<String> listaPaginasRoot = new ArrayList();
             listaPaginasRoot.add("/protegido/home");
             listaPaginasRoot.add("/protegido/suporte");
+            listaPaginasRoot.add("/protegido/suporte/alterar");
+            listaPaginasRoot.add("/protegido/suporte/listar");
             listaPaginasRoot.add("/protegido/relatorioDetalhado");
 
             for (int i = 0; i < listaPaginasRoot.size(); i++) {
@@ -92,10 +94,14 @@ public class AutorizacaoFilter implements Filter {
             List<String> listaPaginasRoot = new ArrayList();
             listaPaginasRoot.add("/protegido/home");
             listaPaginasRoot.add("/protegido/produto/listar");
+            listaPaginasRoot.add("/protegido/produto/cadastrar");
+            listaPaginasRoot.add("/protegido/produto/alterar");
             listaPaginasRoot.add("/protegido/venda/efetuar");
             listaPaginasRoot.add("/protegido/cliente/listar");
+            listaPaginasRoot.add("/protegido/cliente/cadastrar");
+            listaPaginasRoot.add("/protegido/cliente/alterar");
             listaPaginasRoot.add("/protegido/relatorio");
-            listaPaginasRoot.add("/protegido/suporte");
+            listaPaginasRoot.add("/protegido/suporte/cadastrar");
 
             for (int i = 0; i < listaPaginasRoot.size(); i++) {
                 if (pagina.endsWith(listaPaginasRoot.get(i))) {
@@ -106,8 +112,10 @@ public class AutorizacaoFilter implements Filter {
         if (funcao.equalsIgnoreCase("RH")) {
             List<String> listaPaginasRoot = new ArrayList();
             listaPaginasRoot.add("/protegido/home");
-            listaPaginasRoot.add("/protegido/funcionario/cliente");
-            listaPaginasRoot.add("/protegido/suporte");
+            listaPaginasRoot.add("/protegido/funcionario/listar");
+            listaPaginasRoot.add("/protegido/funcionario/cadastrar");
+            listaPaginasRoot.add("/protegido/funcionario/alterar");
+            listaPaginasRoot.add("/protegido/suporte/cadastrar");
 
             for (int i = 0; i < listaPaginasRoot.size(); i++) {
                 if (pagina.endsWith(listaPaginasRoot.get(i))) {
@@ -119,9 +127,13 @@ public class AutorizacaoFilter implements Filter {
             List<String> listaPaginasRoot = new ArrayList();
             listaPaginasRoot.add("/protegido/home");
             listaPaginasRoot.add("/protegido/produto/listar");
+            listaPaginasRoot.add("/protegido/produto/cadastrar");
+            listaPaginasRoot.add("/protegido/produto/alterar");
             listaPaginasRoot.add("/protegido/venda/efetuar");
             listaPaginasRoot.add("/protegido/cliente/listar");
-            listaPaginasRoot.add("/protegido/suporte");
+            listaPaginasRoot.add("/protegido/cliente/cadastrar");
+            listaPaginasRoot.add("/protegido/cliente/alterar");
+            listaPaginasRoot.add("/protegido/suporte/cadastrar");
 
             for (int i = 0; i < listaPaginasRoot.size(); i++) {
                 if (pagina.endsWith(listaPaginasRoot.get(i))) {
@@ -135,6 +147,21 @@ public class AutorizacaoFilter implements Filter {
             listaPaginasRoot.add("/protegido/filiais");
             listaPaginasRoot.add("/protegido/relatorio");
             listaPaginasRoot.add("/protegido/cliente/listar");
+            listaPaginasRoot.add("/protegido/funcionario/listar");
+
+            for (int i = 0; i < listaPaginasRoot.size(); i++) {
+                if (pagina.endsWith(listaPaginasRoot.get(i))) {
+                    return true;
+                }
+            }
+        }
+        if (funcao.equalsIgnoreCase("GERENTE")) {
+            List<String> listaPaginasRoot = new ArrayList();
+            listaPaginasRoot.add("/protegido/home");
+            listaPaginasRoot.add("/protegido/filiais");
+            listaPaginasRoot.add("/protegido/relatorio");
+            listaPaginasRoot.add("/protegido/cliente/listar");
+            listaPaginasRoot.add("/protegido/funcionario/listar");
 
             for (int i = 0; i < listaPaginasRoot.size(); i++) {
                 if (pagina.endsWith(listaPaginasRoot.get(i))) {

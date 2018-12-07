@@ -52,6 +52,9 @@
                         </table>
                     </div>
                     <div class="modal-footer">
+                        <a href="${pageContext.request.contextPath}/protegido/suporte/cadastrar">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Novo suporte</button>
+                        </a>
                         <a href="${pageContext.request.contextPath}/protegido/home">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
                         </a>

@@ -38,9 +38,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-                <div class="modal-footer">
-                    <label style="color: green">Total mensal: </label>
-                </div>
+               
             </div>
 
         </div>

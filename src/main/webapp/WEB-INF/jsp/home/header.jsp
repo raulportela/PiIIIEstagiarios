@@ -83,7 +83,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/protegido/filiais/listar">
+                                <a href="${pageContext.request.contextPath}/protegido/filial/listar">
                                     <i class="fa fa-building-o"></i>
                                     <span>Filiais</span> <!-- Item Principal (Resumo Geral) -->
                                 </a>
@@ -101,7 +101,7 @@
                                 </a>
                             </li> 
                             <li>
-                                <a href="${pageContext.request.contextPath}/protegido/suporte">
+                                <a href="${pageContext.request.contextPath}/protegido/suporte/listar">
                                     <i class="fa fa-info"></i>
                                     <span>Suporte</span>  <!-- Item Principal (Resumo Geral) -->
                                 </a>

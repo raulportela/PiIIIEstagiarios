@@ -18,7 +18,7 @@
 
             <form action="${pageContext.request.contextPath}/protegido/suporte/cadastrar" method="post" class="form-group">
 
-                <label>Codigo Funcionario:</label><input type="text" value="1" class="form-control" id="codfuncionario" name="codfuncionario" readonly>
+                <input type="text" style="display: none" class="form-control" id="codfuncionario" name="codfuncionario" value="${sessionScope.funcionario.getCodFilial()}">
 
                 <label>Nome do Chamado:</label><input type="text"   class="form-control" id="nomechamado"  name="nomechamado">
 
