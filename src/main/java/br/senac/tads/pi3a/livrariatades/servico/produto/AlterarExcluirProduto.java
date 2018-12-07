@@ -70,6 +70,9 @@ public class AlterarExcluirProduto extends HttpServlet {
         Produto produto = new Produto();
 
         produto.setDisponivel(true);
+        produto.setIdAutor(Integer.parseInt(request.getParameter("idAutor")));
+        produto.setIdEditora(Integer.parseInt(request.getParameter("idEditora")));
+        produto.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         produto.setId(Integer.parseInt(request.getParameter("cod")));
         produto.setEditora(request.getParameter("editora"));
         produto.setAutor(request.getParameter("autor"));

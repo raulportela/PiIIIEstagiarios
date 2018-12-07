@@ -11,6 +11,10 @@
                     <div class="modal-body">
 
                         <form items="${produto}" var="produto" action="${pageContext.request.contextPath}/protegido/produto/alterar" method="post" class="form-group">
+                            
+                            <input type="text" style="display: none" value="${funcionario.getCodFilial()}" class="form-control" id="filial" name="filial" value="${sessionScope.funcionario.getCodFilial()}">
+                            <input type="text" style="display: none" value="${produto.getIdAutor()}" class="form-control" id="idAutor" name="idAutor">
+                            <input type="text" style="display: none" value="${produto.getIdEditora()}" class="form-control" id="idEditora" name="idEditora">
 
                             <label>Cod:</label><input value="${produto.getId()}" type="text" class="form-control" id="cod" name="cod" readonly>
 

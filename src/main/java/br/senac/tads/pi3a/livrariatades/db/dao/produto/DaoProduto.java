@@ -102,8 +102,10 @@ public class DaoProduto {
                 + "WHERE (ID = ?)";
         String sql2 = "UPDATE AUTOR SET NOMECOMPLETO=?\n"
                 + "WHERE (ID = ?)";
-        String sql3 = "UPDATE LIVRO SET DISPONIVEL=?, TITULO=?, DESCRICAO=?, QUANTIDADE=?, VALOR=?\n"
+        String sql3 = "UPDATE LIVRO SET IDEDITORA=?, IDAUTOR=?, CODFILIAL=?, DISPONIVEL=?, TITULO=?, DESCRICAO=?\n"
                 + "WHERE (ID = ?)";
+        String sql4 = "UPDATE FILIALTEMLIVRO FT SET QUANTIDADE=?, VALOR=?\n"
+                + "WHERE IDLIVRO = (SELECT  ID FROM LIVRO WHERE ID = ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -128,13 +130,26 @@ public class DaoProduto {
 
             // execução da terceira inserção
             preparedStatement = connection.prepareStatement(sql3);
-            preparedStatement.setBoolean(1, produto.isDisponivel());
-            preparedStatement.setString(2, produto.getTitulo());
-            preparedStatement.setString(3, produto.getDescricao());
-            preparedStatement.setInt(4, produto.getQuantidade());
-            preparedStatement.setFloat(5, produto.getValor());
-            preparedStatement.setInt(6, produto.getId());
+            preparedStatement.setInt(1, produto.getIdEditora());
+            preparedStatement.setInt(2, produto.getIdAutor());
+            preparedStatement.setInt(3, produto.getCodFilial());
+            preparedStatement.setBoolean(4, produto.isDisponivel());
+            preparedStatement.setString(5, produto.getTitulo());
+            preparedStatement.setString(6, produto.getDescricao());
+            preparedStatement.setInt(7, produto.getCodFilial());
             preparedStatement.execute();
+            if (!preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+
+          
+             // execução da qaurta inserção
+            preparedStatement = connection.prepareStatement(sql4);
+            preparedStatement.setInt(1, produto.getQuantidade());
+            preparedStatement.setFloat(2, produto.getValor());
+            preparedStatement.setInt(3, produto.getId());
+            preparedStatement.execute();
+
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();
@@ -192,9 +207,9 @@ public class DaoProduto {
         try {
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
-            
+
             preparedStatement.setInt(1, codFilial);
-            
+
             result = preparedStatement.executeQuery();
 
             while (result.next()) {
