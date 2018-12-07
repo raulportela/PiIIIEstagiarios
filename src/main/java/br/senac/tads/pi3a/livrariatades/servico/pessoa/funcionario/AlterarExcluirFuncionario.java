@@ -12,7 +12,6 @@ import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -32,10 +31,9 @@ public class AlterarExcluirFuncionario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         Funcionario funcionario = null;
-        
+
         if (request.getParameter("opcao") != null & request.getParameter("cpf") != null) {
             String opcao = request.getParameter("opcao");
             String cpf = request.getParameter("cpf");
@@ -46,7 +44,8 @@ public class AlterarExcluirFuncionario extends HttpServlet {
                         funcionario = DaoPessoa.procurarFuncionario(cpf);
                     } catch (Exception ex) {
                         Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                    }   request.setAttribute("funcionario", funcionario);
+                    }
+                    request.setAttribute("funcionario", funcionario);
                     RequestDispatcher dispatcher = request.getRequestDispatcher(
                             "/WEB-INF/jsp/funcionario/alterarFuncionario.jsp");
                     dispatcher.forward(request, response);
@@ -56,14 +55,16 @@ public class AlterarExcluirFuncionario extends HttpServlet {
                         DaoFuncionario.mudarStatus(cpf, "0");
                     } catch (Exception ex) {
                         Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                    }   response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
+                    }
+                    response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
                     break;
                 case "3":
                     try {
                         DaoFuncionario.mudarStatus(cpf, "1");
                     } catch (Exception ex) {
                         Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-                    }   response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
+                    }
+                    response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
                     break;
                 default:
                     break;
@@ -88,9 +89,6 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         funcionario.setCpf(request.getParameter("cpf"));
         String data = request.getParameter("nasc");
         String dataS[] = data.split("-");
-        System.out.println(dataS[0]);
-        System.out.println(dataS[1]);
-        System.out.println(dataS[2]);
         LocalDate lData = LocalDate.of(Integer.parseInt(dataS[0]), Integer.parseInt(dataS[1]), Integer.parseInt(dataS[2]));
         funcionario.setDataNascimento(lData);
         funcionario.setRg(request.getParameter("rg"));
@@ -100,9 +98,13 @@ public class AlterarExcluirFuncionario extends HttpServlet {
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
-        contato.setTelefone(Long.parseLong(request.getParameter("tel")));
-        contato.setCelular(Long.parseLong(request.getParameter("cel")));
-
+        if (!request.getParameter("tel").equals("")) {
+            contato.setTelefone(Long.parseLong(request.getParameter("tel")));
+        }
+        if (!request.getParameter("cel").equals("")) {
+            contato.setCelular(Long.parseLong(request.getParameter("cel")));
+        }
+        
         Endereco endereco = new Endereco();
         endereco.setRua(request.getParameter("rua"));
         endereco.setNumero(Integer.parseInt(request.getParameter("numero")));
@@ -118,7 +120,6 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(AlterarExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
         response.sendRedirect(request.getContextPath() + "/protegido/funcionario/listar");
 

@@ -11,7 +11,6 @@ import br.senac.tads.pi3a.livrariatades.model.endereco.Endereco;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -39,8 +38,7 @@ public class CadastrarFuncionario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         Funcionario funcionario = new Funcionario();
         funcionario.setCodFilial(Integer.parseInt(request.getParameter("filial")));
         funcionario.setDisponivel(true);
@@ -58,9 +56,12 @@ public class CadastrarFuncionario extends HttpServlet {
 
         Contato contato = new Contato();
         contato.setEmail(request.getParameter("email"));
-        contato.setTelefone(Long.parseLong(request.getParameter("tel")));
-        contato.setCelular(Long.parseLong(request.getParameter("cel")));
-
+        if (!request.getParameter("tel").equals("")) {
+            contato.setTelefone(Long.parseLong(request.getParameter("tel")));
+        }
+        if (!request.getParameter("cel").equals("")) {
+            contato.setCelular(Long.parseLong(request.getParameter("cel")));
+        }
         Endereco endereco = new Endereco();
         endereco.setRua(request.getParameter("rua"));
         endereco.setNumero(Integer.parseInt(request.getParameter("numero")));

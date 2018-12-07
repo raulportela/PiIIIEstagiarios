@@ -15,7 +15,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Relatorio - <script> document.write(data3+ " à "+ dataFinal)</script></h5>
+                <h5 class="modal-title" id="exampleModalLabel">Relatorio - <script> document.write(dataFinal)</script></h5>
                 </a>
             </div>
             <div class="modal-body">

@@ -8,7 +8,6 @@ package br.senac.tads.pi3a.livrariatades.servico.produto;
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;

@@ -27,7 +27,7 @@
 
                             <label>RG:<label style="color: red">*</label></label><input value="${funcionario.getRg()}" type="text" class="form-control" id="rg" name="rg">
 
-                            <label>Nasc:<label style="color: red">*</label></label><input value="${funcionario.getDataNascimento()}" type="text" class="form-control" id="nasc" name="nasc">
+                            <label>Nasc:<label style = "color: red">*</label></label><input type="date" value="${funcionario.getDataNascimento()}" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="1900-01-01" class="form-control" id="nasc" name="nasc">
 
                             <label>E-mail:<label style="color: red">*</label></label><input value="${funcionario.getContato().getEmail()}" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" id="email" placeholder="email@email.com" name="email">
 

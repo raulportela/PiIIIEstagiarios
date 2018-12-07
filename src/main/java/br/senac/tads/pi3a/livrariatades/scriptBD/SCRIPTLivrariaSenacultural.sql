@@ -20,7 +20,8 @@ cpf VARCHAR(11) NOT NULL UNIQUE,
 dataNascimento DATE NOT NULL,
 codFilial INT,
 PRIMARY KEY (id),
-FOREIGN KEY (codFilial) REFERENCES Filial (id)); 	
+FOREIGN KEY (codFilial) REFERENCES Filial (id)); 
+	
 CREATE TABLE Frases(
 id INT AUTO_INCREMENT,
 frase VARCHAR (400) NOT NULL,
@@ -51,7 +52,6 @@ INSERT INTO FRASES VALUES (default, 'Muitas das falhas da vida ocorrem quando n�
 INSERT INTO FRASES VALUES (default, 'Ser feliz é encontrar força no perdão, esperanças nas batalhas, segurança no palco do medo, amor nos desencontros. É agradecer a Deus a cada minuto pelo milagre da vida.
 ', 'Augusto Cury');
 INSERT INTO FRASES VALUES (default, 'O bom humor é um dos melhores artigos de vestuário que se deve usar em sociedade.', 'William Makepeace Thackeray');
-
 INSERT INTO Pessoa VALUES (default, 'Administrador', 'São Paulo', 11111111111, '2000-1-1', 1);
 INSERT INTO Pessoa VALUES (default, 'Administrador', 'Brasília', 22222222222, '2000-1-1', 2);
 INSERT INTO Pessoa VALUES (default, 'Administrador', 'Campina Grande', 33333333333, '2000-1-1', 3);
@@ -135,16 +135,48 @@ PRIMARY KEY (id),
 FOREIGN KEY(idAutor) REFERENCES Autor(id),
 FOREIGN KEY(idEditora) REFERENCES Editora(id));
 
+INSERT INTO Editora VALUES (default, 'Senac');
+INSERT INTO Editora VALUES (default, 'Saraiva');
+INSERT INTO Editora VALUES (default, 'Maresia');
+INSERT INTO Editora VALUES (default, 'Globo');
+INSERT INTO Editora VALUES (default, 'Cancao Nova');
+INSERT INTO Editora VALUES (default, 'Paulinas');
+INSERT INTO Editora VALUES (default, 'Mabel');
+INSERT INTO Editora VALUES (default, 'Nobel');
+INSERT INTO Editora VALUES (default, 'Rocco');
+INSERT INTO Editora VALUES (default, 'Veja');
+
+INSERT INTO Autor VALUES (default, 'Augusto Cury');
+INSERT INTO Autor VALUES (default, 'Chakespeare ');
+INSERT INTO Autor VALUES (default, 'Henry Games');
+INSERT INTO Autor VALUES (default, 'Jane Austen');
+INSERT INTO Autor VALUES (default, 'Charles Dickens');
+INSERT INTO Autor VALUES (default, 'Machado de Assis');
+INSERT INTO Autor VALUES (default, 'Clarisse Lispector');
+INSERT INTO Autor VALUES (default, 'Erico Verissimo');
+INSERT INTO Autor VALUES (default, 'Guimaraes Rosa');
+INSERT INTO Autor VALUES (default, 'Jorge Amado');
+
+INSERT INTO Livro VALUES (default, 1, 1, 1,1,'Guerra e Paz','Fala sobre gruerra'); 
+INSERT INTO Livro VALUES (default, 2, 2, 1,1,'Dom Quixote','Fala sobre Dom Quixote'); 
+INSERT INTO Livro VALUES (default, 3, 3, 1,1,'100 anos de Solidao','Fala sobre solidao'); 
+INSERT INTO Livro VALUES (default, 4, 4, 2,1,'A divina comedia','Fala sobre comedia'); 
+INSERT INTO Livro VALUES (default, 5, 5, 2,1,'O homem sem qualidades','Fala sobre um homem que não tem qualidades'); 
+INSERT INTO Livro VALUES (default, 6, 6, 2,1,'Falcao: Meninos do Trafico','Crime e o mal que ele causa'); 
+INSERT INTO Livro VALUES (default, 7, 7, 3,1,'Falcao: Mulheres e o Trafico','Mulheres do trafico'); 
+INSERT INTO Livro VALUES (default, 8, 8, 3,1,'Harry Potter e a pedra filosofal','É filosofico'); 
+INSERT INTO Livro VALUES (default, 9, 9, 4,1,'Harry Potter e o cálice de fogo','Pega fogo'); 
+INSERT INTO Livro VALUES (default, 10, 10, 4,1,'Harry Potter e a camara secreta','É secreto'); 
+
 CREATE TABLE Venda(
 id INT AUTO_INCREMENT,
 idPessoa INT,
 notaFiscal VARCHAR(10) NOT NULL,
 dtCompra DATE NOT NULL,
 valorTotal FLOAT NOT NULL,
-codFilial INT NOT NULL,
+codFilial INT,
 PRIMARY KEY (id),
-FOREIGN KEY(idPessoa) REFERENCES Pessoa(id),
-FOREIGN KEY(codFilial) REFERENCES Filial(id));
+FOREIGN KEY(idPessoa) REFERENCES Pessoa(id));
 
 CREATE TABLE ItemVenda(
 id INT AUTO_INCREMENT,
@@ -165,6 +197,17 @@ valor FLOAT NOT NULL,
 PRIMARY KEY(id),
 FOREIGN KEY (idFilial) REFERENCES Filial(id),
 FOREIGN KEY (idLivro) REFERENCES Livro(id));
+
+INSERT INTO FilialTemLivro VALUES (default, 1, 1, 50, 40.60);
+INSERT INTO FilialTemLivro VALUES (default, 1, 1, 10, 22.35);
+INSERT INTO FilialTemLivro VALUES (default, 1, 1, 05, 30);
+INSERT INTO FilialTemLivro VALUES (default, 2, 1, 08, 6.50);
+INSERT INTO FilialTemLivro VALUES (default, 2, 1, 16, 16.00);
+INSERT INTO FilialTemLivro VALUES (default, 3, 1, 30, 25.30);
+INSERT INTO FilialTemLivro VALUES (default, 3, 1, 22, 11.45);
+INSERT INTO FilialTemLivro VALUES (default, 3, 1, 14, 8.60);
+INSERT INTO FilialTemLivro VALUES (default, 4, 1, 16, 16.80);
+INSERT INTO FilialTemLivro VALUES (default, 4, 1, 07, 23.30);
 
 CREATE TABLE Suporte(
 id INT AUTO_INCREMENT,
@@ -193,8 +236,6 @@ ON P.ID = CT.IDPESSOA
 JOIN ENDERECO E
 ON P.ID = E.IDPESSOA;
 
-SELECT * FROM Funcionario;
-
 -- Selecionar funcionario
 SELECT * FROM PESSOA P
 JOIN FUNCIONARIO F
@@ -203,8 +244,19 @@ JOIN CONTATO CT
 ON P.ID = CT.IDPESSOA
 JOIN ENDERECO E
 ON P.ID = E.IDPESSOA;
+select * from venda;
+select * from itemVenda;
 
+select sum(quantidade) from itemVenda
+where  idVenda in (select id from venda where dtcompra = '2018,11,07');
+select dtcompra from venda;
 
-SELECT * FROM Filial;
-Select * From Endereco;
+select sum(valorTotal) from venda
+where codFIlial = 1 and dtCompra = '2018,12,07';
+
+SELECT * FROM Venda V
+JOIN itemVenda IV
+ON v.id = iv.idvenda
+JOIN livro l
+ON iv.idLivro = l.id;
 -- drop database livrariasenacultural;

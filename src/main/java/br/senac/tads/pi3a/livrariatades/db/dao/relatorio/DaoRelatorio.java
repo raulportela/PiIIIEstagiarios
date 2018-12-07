@@ -5,12 +5,9 @@
  */
 package br.senac.tads.pi3a.livrariatades.db.dao.relatorio;
 
-import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
 import br.senac.tads.pi3a.livrariatades.db.utils.ConnectionUtils;
-import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import br.senac.tads.pi3a.livrariatades.model.relatorio.Relatorio;
 import br.senac.tads.pi3a.livrariatades.model.venda.ItemVendido;
-import br.senac.tads.pi3a.livrariatades.model.venda.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,23 +21,11 @@ import java.util.List;
  * @author Raul de Paula
  */
 public class DaoRelatorio {
-    private static int qtdProduto;
 
-    public static int getQtdProduto() {
-        return qtdProduto;
-    }
-
-    public static void setQtdProduto(int qtdProduto) {
-        DaoRelatorio.qtdProduto = qtdProduto;
-    }
-    public static  List<Relatorio> gerar(int codFilial) throws ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM Venda V\n"
-                + "JOIN itemVenda IV\n"
-                + "ON v.id = iv.idvenda\n"
-                + "JOIN livro l\n"
-                + "ON iv.idLivro = l.id\n"
-                + "WHERE V.codFIlial = ?\n"
-                + "ORDER BY V.DATACOMPRA ASC";
+    public static List<Relatorio> gerar(int codFilial) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT dtCompra FROM venda\n"
+                + "WHERE codFIlial = ?\n"
+                + "ORDER BY dtCompra ASC";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -54,25 +39,33 @@ public class DaoRelatorio {
             preparedStatement.setInt(1, codFilial);
 
             result = preparedStatement.executeQuery();
-
+            int contador = 0;
+            boolean primeira = true;
             Relatorio relatorio = new Relatorio();
-            Venda venda = new Venda();
-            ItemVendido itemVenda = new ItemVendido();
             while (result.next()) {
-                venda.setId(result.getInt("v.id"));
-                venda.setIdPessoa(result.getInt("v.idPessoa"));
-                venda.setNotaFiscal(result.getString("v.NotaFiscal"));
-                Timestamp t = result.getTimestamp("dataNascimento");
-                venda.setData(t.toLocalDateTime().toLocalDate());
-                venda.setValorTotal(result.getFloat("v.valorTotal"));
-                venda.setCodFilial(result.getInt("v.codFilial"));
-                List<ItemVendido> listaItens = DaoRelatorio.listarItens(venda.getId(), codFilial);
-                venda.setListaItensVendidos(listaItens);
-                relatorio.setQtdProdutos(relatorio.getQtdProdutos() + getQtdProduto());
-                relatorio.setDia(t.toLocalDateTime().toLocalDate());
-                relatorio.setVenda(venda);
-                listaRelatorio.add(relatorio);
-            }  
+                Timestamp t = result.getTimestamp("dtCompra");
+                if (primeira) {
+                    relatorio.setDia(t.toLocalDateTime().toLocalDate());
+                    relatorio.setQtdProdutos(DaoRelatorio.listarQtdProduto(t, codFilial));
+                    relatorio.setTotalDia(DaoRelatorio.listarTotalDia(t, codFilial));
+                    listaRelatorio.add(relatorio);
+                    primeira = false;
+                } else {
+                    for (int i = 0; i < listaRelatorio.size(); i++) {
+                        Relatorio rl = listaRelatorio.get(contador);
+                        java.util.Date date = java.sql.Date.valueOf(rl.getDia());
+                        Timestamp tr = new Timestamp(date.getTime());
+                        if (!tr.equals(t)) {
+                            relatorio.setDia(t.toLocalDateTime().toLocalDate());
+                            relatorio.setQtdProdutos(DaoRelatorio.listarQtdProduto(t, codFilial));
+                            relatorio.setTotalDia(DaoRelatorio.listarTotalDia(t, codFilial));
+                            listaRelatorio.add(relatorio);
+                        }
+                        contador++;
+                    }
+
+                }
+            }
             return listaRelatorio;
 
         } finally {
@@ -85,32 +78,58 @@ public class DaoRelatorio {
         }
     }
 
-    public static List<ItemVendido> listarItens(int idVenda, int codFilial) throws ClassNotFoundException, SQLException {
-        String sql = "SELECT * FROM ItemVenda Iv\n"
-                + "WHERE Iv.idVenda = ?";
+    public static int listarQtdProduto(Timestamp t, int codFilial) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT SUM(quantidade) FROM itemVenda\n"
+                + "WHERE idVenda IN (SELECT id FROM venda WHERE dtcompra = ?)";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        int qtdProduto = 0;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setTimestamp(1, t);
+
+            result = preparedStatement.executeQuery();
+            if (result.next()) {
+                qtdProduto = result.getInt(1);
+            }
+            return qtdProduto;
+
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+    }
+
+    public static float listarTotalDia(Timestamp t, int codFilial) throws ClassNotFoundException, SQLException {
+        String sql = "SELECT SUM(valorTotal) AS VT FROM venda\n"
+                + "WHERE codFIlial = ? AND dtCompra = ?";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
         try {
-
             connection = ConnectionUtils.getConnection();
             preparedStatement = connection.prepareStatement(sql);
 
-            preparedStatement.setInt(1, idVenda);
+            preparedStatement.setInt(1, codFilial);
+            preparedStatement.setTimestamp(2, t);
 
             result = preparedStatement.executeQuery();
-            List<ItemVendido> listaItens = new ArrayList();
-            ItemVendido itemVenda = new ItemVendido();
-            while (result.next()) {
-                int idProduto =result.getInt("Iv.idLivro");
-                Produto produto = DaoProduto.procurar(idProduto, codFilial);
-                itemVenda.setProduto(produto);
-                itemVenda.setQuantidade(result.getInt("Iv.quantidade"));
-                setQtdProduto(getQtdProduto() + itemVenda.getQuantidade());
-                listaItens.add(itemVenda);
+            
+            if (result.next()) {
+                float valor = result.getFloat("VT");
+                System.out.println(valor);
+                return valor;
             }
-            return listaItens;
+            return 0;
 
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {

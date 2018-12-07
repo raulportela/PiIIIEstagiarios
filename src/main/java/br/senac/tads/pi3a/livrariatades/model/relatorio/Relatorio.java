@@ -5,7 +5,6 @@
  */
 package br.senac.tads.pi3a.livrariatades.model.relatorio;
 
-import br.senac.tads.pi3a.livrariatades.model.venda.Venda;
 import java.time.LocalDate;
 
 /**
@@ -14,9 +13,7 @@ import java.time.LocalDate;
  */
 public class Relatorio {
     private LocalDate dia;
-    private Venda venda;
     private float totalDia;
-    private float totalMes;
     private int qtdProdutos;
 
     public int getQtdProdutos() {
@@ -35,14 +32,6 @@ public class Relatorio {
         this.dia = dia;
     }
 
-    public Venda getVenda() {
-        return venda;
-    }
-
-    public void setVenda(Venda venda) {
-        this.venda = venda;
-    }
-
     public float getTotalDia() {
         return totalDia;
     }
@@ -51,11 +40,4 @@ public class Relatorio {
         this.totalDia = totalDia;
     }
 
-    public float getTotalMes() {
-        return totalMes;
-    }
-
-    public void setTotalMes(float totalMes) {
-        this.totalMes = totalMes;
-    }
 }
