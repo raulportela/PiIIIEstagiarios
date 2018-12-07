@@ -4,7 +4,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Alterar Produto</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
+                        <h5 class="modal-title" id="exampleModalLabel">Alterar Produto</h5>
                         
                     </div>
 
@@ -29,7 +29,7 @@
                             <label>Valor Unitário:</label><input value="${produto.getValor()}" type="text" class="form-control" id="valorunitario" name="valorunitario" >
 
                             <div class="modal-footer">
-                                <a href="${pageContext.request.contextPath}/protegido/home">   
+                                <a href="${pageContext.request.contextPath}/protegido/produto/listar">   
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 </a>
                                 <button type="submit" class="btn btn-primary" >Alterar</button>

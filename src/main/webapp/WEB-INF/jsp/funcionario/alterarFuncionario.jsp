@@ -53,8 +53,8 @@
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary" onclick="">Alterar</button>
-                                <a href="${pageContext.request.contextPath}/protegido/home">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                                <a href="${pageContext.request.contextPath}/protegido/funcionario/listar">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 </a>
                             </div>
                         </form>

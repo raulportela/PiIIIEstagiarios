@@ -87,11 +87,11 @@ public class AlterarExcluirFuncionario extends HttpServlet {
         funcionario.setSobrenome(request.getParameter("sobrenome"));
         funcionario.setCpf(request.getParameter("cpf"));
         String data = request.getParameter("nasc");
-        String dataS[] = data.split("/");
+        String dataS[] = data.split("-");
         System.out.println(dataS[0]);
         System.out.println(dataS[1]);
         System.out.println(dataS[2]);
-        LocalDate lData = LocalDate.of(Integer.parseInt(dataS[2]), Integer.parseInt(dataS[1]), Integer.parseInt(dataS[0]));
+        LocalDate lData = LocalDate.of(Integer.parseInt(dataS[0]), Integer.parseInt(dataS[1]), Integer.parseInt(dataS[2]));
         funcionario.setDataNascimento(lData);
         funcionario.setRg(request.getParameter("rg"));
         funcionario.setNomeUsuario(request.getParameter("nomeusuario"));

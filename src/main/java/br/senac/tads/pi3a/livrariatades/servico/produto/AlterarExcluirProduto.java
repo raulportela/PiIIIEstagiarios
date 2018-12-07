@@ -84,7 +84,7 @@ public class AlterarExcluirProduto extends HttpServlet {
         } catch (Exception ex) {
             Logger.getLogger(AlterarExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect(request.getContextPath() + "/produto/listar");
+        response.sendRedirect(request.getContextPath() + "/protegido/produto/listar");
     }
 
 }

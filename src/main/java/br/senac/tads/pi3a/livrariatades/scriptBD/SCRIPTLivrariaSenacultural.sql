@@ -143,8 +143,8 @@ dtCompra DATE NOT NULL,
 valorTotal FLOAT NOT NULL,
 codFilial INT NOT NULL,
 PRIMARY KEY (id),
-FOREIGN KEY(idPessoa) REFERENCES Pessoa(id)),
-FOREIGN KEY(codFilial) REFERENCES Filial(id);
+FOREIGN KEY(idPessoa) REFERENCES Pessoa(id),
+FOREIGN KEY(codFilial) REFERENCES Filial(id));
 
 CREATE TABLE ItemVenda(
 id INT AUTO_INCREMENT,
@@ -204,8 +204,6 @@ ON P.ID = CT.IDPESSOA
 JOIN ENDERECO E
 ON P.ID = E.IDPESSOA;
 
-update funcionario set senha= 'Dominio55'
-where id = 5;
 
 SELECT * FROM Filial;
 Select * From Endereco;

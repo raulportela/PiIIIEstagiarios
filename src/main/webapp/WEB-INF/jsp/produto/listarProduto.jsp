@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Lista de Produtos</h5><input class="form-control pesquisa"type="text" placeholder="Pesquisar" name="">
+                <h5 class="modal-title" id="exampleModalLabel">Lista de Produtos</h5>
 
             </div>
             <div class="modal-body">
