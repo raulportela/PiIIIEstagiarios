@@ -45,10 +45,7 @@
 
                         </c:if>
                         <hr>
-                        <label>Nota Fiscal:</label><input type="text" class="form-control" id="notafiscal" >
-
-                        <table class="table table-hover">
-
+                        
                             <thead>
 
                                 <tr>
