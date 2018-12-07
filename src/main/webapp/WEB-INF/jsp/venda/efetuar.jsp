@@ -86,12 +86,13 @@
                     </form>
 
                     <div class="modal-footer" >
+                        <form action="${pageContext.request.contextPath}/protegido/venda/efetuar" method="post">
                         <a href="${pageContext.request.contextPath}/protegido/home">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar Venda</button>
                         </a>
-
+                        
                         <button type="submit" class="btn btn-primary" onclick="">Concluir Venda</button>
-
+                        </form>
                     </div>
                 </div>
 

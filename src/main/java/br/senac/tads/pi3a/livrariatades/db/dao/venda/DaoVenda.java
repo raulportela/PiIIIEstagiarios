@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,7 +23,6 @@ public class DaoVenda {
 
     public static void inserir(Venda venda) throws SQLException, Exception {
         String sql = "INSERT INTO Venda VALUES (0, ?, ?, ?, ?)";
-        String sql2 = "INSERT INTO itemVenda VALUES (0, ?, ?, ?, ?)";
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -34,11 +32,11 @@ public class DaoVenda {
             preparedStatement = connection.prepareStatement(sql, preparedStatement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, venda.getIdPessoa());
-            preparedStatement.setString(2, ""+venda.getNotaFiscal());
-           
-            //PRECISA CONVERTER
-            preparedStatement.setDate(3, (java.sql.Date) new Date());
-            preparedStatement.setFloat(3, venda.getValorTotal());
+            preparedStatement.setString(2, "" + venda.getNotaFiscal());
+            Date data = new Date();
+            Timestamp t = new Timestamp(data.getTime());
+            preparedStatement.setTimestamp(3,  t);
+            preparedStatement.setFloat(4, venda.getValorTotal());
             preparedStatement.execute();
 
             int ultimaChave = 0;
@@ -85,8 +83,12 @@ public class DaoVenda {
     }
 
     public static void decrementarEstoque(ItemVendido item) throws SQLException, Exception {
-        String sql = "UPDATE Produto SET quantidade=?, disponivel=?"
+        String sql = "UPDATE FilialTemLivro SET quantidade=?"
                 + "WHERE (id=?)";
+        String sql2 = "UPDATE Livro SET disponivel=?"
+                + "WHERE (id=?)";
+        boolean disponivel = false;
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -95,19 +97,61 @@ public class DaoVenda {
 
             if (item.getProduto().getQuantidade() == 0) {
                 preparedStatement.setInt(1, item.getProduto().getQuantidade());
-                preparedStatement.setBoolean(2, false);
-            }else if (item.getProduto().getQuantidade() > 0) {
+                preparedStatement.setInt(2, item.getProduto().getId());
+                disponivel = false;
+            } else if (item.getProduto().getQuantidade() > 0) {
                 preparedStatement.setInt(1, item.getProduto().getQuantidade());
-                preparedStatement.setBoolean(2, true);
+                preparedStatement.setInt(2, item.getProduto().getId());
+                disponivel = true;
             }
-            preparedStatement.setInt(3, item.getProduto().getId());
 
             preparedStatement.execute();
+
+            if (!preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+
+            preparedStatement = connection.prepareStatement(sql2);
+            if (disponivel) {
+                preparedStatement.setBoolean(1, true);
+            } else {
+                preparedStatement.setBoolean(1, false);
+            }
+            preparedStatement.setInt(2, item.getProduto().getId());
+
         } finally {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.isClosed();
             }
 
+            if (connection != null && !connection.isClosed()) {
+                connection.isClosed();
+            }
+        }
+    }
+
+    public static int numeroNota(int codFIlial) throws SQLException, Exception {
+        String sql = "SELECT id FROM Venda\n"
+                + "WHERE codFilial = ?";
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        int qtdNotas = 0;
+        try {
+            connection = ConnectionUtils.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, codFIlial);
+
+            result = preparedStatement.executeQuery();
+
+            if (result.next()) {
+                qtdNotas = result.getInt(1);
+            }
+            return qtdNotas;
+        } finally {
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.isClosed();
+            }
             if (connection != null && !connection.isClosed()) {
                 connection.isClosed();
             }

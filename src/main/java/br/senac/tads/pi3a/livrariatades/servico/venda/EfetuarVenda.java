@@ -7,14 +7,17 @@ package br.senac.tads.pi3a.livrariatades.servico.venda;
 
 import br.senac.tads.pi3a.livrariatades.db.dao.pessoa.DaoPessoa;
 import br.senac.tads.pi3a.livrariatades.db.dao.produto.DaoProduto;
+import br.senac.tads.pi3a.livrariatades.db.dao.venda.DaoVenda;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
 import br.senac.tads.pi3a.livrariatades.model.pessoa.funcinario.Funcionario;
 import br.senac.tads.pi3a.livrariatades.model.produto.Produto;
 import br.senac.tads.pi3a.livrariatades.model.venda.ItemVendido;
+import br.senac.tads.pi3a.livrariatades.model.venda.Venda;
 import br.senac.tads.pi3a.livrariatades.servico.pessoa.cliente.ListarCliente;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -118,6 +121,42 @@ public class EfetuarVenda extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession sessao = request.getSession();
+        Funcionario funcionario = (Funcionario) sessao.getAttribute("funcionario");
+        Cliente cliente = (Cliente) sessao.getAttribute("clienteVenda");
+        List<ItemVendido> listaVenda = (List<ItemVendido>) sessao.getAttribute("listaVenda");
+        float valorTotal = (Float) sessao.getAttribute("valorTotal");
+
+        if (cliente != null) {
+            if (listaVenda != null) {
+                Venda venda = new Venda();
+                venda.setCliente(cliente);
+                venda.setCodFilial(funcionario.getCodFilial());
+                try {
+                    venda.setNotaFiscal("" + DaoVenda.numeroNota(funcionario.getCodFilial()));
+                } catch (Exception ex) {
+                    Logger.getLogger(EfetuarVenda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                venda.setValorTotal(valorTotal);
+                venda.setListaItensVendidos(listaVenda);
+
+                try {
+                    DaoVenda.inserir(venda);
+                } catch (Exception ex) {
+                    Logger.getLogger(EfetuarVenda.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else {
+                sessao.setAttribute("msgErroVenda", "Selecione ao menos um produto.");
+                return;
+            }
+        } else {
+            sessao.setAttribute("msgErroVenda", "Selecione um Cliente.");
+            return;
+        }
+        sessao.setAttribute("clienteVenda", null);
+        sessao.setAttribute("listaVenda", null);
+        sessao.setAttribute("valorTotal", null);
+        response.sendRedirect(request.getContextPath() + "/protegido/home");
     }
 
 }

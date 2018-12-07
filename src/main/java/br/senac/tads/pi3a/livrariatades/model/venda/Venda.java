@@ -6,22 +6,34 @@
 package br.senac.tads.pi3a.livrariatades.model.venda;
 
 import br.senac.tads.pi3a.livrariatades.model.pessoa.cliente.Cliente;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Raul de Paula
  */
 public class Venda {
+
     private int id;
     private int idPessoa;
     private String notaFiscal;
-    private Date data;
+    private LocalDate data;
     private float valorTotal;
     private Cliente cliente;
-    private ArrayList<ItemVendido> listaItensVendidos = new ArrayList<ItemVendido>();
+    private int codFilial;
+    private List<ItemVendido> listaItensVendidos = new ArrayList();
 
+    public int getCodFilial() {
+        return codFilial;
+    }
+
+    public void setCodFilial(int codFilial) {
+        this.codFilial = codFilial;
+    }
+    
     public int getId() {
         return id;
     }
@@ -46,11 +58,11 @@ public class Venda {
         this.notaFiscal = notaFiscal;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -70,13 +82,12 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public ArrayList<ItemVendido> getListaItensVendidos() {
+    public List<ItemVendido> getListaItensVendidos() {
         return listaItensVendidos;
     }
 
-    public void setListaItensVendidos(ArrayList<ItemVendido> listaItensVendidos) {
+    public void setListaItensVendidos(List<ItemVendido> listaItensVendidos) {
         this.listaItensVendidos = listaItensVendidos;
     }
-    
-    
+
 }
