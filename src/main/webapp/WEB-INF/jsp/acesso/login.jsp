@@ -7,57 +7,61 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    </head>
-    <body>
+<html >
 
-   <c:import url="/WEB-INF/jsp/home/header.jsp" />
-        
-    <div class="modal-dialog" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Login</title>
 
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+  <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/img/favicon.png" rel="icon">
 
-            <div class="modal-content">
+    <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--external css-->
+    <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/css/style.css" rel="stylesheet">
+    <link href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://www.arvore-digital.com/app/rodrigo/html_teste/externo/css/style2.css">
 
-                <div class="modal-header">
+</head>
 
-                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-                        <span aria-hidden="true">&times;</span>
-
-                    </button>
-
-                </div>
-
-                <div class="modal-body">
-                    <c:if test="${mensagemErro != null}">
-                        <p style="color: red">
-                        <c:out value="${mensagemErro}" />
-                        </p>
-                    </c:if>
-                    <form class="form-group" action="${pageContext.request.contextPath}/login" method="post">
-
-                        <label>Login:</label><input type="text" class="form-control" id="nome" name="nomeUsuario">
-                        
-                        <label>Senha:</label><input type="password" class="form-control" id="senha" name="senhaAberta">
-
-                        <div class="modal-footer">
-                            <center>	
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </center>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<body>
+  <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+  <div id="login-page">
+    <div class="container">
+      <form class="form-login" action="${pageContext.request.contextPath}/login"method="post">
+        <h2 class="form-login-heading">LivrariaSenac</h2>
+        <div class="login-wrap">
+          <c:if test="${mensagemErro != null}">
+              <p style="color: red">
+              <c:out value="${mensagemErro}" />
+              </p>
+          </c:if>
+          <input type="text" class="form-control" id="nome" name="nomeUsuario" autofocus>
+          <br>
+          <input type="password" class="form-control" id="senha" name="senhaAberta">
+          <br>
+          <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Acessar </button>
+          
         </div>
-    </div>	
+      </form>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+
+  <script>
+    $.backstretch("http://www.arvore-digital.com/app/rodrigo/html_teste/externo/img/log.jpg", {
+      speed: 500
+    });
+  </script>
 </body>
+
 </html>
