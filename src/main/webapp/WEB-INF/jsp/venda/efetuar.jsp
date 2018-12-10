@@ -45,7 +45,8 @@
 
                         </c:if>
                         <hr>
-                        
+                        <table class="table table-hover">
+
                             <thead>
 
                                 <tr>
@@ -78,11 +79,11 @@
 
                             </tbody>
                         </table>
-                            <div class="modal-footer">
-                                <a href="${pageContext.request.contextPath}/protegido/produto/listar">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" >Selecionar produtos</button>
-                                </a>
-                            </div>
+                        <div class="modal-footer">
+                            <a href="${pageContext.request.contextPath}/protegido/produto/listar">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Selecionar produtos</button>
+                            </a>
+                        </div>
 
                         <div class="modal-footer">
                             <label style="color: red">Total R$: ${sessionScope.valorTotal}</label>
